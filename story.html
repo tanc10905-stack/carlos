@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Luxury Travel Storytelling – Carlos Tan</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text","Segoe UI", system-ui, sans-serif;
+      background: #0b0c10;
+      color: #f5f5f5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    header {
+      padding: 16px 0 24px;
+      border-bottom: 1px solid rgba(255,215,160,0.25);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .name {
+      font-size: 26px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .subtitle {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #d9c9aa;
+    }
+    .back-link {
+      font-size: 11px;
+      color: #b7a88c;
+      margin-top: 10px;
+      display: inline-block;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .back-link span {
+      border-bottom: 1px solid rgba(255,215,160,0.4);
+      padding-bottom: 1px;
+    }
+    .lang-switch {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(255,215,160,0.45);
+      overflow: hidden;
+    }
+    .lang-btn {
+      padding: 6px 14px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: #f5f5f5;
+    }
+    .lang-btn.active {
+      background: rgba(255,215,160,0.18);
+      color: #fbe8bf;
+    }
+    main { margin-top: 26px; }
+
+    .panel {
+      background: #111218;
+      border-radius: 12px;
+      border: 1px solid rgba(255,215,160,0.35);
+      padding: 22px 20px 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+    }
+    .tagline {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #f6d48a;
+      margin-bottom: 10px;
+    }
+    .title-main {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .title-sub {
+      font-size: 13px;
+      color: #d6c7a8;
+      margin-bottom: 16px;
+    }
+    .body-text {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #f2ede3;
+    }
+    .section-label {
+      margin-top: 18px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f3dcaa;
+    }
+    .bullets {
+      font-size: 13px;
+      color: #f2ede3;
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+    .bullets li { margin-bottom: 4px; }
+    .highlight {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #f9e3b0;
+      border-top: 1px dashed rgba(255,215,160,0.45);
+      padding-top: 10px;
+      font-style: italic;
+    }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+
+    footer {
+      margin-top: 22px;
+      font-size: 11px;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    @media (max-width: 768px) {
+      header { align-items: flex-start; }
+      .title-main { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="name">Carlos Tan</div>
+        <div class="subtitle">Luxury Travel Content Storyteller & Brand Strategist · China Market</div>
+        <!-- 如果你的首页文件名是 index.html，可以保持这个链接 -->
+        <a href="index.html" class="back-link"><span>BACK TO MAIN PAGE</span></a>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- 英文版 -->
+      <div class="panel lang-section active" id="lang-en">
+        <div class="tagline">LUXURY TRAVEL STORYTELLING</div>
+        <div class="title-main">Turning One Journey into a Story You Can Feel</div>
+        <div class="title-sub">
+          Using photos, travel diaries and long-form stories to let guests “stay once in their mind” before they ever arrive.
+        </div>
+        <div class="body-text">
+          Through photos and copy, travel diaries and long-form stories, I break down a single journey into four emotional stages:
+          <b>“imagination before departure – emotions upon arrival – the cared-for details during the stay – the lingering attachment after leaving.”</b>
+          <br><br>
+          Instead of only reading a brief camp introduction, the audience can <b>“mentally stay once first, then decide whether to book”</b>.
+          This kind of storytelling is especially important for luxury tented camps in remote destinations, where trust, safety and emotional resonance
+          matter as much as the hardware itself.
+        </div>
+
+        <div class="section-label">HOW THIS APPLIES TO A CAMP LIKE KUMBUKUMBU</div>
+        <ul class="bullets">
+          <li>Before departure: content answers real questions and builds a sense of calm anticipation, not anxiety.</li>
+          <li>On arrival: storytelling focuses on first impressions – sounds, light, landscape and the feeling of “I am really here”.</li>
+          <li>During the stay: details of care, staff warmth, and small surprises become the emotional highlights of the story.</li>
+          <li>After leaving: the guest carries away specific images and feelings that make them want to recommend or come back.</li>
+        </ul>
+
+        <div class="highlight">
+          My role is to turn the camp’s daily reality into shareable, high-aesthetic narratives – so that Chinese travelers feel they already
+          understand the atmosphere, safety and emotional value of the stay, even before they book.
+        </div>
+      </div>
+
+      <!-- 中文版 -->
+      <div class="panel lang-section" id="lang-zh">
+        <div class="tagline">奢旅内容叙事</div>
+        <div class="title-main">把一次旅程，讲成用户能“住进去”的故事</div>
+        <div class="title-sub">
+          通过图文、旅拍日记与长篇故事，让用户在出发之前，先在内容里“住过一次”营地。
+        </div>
+        <div class="body-text">
+          通过图文、旅拍日记与长篇故事，把一次旅程拆解为
+          <b>“出发前的想象—抵达当下的情绪—被照顾的细节—离开后的留恋”</b> 四个阶段，
+          让用户不是只看一篇营地介绍，而是可以在内容里先<b>“住过一次，再决定要不要出发”</b>。
+          <br><br>
+          对于偏远目的地的奢华帐篷营地来说，这种叙事尤为重要——
+          它不仅传达硬件和景观，更是在远距离的情况下，提前建立安全感、信任感与被照顾的期待。
+        </div>
+
+        <div class="section-label">当应用在类似 KumbuKumbu 这样的营地时</div>
+        <ul class="bullets">
+          <li>出发前：用内容回答真实疑问，让用户从“不确定”变成“有点期待”。</li>
+          <li>抵达时：用叙事放大第一眼看到的光线、声音、动物与空间，让“我真的到了”这件事变得有记忆点。</li>
+          <li>停留中：把服务中的小细节、被照顾的瞬间、人与自然的相处感受写进故事，而不是只写“项目清单”。</li>
+          <li>离开后：让用户心里留下一两幅画面、一两个片段，愿意自然而然地分享与推荐。</li>
+        </ul>
+
+        <div class="highlight">
+          我的工作，是把营地每天发生的真实日常，提炼成有画面感、可分享、符合奢旅审美的内容，
+          让中国用户在看到内容时，就已经能感受到这里的<b>氛围、安全感与情绪价值</b>。
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>CONTACT · tanc10905@gmail.com</div>
+      <div>© 2025 Carlos Tan. All Rights Reserved.</div>
+    </footer>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      var enBtn = document.getElementById('btn-en');
+      var zhBtn = document.getElementById('btn-zh');
+      var enSec = document.getElementById('lang-en');
+      var zhSec = document.getElementById('lang-zh');
+
+      if (lang === 'en') {
+        enBtn.classList.add('active');
+        zhBtn.classList.remove('active');
+        enSec.classList.add('active');
+        zhSec.classList.remove('active');
+      } else {
+        zhBtn.classList.add('active');
+        enBtn.classList.remove('active');
+        zhSec.classList.add('active');
+        enSec.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>
