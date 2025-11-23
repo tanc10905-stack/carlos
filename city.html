@@ -13,28 +13,9 @@
       margin:0;
     }
     .page { max-width:800px; margin:0 auto; }
-    .title {
-      font-size:26px;
-      margin-bottom:8px;
-      color:#f6d48a;
-      letter-spacing:0.02em;
-    }
-    .sub {
-      font-size:14px;
-      margin-bottom:24px;
-      color:#d9c9aa;
-    }
-    p { margin-bottom:18px; }
-    b { color:#fbe8bf; }
-    .back a {
-      color:#f6d48a;
-      text-decoration:underline;
-      font-size:13px;
-    }
+
+    /* 语言切换条：跟着内容一起滚动（没有固定定位） */
     .lang-switch {
-      font-size:12px;
-      letter-spacing:0.18em;
-      text-transform:uppercase;
       display:inline-flex;
       border-radius:999px;
       border:1px solid rgba(255,215,160,0.45);
@@ -46,25 +27,49 @@
       cursor:pointer;
       background:transparent;
       border:none;
+      font-size:12px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
       color:#f5f5f5;
     }
     .lang-btn.active {
-      background:rgba(255,215,160,0.18);
+      background:rgba(255,215,160,0.2);
       color:#fbe8bf;
     }
-    .lang-section { display:none; }
-    .lang-section.active { display:block; }
+
+    .title {
+      font-size:26px;
+      margin-bottom:10px;
+      color:#f6d48a;
+      letter-spacing:0.02em;
+    }
+    .sub {
+      font-size:14px;
+      margin-bottom:28px;
+      color:#d9c9aa;
+    }
+    p { margin-bottom:18px; }
+    b { color:#fbe8bf; }
+    .back a {
+      color:#f6d48a;
+      text-decoration:underline;
+      font-size:13px;
+    }
+
+    .story-section { display:none; }
+    .story-section.active { display:block; }
   </style>
 </head>
 <body>
   <div class="page">
+    <!-- 语言切换 -->
     <div class="lang-switch">
       <button class="lang-btn active" id="btn-zh" onclick="switchLang('zh')">中文</button>
       <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
     </div>
 
     <!-- 中文版本 -->
-    <div id="zh" class="lang-section active">
+    <div id="story-zh" class="story-section active">
       <div class="title">城市度假：在城市里寻找“不被打扰的奢侈”</div>
       <div class="sub">Urban Retreat: The Quiet Luxury Hidden in Kuala Lumpur</div>
 
@@ -84,9 +89,10 @@
       </p>
 
       <p>
-        对很多酒店来说，服务是“多做一点”，而 Westin 给我的感觉是：它知道什么时候该退后半步。
-        前台会记得我是回头客，用一句轻轻的 “Welcome back” 把人从城市的节奏里拉出来，但不会过度寒暄；
-        客房打扫会在我离开后悄悄完成，回到房间时，一切只是刚刚好地被整理过。
+        对很多酒店来说，服务是“多做一点”，而 Westin 给我的感觉是：
+        它知道什么时候该退后半步。前台会记得我是回头客，用一句轻轻的 “Welcome back”
+        把人从城市的节奏里拉出来，但不会过度寒暄；客房打扫会在我离开后悄悄完成，
+        回到房间时，一切只是刚刚好地被整理过。
       </p>
 
       <p>
@@ -96,53 +102,53 @@
       </p>
 
       <p>
-        如果我将来为品牌讲述城市度假的故事，这些宣传册上不会写的瞬间，反而会是最有说服力的部分——
-        因为它们解释了一个问题：当客人说“我想放松一下”的时候，他真正需要的，到底是什么。
+        如果我将来为品牌讲述城市度假的故事，这些不会出现在宣传册上的瞬间，
+        反而会是最有说服力的部分——因为它们回答了一个更深层的问题：
+        当客人说“我想放松一下”的时候，他真正需要的，到底是什么。
       </p>
 
       <p class="back"><a href="index.html">← 返回主页 Back to Home</a></p>
     </div>
 
-    <!-- English Version -->
-    <div id="en" class="lang-section">
+    <!-- English version -->
+    <div id="story-en" class="story-section">
       <div class="title">Urban Retreat: Looking for “Undisturbed Luxury” in the City</div>
       <div class="sub">城市度假：在城市里寻找“不被打扰的奢侈”</div>
 
       <p>
-        At The Westin Kuala Lumpur, the hotel sits right above the busy Bukit Bintang road.
-        Pavilion Mall is glowing next door, and a 24-hour McDonald’s is just a few steps away –
-        it almost gathers all the noise and desire of the city right beneath your feet.
+        At the Westin Kuala Lumpur, the hotel sits right above the busy Bukit Bintang road. Pavilion Mall is glowing
+        next door, and a 24-hour McDonald’s is just a few steps away – it almost gathers all the noise and desire of the
+        city right beneath your feet.
       </p>
 
       <p>
-        But what stayed with me was not how lively it was outside, but the contrast
-        the moment I closed the door behind me.
+        But what stayed with me was not how lively it was outside, but the contrast the moment I closed the door behind me.
       </p>
 
       <p>
-        The room is not over-the-top luxurious, but consistently comforting:
-        a familiar bed, lighting and layout. I put on my own playlist, pour a glass of whisky,
-        and lie on the bed. The traffic is still circling downstairs, yet I clearly feel that
-        <b>this pocket of quiet belongs only to me</b>.
+        The room is not over-the-top luxurious, but consistently comforting: a familiar bed, lighting and layout.
+        I put on my own playlist, pour a glass of whisky, and lie on the bed. The traffic is still circling downstairs,
+        yet I clearly feel that <b>this pocket of quiet belongs only to me</b>.
       </p>
 
       <p>
-        For many hotels, “good service” means doing more; at the Westin, it feels more like
-        they know when to <i>step back</i>. The front desk remembers I’m a returning guest,
-        and a soft “Welcome back” is enough to pull me out of the city’s rhythm without too much small talk.
-        Housekeeping finishes while I’m away; when I return, everything is simply, quietly, in place.
+        For many hotels, “good service” means doing more; at the Westin, it feels more like they know when to step back.
+        The front desk remembers I’m a returning guest, and a soft “Welcome back” is enough to pull me out of the city’s
+        rhythm without too much small talk. Housekeeping finishes while I’m away; when I return, everything is simply,
+        quietly, in place.
       </p>
 
       <p>
-        From a luxury travel storytelling perspective, this kind of experience is perfect for narrative.
-        It’s not dramatic in a way that screams for photos, but it is made of details only real stays can reveal:
-        <b>in the loudest part of the city, there is a space where you are not disturbed; in the moments you most need care, it appears without shouting</b>.
+        From a luxury travel storytelling perspective, this kind of experience is perfect for narrative. It’s not dramatic
+        in a way that screams for photos, but it is made of details only real stays can reveal:
+        <b>in the loudest part of the city, there is a space where you are not disturbed; in the moments you most need care,
+        it appears without shouting</b>.
       </p>
 
       <p>
-        If I tell a brand’s urban retreat story in the future, these moments that will never appear in brochures
-        may actually be the most convincing ones – because they answer a deeper question:
-        when a guest says “I just want to relax”, what are they really asking for?
+        If I tell a brand’s urban retreat story in the future, these moments that will never appear in brochures may
+        actually be the most convincing ones – because they answer a deeper question: when a guest says “I just want
+        to relax”, what are they really asking for?
       </p>
 
       <p class="back"><a href="index.html">← Back to Home 返回主页</a></p>
@@ -151,10 +157,10 @@
 
   <script>
     function switchLang(lang) {
-      var zh = document.getElementById('zh');
-      var en = document.getElementById('en');
-      var btnZh = document.getElementById('btn-zh');
-      var btnEn = document.getElementById('btn-en');
+      const zh = document.getElementById('story-zh');
+      const en = document.getElementById('story-en');
+      const btnZh = document.getElementById('btn-zh');
+      const btnEn = document.getElementById('btn-en');
 
       if (lang === 'zh') {
         zh.classList.add('active');
@@ -162,11 +168,12 @@
         btnZh.classList.add('active');
         btnEn.classList.remove('active');
       } else {
-        zh.classList.remove('active');
         en.classList.add('active');
-        btnZh.classList.remove('active');
+        zh.classList.remove('active');
         btnEn.classList.add('active');
+        btnZh.classList.remove('active');
       }
+      // 不做任何滚动操作，保持当前阅读位置
     }
   </script>
 </body>
