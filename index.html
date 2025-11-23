@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,7 @@
       background: #0b0c10;
       color: #f5f5f5;
     }
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
     .page {
       max-width: 1080px;
       margin: 0 auto;
@@ -22,6 +21,14 @@
     header {
       padding: 16px 0 32px;
       border-bottom: 1px solid rgba(255,215,160,0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .header-left {
+      min-width: 240px;
     }
     .name {
       font-size: 30px;
@@ -45,6 +52,29 @@
       padding-top: 10px;
       display: inline-block;
     }
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #d9c9aa;
+    }
+    .lang-btn {
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.15s ease-out;
+      opacity: 0.7;
+    }
+    .lang-btn.active {
+      border-color: rgba(255,215,160,0.8);
+      background: rgba(255,215,160,0.06);
+      opacity: 1;
+      color: #fbeac2;
+    }
+
     main {
       margin-top: 32px;
     }
@@ -127,7 +157,9 @@
       margin-bottom: 6px;
     }
     .exp-year { font-weight: 600; color: #7c5a22; }
-    .exp-desc { max-width: 260px; text-align: right; }
+    .exp-desc-en { max-width: 260px; text-align: right; }
+    .exp-desc-zh { max-width: 220px; text-align: right; }
+
     .panel-bottom {
       margin-top: 28px;
       background: #111218;
@@ -207,118 +239,231 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
+    .hidden { display: none; }
+
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
       .top-grid, .bottom-grid { grid-template-columns: 1fr; }
       .about-body { max-width: 100%; }
-      .exp-desc { max-width: 100%; text-align: left; }
+      .exp-desc-en, .exp-desc-zh { max-width: 100%; text-align: left; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <div class="name">Carlos Tan</div>
-      <div class="subtitle">Luxury Travel Content Storyteller & Brand Strategist · China Market</div>
-      <div class="quote"><span>“Lived experience is the most valuable asset in luxury travel storytelling.”</span></div>
+      <div class="header-left">
+        <div class="name">Carlos Tan</div>
+        <div class="subtitle" id="subtitle-en">Luxury Travel Content Storyteller & Brand Strategist · China Market</div>
+        <div class="subtitle hidden" id="subtitle-zh">奢旅内容叙事者 & 品牌策略人 · 面向中国市场</div>
+        <div class="quote" id="quote-en"><span>“Lived experience is the most valuable asset in luxury travel storytelling.”</span></div>
+        <div class="quote hidden" id="quote-zh"><span>“真实体验，是奢旅内容里最贵的资产。”</span></div>
+      </div>
+      <div class="lang-switch">
+        <div class="lang-btn active" data-lang="en">EN</div>
+        <div class="lang-btn" data-lang="zh">中文</div>
+      </div>
     </header>
 
     <main>
-      <div class="panel-top">
-        <div class="section-title">ABOUT ME</div>
-        <div class="about-body">
-          I am a luxury travel content storyteller and brand strategist focused on the China market – and also a genuine high-frequency luxury hotel guest and outdoor traveler.
-          I have experienced high-altitude roads in Tibet and Western Sichuan, mountain regions around Chongqing, and fully offline days in the Mulu rainforest in Malaysia.
-          These journeys give me an intuitive understanding of how Chinese travelers balance <b>nature, safety, comfort, and a sense of freedom</b>.
-          <br><br>
-          Since 2019, my work in e-commerce and content has centered on
-          <b>brand narrative, user insight, and conversion paths</b>, rather than chasing vanity metrics.
-          This allows me to design content systems for camps and hotels that connect brand story, user emotion, and measurable results – especially on Chinese social platforms such as Xiaohongshu.
-        </div>
-
-        <div class="top-grid">
-          <div>
-            <div class="label" style="margin-top:20px;">CORE FOCUS</div>
-            <div class="card-grid">
-              <div class="card">
-                <div class="card-title">Luxury Travel Storytelling</div>
-                <div class="card-sub">Photo essays, travel diaries, and long-form stories with emotion and a refined tone.</div>
-              </div>
-              <div class="card">
-                <div class="card-title">Brand & Channel Operations</div>
-                <div class="card-sub">From topics and monthly calendars to funnel design and content iteration.</div>
-              </div>
-              <div class="card">
-                <div class="card-title">High-End Guest Perspective</div>
-                <div class="card-sub">150+ hotel nights per year; fluent in the expectations of premium guests.</div>
-              </div>
-              <div class="card">
-                <div class="card-title">Outdoor & Wilderness Insight</div>
-                <div class="card-sub">Real exposure to highlands, rainforests and camping – not just imagined experiences.</div>
-              </div>
-            </div>
-
-            <div class="tag-row">
-              <div class="tag">Story-driven content</div>
-              <div class="tag">Xiaohongshu mindset</div>
-              <div class="tag">KOL / creator collaboration</div>
-              <div class="tag">Travel visual sense</div>
-              <div class="tag">Chinese + English communication</div>
-            </div>
+      <!-- ENGLISH VERSION -->
+      <div id="content-en">
+        <div class="panel-top">
+          <div class="section-title">ABOUT ME</div>
+          <div class="about-body">
+            I am a luxury travel content storyteller and brand strategist focused on the China market – and also a genuine high-frequency luxury hotel guest and outdoor traveler.
+            I have experienced high-altitude roads in Tibet and Western Sichuan, mountain regions around Chongqing, and fully offline days in the Mulu rainforest in Malaysia.
+            These journeys give me an intuitive understanding of how Chinese travelers balance <b>nature, safety, comfort, and a sense of freedom</b>.
+            <br><br>
+            Since 2019, my work in e-commerce and content has centered on
+            <b>brand narrative, user insight, and conversion paths</b>, rather than chasing vanity metrics.
+            This allows me to design content systems for camps and hotels that connect brand story, user emotion, and measurable results – especially on Chinese social platforms such as Xiaohongshu.
           </div>
 
-          <div>
-            <div class="label" style="margin-top:20px;">SNAPSHOT EXPERIENCE</div>
-            <div class="exp-block">
-              <div class="exp-row">
-                <div class="exp-year">2019 – Now</div>
-                <div class="exp-desc">E-commerce & content operations, responsible for brand tone, storytelling and conversion.</div>
+          <div class="top-grid">
+            <div>
+              <div class="label" style="margin-top:20px;">CORE FOCUS</div>
+              <div class="card-grid">
+                <div class="card">
+                  <div class="card-title">Luxury Travel Storytelling</div>
+                  <div class="card-sub">Photo essays, travel diaries, and long-form stories with emotion and a refined tone.</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">Brand & Channel Operations</div>
+                  <div class="card-sub">From topics and monthly calendars to funnel design and content iteration.</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">High-End Guest Perspective</div>
+                  <div class="card-sub">150+ hotel nights per year; fluent in the expectations of premium guests.</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">Outdoor & Wilderness Insight</div>
+                  <div class="card-sub">Real exposure to highlands, rainforests and camping – not just imagined experiences.</div>
+                </div>
               </div>
-              <div class="exp-row">
-                <div class="exp-year">Travel</div>
-                <div class="exp-desc">Tibet, Western Sichuan, Chongqing mountain regions, Mulu rainforest and multiple camping trips.</div>
+
+              <div class="tag-row">
+                <div class="tag">Story-driven content</div>
+                <div class="tag">Xiaohongshu mindset</div>
+                <div class="tag">KOL / creator collaboration</div>
+                <div class="tag">Travel visual sense</div>
+                <div class="tag">Chinese + English communication</div>
               </div>
-              <div class="exp-row">
-                <div class="exp-year">Long-Term Practice</div>
-                <div class="exp-desc">Observing how luxury travelers actually make decisions and remember experiences.</div>
+            </div>
+
+            <div>
+              <div class="label" style="margin-top:20px;">SNAPSHOT EXPERIENCE</div>
+              <div class="exp-block">
+                <div class="exp-row">
+                  <div class="exp-year">2019 – Now</div>
+                  <div class="exp-desc-en">E-commerce & content operations, responsible for brand tone, storytelling and conversion.</div>
+                </div>
+                <div class="exp-row">
+                  <div class="exp-year">Travel</div>
+                  <div class="exp-desc-en">Tibet, Western Sichuan, Chongqing mountain regions, Mulu rainforest and multiple camping trips.</div>
+                </div>
+                <div class="exp-row">
+                  <div class="exp-year">Long-Term Practice</div>
+                  <div class="exp-desc-en">Observing how luxury travelers actually make decisions and remember experiences.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-bottom">
+          <div class="metric-line">150+ NIGHTS / YEAR</div>
+          <div class="metric-sub">Marriott Titanium · Hyatt Globalist · Hilton Diamond</div>
+
+          <div class="bottom-grid">
+            <div>
+              <div class="why-title">WHY I FIT LUXURY TRAVEL BRANDS</div>
+              <ul class="why-list">
+                <li>I am both a content creator and a frequent luxury guest, so I can speak from the traveler’s perspective.</li>
+                <li>I have truly experienced “edges of comfort” – highlands, rainforests, offline nights – and understand the role of safety in wilderness luxury.</li>
+                <li>I know how high-end hotel service and membership ecosystems feel from the inside, beyond brochures.</li>
+                <li>I can translate a camp’s USP – location, wildlife, atmosphere, service – into storylines that resonate with Chinese travelers.</li>
+                <li>I work comfortably with KOLs, media and partners, turning one stay into long-term reusable content assets.</li>
+              </ul>
+
+              <div class="sub-heading">WHAT I CAN CONTRIBUTE</div>
+              <ul class="why-list">
+                <li>Designing a Xiaohongshu content framework: travel diaries, emotional stories, FAQs, and trust-building posts.</li>
+                <li>Crafting briefs and scripts for creators and photographers, ensuring content stays on brand and on message.</li>
+                <li>Answering guest questions in native Chinese, reducing uncertainty and building pre-arrival trust.</li>
+                <li>Reviewing performance data (views, saves, inquiries, conversions) and iterating content themes accordingly.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="sub-heading">TRAVEL & SCENES I DRAW FROM</div>
+              <div class="photo-grid">
+                <div class="photo-cell"><div class="photo-label">TIBET</div></div>
+                <div class="photo-cell"><div class="photo-label">W. SICHUAN</div></div>
+                <div class="photo-cell"><div class="photo-label">CHONGQING</div></div>
+                <div class="photo-cell"><div class="photo-label">MULU RAINFOREST</div></div>
+                <div class="photo-cell"><div class="photo-label">URBAN RETREATS</div></div>
+                <div class="photo-cell"><div class="photo-label">CAMP NIGHTS</div></div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="panel-bottom">
-        <div class="metric-line">150+ NIGHTS / YEAR</div>
-        <div class="metric-sub">Marriott Titanium · Hyatt Globalist · Hilton Diamond</div>
-
-        <div class="bottom-grid">
-          <div>
-            <div class="why-title">WHY I FIT LUXURY TRAVEL BRANDS</div>
-            <ul class="why-list">
-              <li>I am both a content creator and a frequent luxury guest, so I can speak from the traveler’s perspective.</li>
-              <li>I have truly experienced “edges of comfort” – highlands, rainforests, offline nights – and understand the role of safety in wilderness luxury.</li>
-              <li>I know how high-end hotel service and membership ecosystems feel from the inside, beyond brochures.</li>
-              <li>I can translate a camp’s USP – location, wildlife, atmosphere, service – into storylines that resonate with Chinese travelers.</li>
-              <li>I work comfortably with KOLs, media and partners, turning one stay into long-term reusable content assets.</li>
-            </ul>
-
-            <div class="sub-heading">WHAT I CAN CONTRIBUTE</div>
-            <ul class="why-list">
-              <li>Designing a Xiaohongshu content framework: travel diaries, emotional stories, FAQs, and trust-building posts.</li>
-              <li>Crafting briefs and scripts for creators and photographers, ensuring content stays on brand and on message.</li>
-              <li>Answering guest questions in native Chinese, reducing uncertainty and building pre-arrival trust.</li>
-              <li>Reviewing performance data (views, saves, inquiries, conversions) and iterating content themes accordingly.</li>
-            </ul>
+      <!-- CHINESE VERSION -->
+      <div id="content-zh" class="hidden">
+        <div class="panel-top">
+          <div class="section-title">ABOUT ME</div>
+          <div class="about-body">
+            我是一位面向中国市场的奢旅内容叙事者与品牌策略人，同时也是长期的高频酒店住客与真实的户外旅行者。
+            我经历过西藏、川西、重庆等高原与山地环境，也曾在马来西亚 Mulu 雨林完全断网的环境中停留，
+            很清楚中国旅行者在“自然 × 安全 × 自由感”之间的真实心理平衡点。
+            <br><br>
+            过去在电商与内容运营阶段，我主要负责品牌故事包装与整体调性搭建，而不是机械地追逐流量。
+            这让我在奢旅领域，能够同时从品牌、用户与内容三个维度，为营地或酒店设计更有温度、更高信任感、
+            并能稳定转化的叙事体系。
           </div>
 
-          <div>
-            <div class="sub-heading">TRAVEL & SCENES I DRAW FROM</div>
-            <div class="photo-grid">
-              <div class="photo-cell"><div class="photo-label">TIBET</div></div>
-              <div class="photo-cell"><div class="photo-label">W. SICHUAN</div></div>
-              <div class="photo-cell"><div class="photo-label">CHONGQING</div></div>
-              <div class="photo-cell"><div class="photo-label">MULU RAINFOREST</div></div>
-              <div class="photo-cell"><div class="photo-label">URBAN RETREATS</div></div>
-              <div class="photo-cell"><div class="photo-label">CAMP NIGHTS</div></div>
+          <div class="top-grid">
+            <div>
+              <div class="label" style="margin-top:20px;">方向擅长</div>
+              <div class="card-grid">
+                <div class="card">
+                  <div class="card-title">奢旅内容叙事</div>
+                  <div class="card-sub">图文、旅拍日记、长文故事，强调情绪感与高级感。</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">品牌与账号运营</div>
+                  <div class="card-sub">从选题、排期到转化与复盘的完整链路思维。</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">高端住客视角</div>
+                  <div class="card-sub">年均 150+ 晚，熟悉高端酒店体验与用户心理。</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">户外与野奢体验</div>
+                  <div class="card-sub">西藏、川西、Mulu 雨林等真实环境中的停留与露营。</div>
+                </div>
+              </div>
+
+              <div class="tag-row">
+                <div class="tag">故事化内容</div>
+                <div class="tag">小红书思维</div>
+                <div class="tag">KOL 协同</div>
+                <div class="tag">旅拍审美</div>
+                <div class="tag">中文＋英文沟通</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="label" style="margin-top:20px;">简要经历</div>
+              <div class="exp-block">
+                <div class="exp-row">
+                  <div class="exp-year">2019 – 至今</div>
+                  <div class="exp-desc-zh">电商与内容运营，聚焦品牌故事构建与用户转化。</div>
+                </div>
+                <div class="exp-row">
+                  <div class="exp-year">多地旅行</div>
+                  <div class="exp-desc-zh">西藏、川西、重庆周边露营与自驾，Mulu 雨林深度停留。</div>
+                </div>
+                <div class="exp-row">
+                  <div class="exp-year">长期实践</div>
+                  <div class="exp-desc-zh">在高频入住与真实旅行中，持续观察奢旅用户决策逻辑与情绪变化。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-bottom">
+          <div class="metric-line">150+ NIGHTS / YEAR</div>
+          <div class="metric-sub">Marriott Titanium · Hyatt Globalist · Hilton Diamond</div>
+
+          <div class="bottom-grid">
+            <div>
+              <div class="why-title">WHY I FIT LUXURY TRAVEL</div>
+              <ul class="why-list">
+                <li>既是内容创作者，也是长期奢旅住客，能从用户视角讲品牌故事。</li>
+                <li>真实走过“自然边界”：高原、雨林、露营，理解野奢中的安全感需求。</li>
+                <li>熟悉高端酒店服务与会员体系，清楚什么样的体验会被记住。</li>
+                <li>能够将营地的 USP（位置、动物、服务、氛围）转译为中国用户易理解的情绪内容。</li>
+                <li>擅长与 KOL、媒体与合作方沟通，将一次体验沉淀为长期可用的内容资产。</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="photo-grid">
+                <div class="photo-cell"><div class="photo-label">西藏</div></div>
+                <div class="photo-cell"><div class="photo-label">川西</div></div>
+                <div class="photo-cell"><div class="photo-label">重庆山地</div></div>
+                <div class="photo-cell"><div class="photo-label">Mulu 雨林</div></div>
+                <div class="photo-cell"><div class="photo-label">城市度假</div></div>
+                <div class="photo-cell"><div class="photo-label">露营夜晚</div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -330,5 +475,50 @@
       <div>© 2025 Carlos Tan. All Rights Reserved.</div>
     </footer>
   </div>
+
+  <script>
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const contentEn = document.getElementById('content-en');
+    const contentZh = document.getElementById('content-zh');
+    const subtitleEn = document.getElementById('subtitle-en');
+    const subtitleZh = document.getElementById('subtitle-zh');
+    const quoteEn = document.getElementById('quote-en');
+    const quoteZh = document.getElementById('quote-zh');
+
+    function setLang(lang) {
+      if (lang === 'en') {
+        contentEn.classList.remove('hidden');
+        contentZh.classList.add('hidden');
+        subtitleEn.classList.remove('hidden');
+        subtitleZh.classList.add('hidden');
+        quoteEn.classList.remove('hidden');
+        quoteZh.classList.add('hidden');
+      } else {
+        contentEn.classList.add('hidden');
+        contentZh.classList.remove('hidden');
+        subtitleEn.classList.add('hidden');
+        subtitleZh.classList.remove('hidden');
+        quoteEn.classList.add('hidden');
+        quoteZh.classList.remove('hidden');
+      }
+
+      langBtns.forEach(btn => {
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLang(btn.dataset.lang);
+      });
+    });
+
+    // default: English
+    setLang('en');
+  </script>
 </body>
 </html>
