@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>城市度假：在城市里寻找“不被打扰的奢侈”</title>
+  <title>Urban Retreat: Looking for “Undisturbed Luxury” in the City</title>
   <style>
     body {
       background:#0b0c10;
       color:#f5f5f5;
       font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",system-ui,sans-serif;
-      padding:40px 24px;
-      line-height:1.8;
+      padding:32px 24px 48px;
       margin:0;
+      line-height:1.8;
     }
-    .page { max-width:800px; margin:0 auto; }
-
-    /* 语言切换条：跟着内容一起滚动（没有固定定位） */
-    .lang-switch {
-      display:inline-flex;
-      border-radius:999px;
-      border:1px solid rgba(255,215,160,0.45);
-      overflow:hidden;
-      margin-bottom:24px;
+    .page {
+      max-width:800px;
+      margin:0 auto;
+    }
+    .lang-toggle {
+      display:flex;
+      gap:8px;
+      margin-bottom:20px;
     }
     .lang-btn {
+      font-size:13px;
       padding:6px 14px;
-      cursor:pointer;
+      border-radius:999px;
+      border:1px solid rgba(255,215,160,0.45);
       background:transparent;
-      border:none;
-      font-size:12px;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
       color:#f5f5f5;
+      cursor:pointer;
+      letter-spacing:0.12em;
     }
     .lang-btn.active {
       background:rgba(255,215,160,0.2);
       color:#fbe8bf;
     }
-
     .title {
       font-size:26px;
       margin-bottom:10px;
@@ -55,23 +53,22 @@
       text-decoration:underline;
       font-size:13px;
     }
-
-    .story-section { display:none; }
-    .story-section.active { display:block; }
+    .lang-section { display:none; }
+    .lang-section.active { display:block; }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- 语言切换 -->
-    <div class="lang-switch">
+    <!-- 语言切换按钮，随着页面一起滚动 -->
+    <div class="lang-toggle">
       <button class="lang-btn active" id="btn-zh" onclick="switchLang('zh')">中文</button>
       <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
     </div>
 
     <!-- 中文版本 -->
-    <div id="story-zh" class="story-section active">
+    <div id="lang-zh" class="lang-section active">
       <div class="title">城市度假：在城市里寻找“不被打扰的奢侈”</div>
-      <div class="sub">Urban Retreat: The Quiet Luxury Hidden in Kuala Lumpur</div>
+      <div class="sub">Urban Retreat: Looking for “Undisturbed Luxury” in the City</div>
 
       <p>
         吉隆坡的 Westin Kuala Lumpur，楼下是车水马龙的武吉免登路，旁边是灯火通明的 Pavilion 百威年广场，
@@ -102,8 +99,8 @@
       </p>
 
       <p>
-        如果我将来为品牌讲述城市度假的故事，这些不会出现在宣传册上的瞬间，
-        反而会是最有说服力的部分——因为它们回答了一个更深层的问题：
+        如果将来为品牌讲述城市度假的故事，这些不会出现在宣传册上的瞬间，
+        反而可能是最有说服力的部分——因为它们回答了一个更深层的问题：
         当客人说“我想放松一下”的时候，他真正需要的，到底是什么。
       </p>
 
@@ -111,14 +108,14 @@
     </div>
 
     <!-- English version -->
-    <div id="story-en" class="story-section">
+    <div id="lang-en" class="lang-section">
       <div class="title">Urban Retreat: Looking for “Undisturbed Luxury” in the City</div>
       <div class="sub">城市度假：在城市里寻找“不被打扰的奢侈”</div>
 
       <p>
-        At the Westin Kuala Lumpur, the hotel sits right above the busy Bukit Bintang road. Pavilion Mall is glowing
-        next door, and a 24-hour McDonald’s is just a few steps away – it almost gathers all the noise and desire of the
-        city right beneath your feet.
+        At the Westin Kuala Lumpur, the hotel sits right above the busy Bukit Bintang road.
+        Pavilion Mall is glowing next door, and a 24-hour McDonald’s is just a few steps away – it almost gathers all the
+        noise and desire of the city right beneath your feet.
       </p>
 
       <p>
@@ -127,28 +124,29 @@
 
       <p>
         The room is not over-the-top luxurious, but consistently comforting: a familiar bed, lighting and layout.
-        I put on my own playlist, pour a glass of whisky, and lie on the bed. The traffic is still circling downstairs,
-        yet I clearly feel that <b>this pocket of quiet belongs only to me</b>.
+        I put on my own playlist, pour a glass of whisky, and lie on the bed.
+        The traffic is still circling downstairs, yet I clearly feel that
+        <b>this pocket of quiet belongs only to me.</b>
       </p>
 
       <p>
-        For many hotels, “good service” means doing more; at the Westin, it feels more like they know when to step back.
-        The front desk remembers I’m a returning guest, and a soft “Welcome back” is enough to pull me out of the city’s
-        rhythm without too much small talk. Housekeeping finishes while I’m away; when I return, everything is simply,
-        quietly, in place.
+        For many hotels, “good service” means doing more; at the Westin, it feels more like they know when to
+        <i>step back</i>. The front desk remembers I’m a returning guest, and a soft “Welcome back” is enough to pull me
+        out of the city’s rhythm without too much small talk. Housekeeping finishes while I’m away; when I return,
+        everything is simply, quietly, in place.
       </p>
 
       <p>
-        From a luxury travel storytelling perspective, this kind of experience is perfect for narrative. It’s not dramatic
-        in a way that screams for photos, but it is made of details only real stays can reveal:
-        <b>in the loudest part of the city, there is a space where you are not disturbed; in the moments you most need care,
-        it appears without shouting</b>.
+        From a luxury travel storytelling perspective, this kind of experience is perfect for narrative.
+        It’s not dramatic in a way that screams for photos, but it is made of details only real stays can reveal:
+        <b>in the loudest part of the city, there is a space where you are not disturbed;
+        in the moments you most need care, it appears without shouting.</b>
       </p>
 
       <p>
         If I tell a brand’s urban retreat story in the future, these moments that will never appear in brochures may
-        actually be the most convincing ones – because they answer a deeper question: when a guest says “I just want
-        to relax”, what are they really asking for?
+        actually be the most convincing ones – because they answer a deeper question:
+        when a guest says “I just want to relax”, what are they really asking for?
       </p>
 
       <p class="back"><a href="index.html">← Back to Home 返回主页</a></p>
@@ -156,9 +154,16 @@
   </div>
 
   <script>
+    let currentLang = 'zh';
+
     function switchLang(lang) {
-      const zh = document.getElementById('story-zh');
-      const en = document.getElementById('story-en');
+      if (lang === currentLang) return;
+
+      // 记录当前滚动位置
+      const y = window.scrollY || window.pageYOffset;
+
+      const zh = document.getElementById('lang-zh');
+      const en = document.getElementById('lang-en');
       const btnZh = document.getElementById('btn-zh');
       const btnEn = document.getElementById('btn-en');
 
@@ -173,7 +178,11 @@
         btnEn.classList.add('active');
         btnZh.classList.remove('active');
       }
-      // 不做任何滚动操作，保持当前阅读位置
+
+      currentLang = lang;
+
+      // 切换语言后把页面拉回原来的位置
+      window.scrollTo({ top: y });
     }
   </script>
 </body>
