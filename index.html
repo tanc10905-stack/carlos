@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carlos Tan – Luxury Travel Content & Brand</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text","Segoe UI", system-ui, sans-serif;
+      background: #0b0c10;
+      color: #f5f5f5;
+    }
+    a { color: inherit; }
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+    header {
+      padding: 16px 0 32px;
+      border-bottom: 1px solid rgba(255,215,160,0.25);
+    }
+    .name {
+      font-size: 30px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .subtitle {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #d9c9aa;
+    }
+    .quote {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #f0e6cf;
+      font-style: italic;
+    }
+    .quote span {
+      border-top: 1px solid rgba(255,215,160,0.35);
+      padding-top: 10px;
+      display: inline-block;
+    }
+    main {
+      margin-top: 32px;
+    }
+    .panel-top {
+      background: #f7f5f0;
+      color: #2b2b2b;
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .section-title {
+      font-size: 16px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #b18b46;
+      margin-bottom: 12px;
+    }
+    .about-body {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #3a3427;
+      max-width: 720px;
+    }
+    .top-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    .card {
+      border-radius: 8px;
+      border: 1px solid #ead8b5;
+      background: #fbfaf7;
+      padding: 10px 12px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #a57226;
+      margin-bottom: 4px;
+    }
+    .card-sub {
+      font-size: 12px;
+      color: #6a6253;
+    }
+    .tag-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      border-radius: 999px;
+      border: 1px solid #e3d4b1;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #5a5245;
+      background: #fdfbf7;
+    }
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 8px;
+    }
+    .exp-block {
+      font-size: 12px;
+      color: #4b4438;
+    }
+    .exp-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .exp-year { font-weight: 600; color: #7c5a22; }
+    .exp-desc { max-width: 260px; text-align: right; }
+    .panel-bottom {
+      margin-top: 28px;
+      background: #111218;
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,160,0.35);
+      padding: 24px 24px 20px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+    }
+    .metric-line {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f3dcaa;
+      margin-bottom: 4px;
+    }
+    .metric-sub {
+      font-size: 11px;
+      color: #d6c7a8;
+      margin-bottom: 16px;
+    }
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 3fr 4fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .why-title {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #f6d48a;
+      margin-bottom: 10px;
+    }
+    .why-list {
+      font-size: 13px;
+      color: #f2ede3;
+      padding-left: 18px;
+      margin: 0;
+    }
+    .why-list li { margin-bottom: 4px; }
+    .sub-heading {
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #f6d48a;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .photo-cell {
+      position: relative;
+      padding-top: 70%;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg,#3b3f4b,#1a1c24);
+      border: 1px solid rgba(255,215,160,0.22);
+    }
+    .photo-label {
+      position: absolute;
+      left: 10px;
+      bottom: 8px;
+      font-size: 11px;
+      color: #f8f2e6;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    @media (max-width: 768px) {
+      .top-grid, .bottom-grid { grid-template-columns: 1fr; }
+      .about-body { max-width: 100%; }
+      .exp-desc { max-width: 100%; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="name">Carlos Tan</div>
+      <div class="subtitle">Luxury Travel Content Storyteller & Brand Strategist · China Market</div>
+      <div class="quote"><span>“Lived experience is the most valuable asset in luxury travel storytelling.”</span></div>
+    </header>
+
+    <main>
+      <div class="panel-top">
+        <div class="section-title">ABOUT ME</div>
+        <div class="about-body">
+          I am a luxury travel content storyteller and brand strategist focused on the China market – and also a genuine high-frequency luxury hotel guest and outdoor traveler.
+          I have experienced high-altitude roads in Tibet and Western Sichuan, mountain regions around Chongqing, and fully offline days in the Mulu rainforest in Malaysia.
+          These journeys give me an intuitive understanding of how Chinese travelers balance <b>nature, safety, comfort, and a sense of freedom</b>.
+          <br><br>
+          Since 2019, my work in e-commerce and content has centered on
+          <b>brand narrative, user insight, and conversion paths</b>, rather than chasing vanity metrics.
+          This allows me to design content systems for camps and hotels that connect brand story, user emotion, and measurable results – especially on Chinese social platforms such as Xiaohongshu.
+        </div>
+
+        <div class="top-grid">
+          <div>
+            <div class="label" style="margin-top:20px;">CORE FOCUS</div>
+            <div class="card-grid">
+              <div class="card">
+                <div class="card-title">Luxury Travel Storytelling</div>
+                <div class="card-sub">Photo essays, travel diaries, and long-form stories with emotion and a refined tone.</div>
+              </div>
+              <div class="card">
+                <div class="card-title">Brand & Channel Operations</div>
+                <div class="card-sub">From topics and monthly calendars to funnel design and content iteration.</div>
+              </div>
+              <div class="card">
+                <div class="card-title">High-End Guest Perspective</div>
+                <div class="card-sub">150+ hotel nights per year; fluent in the expectations of premium guests.</div>
+              </div>
+              <div class="card">
+                <div class="card-title">Outdoor & Wilderness Insight</div>
+                <div class="card-sub">Real exposure to highlands, rainforests and camping – not just imagined experiences.</div>
+              </div>
+            </div>
+
+            <div class="tag-row">
+              <div class="tag">Story-driven content</div>
+              <div class="tag">Xiaohongshu mindset</div>
+              <div class="tag">KOL / creator collaboration</div>
+              <div class="tag">Travel visual sense</div>
+              <div class="tag">Chinese + English communication</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="label" style="margin-top:20px;">SNAPSHOT EXPERIENCE</div>
+            <div class="exp-block">
+              <div class="exp-row">
+                <div class="exp-year">2019 – Now</div>
+                <div class="exp-desc">E-commerce & content operations, responsible for brand tone, storytelling and conversion.</div>
+              </div>
+              <div class="exp-row">
+                <div class="exp-year">Travel</div>
+                <div class="exp-desc">Tibet, Western Sichuan, Chongqing mountain regions, Mulu rainforest and multiple camping trips.</div>
+              </div>
+              <div class="exp-row">
+                <div class="exp-year">Long-Term Practice</div>
+                <div class="exp-desc">Observing how luxury travelers actually make decisions and remember experiences.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-bottom">
+        <div class="metric-line">150+ NIGHTS / YEAR</div>
+        <div class="metric-sub">Marriott Titanium · Hyatt Globalist · Hilton Diamond</div>
+
+        <div class="bottom-grid">
+          <div>
+            <div class="why-title">WHY I FIT LUXURY TRAVEL BRANDS</div>
+            <ul class="why-list">
+              <li>I am both a content creator and a frequent luxury guest, so I can speak from the traveler’s perspective.</li>
+              <li>I have truly experienced “edges of comfort” – highlands, rainforests, offline nights – and understand the role of safety in wilderness luxury.</li>
+              <li>I know how high-end hotel service and membership ecosystems feel from the inside, beyond brochures.</li>
+              <li>I can translate a camp’s USP – location, wildlife, atmosphere, service – into storylines that resonate with Chinese travelers.</li>
+              <li>I work comfortably with KOLs, media and partners, turning one stay into long-term reusable content assets.</li>
+            </ul>
+
+            <div class="sub-heading">WHAT I CAN CONTRIBUTE</div>
+            <ul class="why-list">
+              <li>Designing a Xiaohongshu content framework: travel diaries, emotional stories, FAQs, and trust-building posts.</li>
+              <li>Crafting briefs and scripts for creators and photographers, ensuring content stays on brand and on message.</li>
+              <li>Answering guest questions in native Chinese, reducing uncertainty and building pre-arrival trust.</li>
+              <li>Reviewing performance data (views, saves, inquiries, conversions) and iterating content themes accordingly.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="sub-heading">TRAVEL & SCENES I DRAW FROM</div>
+            <div class="photo-grid">
+              <div class="photo-cell"><div class="photo-label">TIBET</div></div>
+              <div class="photo-cell"><div class="photo-label">W. SICHUAN</div></div>
+              <div class="photo-cell"><div class="photo-label">CHONGQING</div></div>
+              <div class="photo-cell"><div class="photo-label">MULU RAINFOREST</div></div>
+              <div class="photo-cell"><div class="photo-label">URBAN RETREATS</div></div>
+              <div class="photo-cell"><div class="photo-label">CAMP NIGHTS</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>CONTACT · tanc10905@gmail.com</div>
+      <div>© 2025 Carlos Tan. All Rights Reserved.</div>
+    </footer>
+  </div>
+</body>
+</html>
