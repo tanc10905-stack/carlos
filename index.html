@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Carlos Tan – Luxury Travel Content & Brand</title>
   <style>
     * { box-sizing: border-box; }
@@ -19,16 +19,13 @@
       padding: 40px 24px 60px;
     }
     header {
-      padding: 16px 0 32px;
+      padding: 16px 0 24px;
       border-bottom: 1px solid rgba(255,215,160,0.25);
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
-      gap: 16px;
+      justify-content: space-between;
+      gap: 12px;
       flex-wrap: wrap;
-    }
-    .header-left {
-      min-width: 240px;
     }
     .name {
       font-size: 30px;
@@ -37,61 +34,57 @@
       font-weight: 600;
     }
     .subtitle {
-      margin-top: 8px;
-      font-size: 15px;
+      margin-top: 6px;
+      font-size: 14px;
       color: #d9c9aa;
     }
     .quote {
-      margin-top: 18px;
-      font-size: 14px;
+      margin-top: 12px;
+      font-size: 13px;
       color: #f0e6cf;
       font-style: italic;
     }
     .quote span {
       border-top: 1px solid rgba(255,215,160,0.35);
-      padding-top: 10px;
+      padding-top: 8px;
       display: inline-block;
     }
     .lang-switch {
-      display: flex;
-      gap: 8px;
       font-size: 12px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #d9c9aa;
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(255,215,160,0.45);
+      overflow: hidden;
     }
     .lang-btn {
+      padding: 6px 14px;
       cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: all 0.15s ease-out;
-      opacity: 0.7;
+      background: transparent;
+      border: none;
+      color: #f5f5f5;
     }
     .lang-btn.active {
-      border-color: rgba(255,215,160,0.8);
-      background: rgba(255,215,160,0.06);
-      opacity: 1;
-      color: #fbeac2;
+      background: rgba(255,215,160,0.18);
+      color: #fbe8bf;
     }
+    main { margin-top: 24px; }
 
-    main {
-      margin-top: 32px;
-    }
     .panel-top {
       background: #f7f5f0;
       color: #2b2b2b;
       border-radius: 10px;
-      padding: 28px 28px 24px;
+      padding: 24px 24px 22px;
       border: 1px solid rgba(0,0,0,0.04);
       box-shadow: 0 18px 40px rgba(0,0,0,0.45);
     }
     .section-title {
-      font-size: 16px;
-      letter-spacing: 0.28em;
+      font-size: 15px;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: #b18b46;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .about-body {
       font-size: 13px;
@@ -103,7 +96,7 @@
       display: grid;
       grid-template-columns: 3fr 2fr;
       gap: 32px;
-      margin-top: 24px;
+      margin-top: 20px;
     }
     .card-grid {
       display: grid;
@@ -127,7 +120,7 @@
       color: #6a6253;
     }
     .tag-row {
-      margin-top: 16px;
+      margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -157,15 +150,14 @@
       margin-bottom: 6px;
     }
     .exp-year { font-weight: 600; color: #7c5a22; }
-    .exp-desc-en { max-width: 260px; text-align: right; }
-    .exp-desc-zh { max-width: 220px; text-align: right; }
+    .exp-desc { max-width: 260px; text-align: right; }
 
     .panel-bottom {
-      margin-top: 28px;
+      margin-top: 24px;
       background: #111218;
       border-radius: 10px;
       border: 1px solid rgba(255,215,160,0.35);
-      padding: 24px 24px 20px;
+      padding: 20px 20px 18px;
       box-shadow: 0 18px 40px rgba(0,0,0,0.6);
     }
     .metric-line {
@@ -178,12 +170,12 @@
     .metric-sub {
       font-size: 11px;
       color: #d6c7a8;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .bottom-grid {
       display: grid;
       grid-template-columns: 3fr 4fr;
-      gap: 24px;
+      gap: 20px;
       align-items: flex-start;
     }
     .why-title {
@@ -191,7 +183,7 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #f6d48a;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .why-list {
       font-size: 13px;
@@ -201,13 +193,14 @@
     }
     .why-list li { margin-bottom: 4px; }
     .sub-heading {
-      margin-top: 14px;
+      margin-top: 12px;
       font-size: 12px;
       font-weight: 600;
       color: #f6d48a;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -218,8 +211,16 @@
       padding-top: 70%;
       border-radius: 8px;
       overflow: hidden;
-      background: linear-gradient(135deg,#3b3f4b,#1a1c24);
       border: 1px solid rgba(255,215,160,0.22);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.05));
     }
     .photo-label {
       position: absolute;
@@ -230,8 +231,9 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
     footer {
-      margin-top: 28px;
+      margin-top: 22px;
       font-size: 11px;
       color: #888;
       display: flex;
@@ -240,43 +242,76 @@
       gap: 8px;
     }
 
-    .hidden { display: none; }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+
+    /* 承接页遮罩 */
+    .wip-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .wip-box {
+      background: #111218;
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,160,0.35);
+      padding: 24px 28px;
+      max-width: 320px;
+      text-align: center;
+      color: #f5f5f5;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .wip-title {
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #f6d48a;
+    }
+    .wip-hint {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #c6bca3;
+    }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
       .top-grid, .bottom-grid { grid-template-columns: 1fr; }
       .about-body { max-width: 100%; }
-      .exp-desc-en, .exp-desc-zh { max-width: 100%; text-align: left; }
+      .exp-desc { max-width: 100%; text-align: left; }
+      header { align-items: flex-start; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <div class="header-left">
+      <div>
         <div class="name">Carlos Tan</div>
-        <div class="subtitle" id="subtitle-en">Luxury Travel Content Storyteller & Brand Strategist · China Market</div>
-        <div class="subtitle hidden" id="subtitle-zh">奢旅内容叙事者 & 品牌策略人 · 面向中国市场</div>
-        <div class="quote" id="quote-en"><span>“Lived experience is the most valuable asset in luxury travel storytelling.”</span></div>
-        <div class="quote hidden" id="quote-zh"><span>“真实体验，是奢旅内容里最贵的资产。”</span></div>
+        <div class="subtitle" id="subtitle">
+          Luxury Travel Content Storyteller & Brand Strategist · China Market
+        </div>
+        <div class="quote">
+          <span id="quote-text">“Lived experience is the most valuable asset in luxury travel storytelling.”</span>
+        </div>
       </div>
       <div class="lang-switch">
-        <div class="lang-btn active" data-lang="en">EN</div>
-        <div class="lang-btn" data-lang="zh">中文</div>
+        <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
       </div>
     </header>
 
     <main>
-      <!-- ENGLISH VERSION -->
-      <div id="content-en">
+      <!-- English Version -->
+      <div class="lang-section active" id="lang-en">
         <div class="panel-top">
           <div class="section-title">ABOUT ME</div>
           <div class="about-body">
             I am a luxury travel content storyteller and brand strategist focused on the China market – and also a genuine high-frequency luxury hotel guest and outdoor traveler.
-            I have experienced high-altitude roads in Tibet and Western Sichuan, mountain regions around Chongqing, and fully offline days in the Mulu rainforest in Malaysia.
+            I have experienced high-altitude roads in Tibet and Western Sichuan, mountain regions around Chongqing, and fully offline days in the Mulu National Park rainforest in Sarawak, Malaysia.
             These journeys give me an intuitive understanding of how Chinese travelers balance <b>nature, safety, comfort, and a sense of freedom</b>.
             <br><br>
             Since 2019, my work in e-commerce and content has centered on
@@ -320,15 +355,15 @@
               <div class="exp-block">
                 <div class="exp-row">
                   <div class="exp-year">2019 – Now</div>
-                  <div class="exp-desc-en">E-commerce & content operations, responsible for brand tone, storytelling and conversion.</div>
+                  <div class="exp-desc">E-commerce & content operations, responsible for brand tone, storytelling and conversion.</div>
                 </div>
                 <div class="exp-row">
                   <div class="exp-year">Travel</div>
-                  <div class="exp-desc-en">Tibet, Western Sichuan, Chongqing mountain regions, Mulu rainforest and multiple camping trips.</div>
+                  <div class="exp-desc">Tibet, Western Sichuan, Chongqing mountain regions, Mulu National Park rainforest, plus multiple camping trips.</div>
                 </div>
                 <div class="exp-row">
                   <div class="exp-year">Long-Term Practice</div>
-                  <div class="exp-desc-en">Observing how luxury travelers actually make decisions and remember experiences.</div>
+                  <div class="exp-desc">Observing how luxury travelers actually make decisions and remember experiences.</div>
                 </div>
               </div>
             </div>
@@ -362,30 +397,49 @@
             <div>
               <div class="sub-heading">TRAVEL & SCENES I DRAW FROM</div>
               <div class="photo-grid">
-                <div class="photo-cell"><div class="photo-label">TIBET</div></div>
-                <div class="photo-cell"><div class="photo-label">W. SICHUAN</div></div>
-                <div class="photo-cell"><div class="photo-label">CHONGQING</div></div>
-                <div class="photo-cell"><div class="photo-label">MULU RAINFOREST</div></div>
-                <div class="photo-cell"><div class="photo-label">URBAN RETREATS</div></div>
-                <div class="photo-cell"><div class="photo-label">CAMP NIGHTS</div></div>
+                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">TIBET</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/sichuan_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">W. SICHUAN</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/chongqing_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">CHONGQING MOUNTAINS</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/mulu_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">MULU NATIONAL PARK</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/city_vacation_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">URBAN RETREATS</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/camping_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">CAMP NIGHTS</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- CHINESE VERSION -->
-      <div id="content-zh" class="hidden">
+      <!-- 中文版本 -->
+      <div class="lang-section" id="lang-zh">
         <div class="panel-top">
-          <div class="section-title">ABOUT ME</div>
+          <div class="section-title">关于我</div>
           <div class="about-body">
             我是一位面向中国市场的奢旅内容叙事者与品牌策略人，同时也是长期的高频酒店住客与真实的户外旅行者。
-            我经历过西藏、川西、重庆等高原与山地环境，也曾在马来西亚 Mulu 雨林完全断网的环境中停留，
-            很清楚中国旅行者在“自然 × 安全 × 自由感”之间的真实心理平衡点。
+            我走过西藏与川西的高海拔公路，停留过重庆周边的山地，也在马来西亚砂拉越 Mulu 国家公园的热带雨林中体验过完全断网的几天。
+            这些经历让我对中国旅行者如何在<b>“亲近自然、安全感、舒适度与自由感”</b>之间做平衡，有非常直觉的理解。
             <br><br>
-            过去在电商与内容运营阶段，我主要负责品牌故事包装与整体调性搭建，而不是机械地追逐流量。
-            这让我在奢旅领域，能够同时从品牌、用户与内容三个维度，为营地或酒店设计更有温度、更高信任感、
-            并能稳定转化的叙事体系。
+            自 2019 年以来，我在电商与内容相关的工作重点一直放在
+            <b>品牌叙事、用户洞察与转化路径</b>，而不是单纯追逐表面数据。
+            这也让我在面对营地与酒店时，能够为其设计兼顾品牌故事、用户情绪与实际结果的内容体系，
+            尤其是针对小红书等中文社媒平台。
           </div>
 
           <div class="top-grid">
@@ -394,19 +448,19 @@
               <div class="card-grid">
                 <div class="card">
                   <div class="card-title">奢旅内容叙事</div>
-                  <div class="card-sub">图文、旅拍日记、长文故事，强调情绪感与高级感。</div>
+                  <div class="card-sub">图文、旅拍日记与长篇故事，强调情绪感与高级感。</div>
                 </div>
                 <div class="card">
                   <div class="card-title">品牌与账号运营</div>
-                  <div class="card-sub">从选题、排期到转化与复盘的完整链路思维。</div>
+                  <div class="card-sub">从选题、月度排期到内容漏斗与复盘的完整链路。</div>
                 </div>
                 <div class="card">
                   <div class="card-title">高端住客视角</div>
-                  <div class="card-sub">年均 150+ 晚，熟悉高端酒店体验与用户心理。</div>
+                  <div class="card-sub">每年 150+ 晚入住，熟悉高端客人的期待与敏感点。</div>
                 </div>
                 <div class="card">
                   <div class="card-title">户外与野奢体验</div>
-                  <div class="card-sub">西藏、川西、Mulu 雨林等真实环境中的停留与露营。</div>
+                  <div class="card-sub">真实经历高原、雨林与露营，而不是只在屏幕前想象。</div>
                 </div>
               </div>
 
@@ -415,7 +469,7 @@
                 <div class="tag">小红书思维</div>
                 <div class="tag">KOL 协同</div>
                 <div class="tag">旅拍审美</div>
-                <div class="tag">中文＋英文沟通</div>
+                <div class="tag">中英文沟通</div>
               </div>
             </div>
 
@@ -424,15 +478,15 @@
               <div class="exp-block">
                 <div class="exp-row">
                   <div class="exp-year">2019 – 至今</div>
-                  <div class="exp-desc-zh">电商与内容运营，聚焦品牌故事构建与用户转化。</div>
+                  <div class="exp-desc">电商与内容相关工作，主要负责品牌调性、故事包装与转化路径。</div>
                 </div>
                 <div class="exp-row">
-                  <div class="exp-year">多地旅行</div>
-                  <div class="exp-desc-zh">西藏、川西、重庆周边露营与自驾，Mulu 雨林深度停留。</div>
+                  <div class="exp-year">旅行与停留</div>
+                  <div class="exp-desc">西藏、川西、重庆山地，马来西亚 Mulu 国家公园雨林，以及多次露营。</div>
                 </div>
                 <div class="exp-row">
-                  <div class="exp-year">长期实践</div>
-                  <div class="exp-desc-zh">在高频入住与真实旅行中，持续观察奢旅用户决策逻辑与情绪变化。</div>
+                  <div class="exp-year">长期观察</div>
+                  <div class="exp-desc">在不断旅行与入住中，观察奢旅客人的决策逻辑与记忆点。</div>
                 </div>
               </div>
             </div>
@@ -445,24 +499,51 @@
 
           <div class="bottom-grid">
             <div>
-              <div class="why-title">WHY I FIT LUXURY TRAVEL</div>
+              <div class="why-title">为什么我适合做奢旅内容</div>
               <ul class="why-list">
-                <li>既是内容创作者，也是长期奢旅住客，能从用户视角讲品牌故事。</li>
-                <li>真实走过“自然边界”：高原、雨林、露营，理解野奢中的安全感需求。</li>
-                <li>熟悉高端酒店服务与会员体系，清楚什么样的体验会被记住。</li>
-                <li>能够将营地的 USP（位置、动物、服务、氛围）转译为中国用户易理解的情绪内容。</li>
-                <li>擅长与 KOL、媒体与合作方沟通，将一次体验沉淀为长期可用的内容资产。</li>
+                <li>同时是内容创作者与高频奢旅住客，可以从“住客视角”讲品牌故事。</li>
+                <li>真实体验过高原、雨林与断网夜晚，更理解“野奢场景下安全感”的重要性。</li>
+                <li>熟悉高端酒店服务与会员体系，从内部体验出发理解“被照顾的感觉”。</li>
+                <li>能够把营地的位置、动物、氛围与服务，翻译成中国用户看得懂、愿意收藏的内容。</li>
+                <li>习惯与 KOL、媒体与合作方沟通，把一次体验，变成长期可复用的内容资产。</li>
+              </ul>
+
+              <div class="sub-heading">我能为营地带来什么</div>
+              <ul class="why-list">
+                <li>为小红书搭建内容框架：旅拍日记、情绪故事、常见问题与建立信任的内容。</li>
+                <li>为创作者与摄影师准备脚本与 Brief，保证内容画面与文案符合品牌调性。</li>
+                <li>用中文回答客人的疑问，降低远程出行的不确定感，提升预定前信任度。</li>
+                <li>基于阅读、收藏、咨询与转化数据，持续优化选题方向与内容结构。</li>
               </ul>
             </div>
 
             <div>
+              <div class="sub-heading">这些场景，是我创作的灵感来源</div>
               <div class="photo-grid">
-                <div class="photo-cell"><div class="photo-label">西藏</div></div>
-                <div class="photo-cell"><div class="photo-label">川西</div></div>
-                <div class="photo-cell"><div class="photo-label">重庆山地</div></div>
-                <div class="photo-cell"><div class="photo-label">Mulu 雨林</div></div>
-                <div class="photo-cell"><div class="photo-label">城市度假</div></div>
-                <div class="photo-cell"><div class="photo-label">露营夜晚</div></div>
+                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">西藏</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/sichuan_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">川西</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/chongqing_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">重庆山地</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/mulu_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">Mulu 雨林</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/city_vacation_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">城市度假</div>
+                </div>
+                <div class="photo-cell" style="background-image:url('images/camping_thumbnail.jpg');" onclick="openWip()">
+                  <div class="photo-overlay"></div>
+                  <div class="photo-label">露营夜晚</div>
+                </div>
               </div>
             </div>
           </div>
@@ -471,54 +552,56 @@
     </main>
 
     <footer>
-      <div>CONTACT · tanc10905@gmail.com</div>
+      <div id="footer-left">CONTACT · tanc10905@gmail.com</div>
       <div>© 2025 Carlos Tan. All Rights Reserved.</div>
     </footer>
   </div>
 
+  <!-- 承接页遮罩 -->
+  <div class="wip-overlay" id="wip-overlay" onclick="closeWip()">
+    <div class="wip-box" onclick="event.stopPropagation()">
+      <div class="wip-title" id="wip-title">正在加班制作中</div>
+      <div id="wip-text">正在加班制作中。</div>
+      <div class="wip-hint" id="wip-hint">点击任意空白处关闭 / Tap anywhere to close</div>
+    </div>
+  </div>
+
   <script>
-    const langBtns = document.querySelectorAll('.lang-btn');
-    const contentEn = document.getElementById('content-en');
-    const contentZh = document.getElementById('content-zh');
-    const subtitleEn = document.getElementById('subtitle-en');
-    const subtitleZh = document.getElementById('subtitle-zh');
-    const quoteEn = document.getElementById('quote-en');
-    const quoteZh = document.getElementById('quote-zh');
+    function switchLang(lang) {
+      var enSec = document.getElementById('lang-en');
+      var zhSec = document.getElementById('lang-zh');
+      var btnEn = document.getElementById('btn-en');
+      var btnZh = document.getElementById('btn-zh');
+      var quote = document.getElementById('quote-text');
+      var subtitle = document.getElementById('subtitle');
+      var footerLeft = document.getElementById('footer-left');
 
-    function setLang(lang) {
       if (lang === 'en') {
-        contentEn.classList.remove('hidden');
-        contentZh.classList.add('hidden');
-        subtitleEn.classList.remove('hidden');
-        subtitleZh.classList.add('hidden');
-        quoteEn.classList.remove('hidden');
-        quoteZh.classList.add('hidden');
+        enSec.classList.add('active');
+        zhSec.classList.remove('active');
+        btnEn.classList.add('active');
+        btnZh.classList.remove('active');
+        quote.textContent = "“Lived experience is the most valuable asset in luxury travel storytelling.”";
+        subtitle.textContent = "Luxury Travel Content Storyteller & Brand Strategist · China Market";
+        footerLeft.textContent = "CONTACT · tanc10905@gmail.com";
       } else {
-        contentEn.classList.add('hidden');
-        contentZh.classList.remove('hidden');
-        subtitleEn.classList.add('hidden');
-        subtitleZh.classList.remove('hidden');
-        quoteEn.classList.add('hidden');
-        quoteZh.classList.remove('hidden');
+        enSec.classList.remove('active');
+        zhSec.classList.add('active');
+        btnEn.classList.remove('active');
+        btnZh.classList.add('active');
+        quote.textContent = "“真实体验，是奢旅内容里最贵的资产。”";
+        subtitle.textContent = "奢旅内容叙事者 & 品牌策略人 · 面向中国市场";
+        footerLeft.textContent = "联系 · tanc10905@gmail.com";
       }
-
-      langBtns.forEach(btn => {
-        if (btn.dataset.lang === lang) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
     }
 
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        setLang(btn.dataset.lang);
-      });
-    });
+    function openWip() {
+      document.getElementById('wip-overlay').style.display = 'flex';
+    }
 
-    // default: English
-    setLang('en');
+    function closeWip() {
+      document.getElementById('wip-overlay').style.display = 'none';
+    }
   </script>
 </body>
 </html>
