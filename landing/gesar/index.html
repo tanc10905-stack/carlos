@@ -41,9 +41,9 @@
         .hero {
             width: 100vw;
             height: 100vh;
-            /* ********** 路径修正：使用 ../images/ 假设 HTML 文件在子目录中 ********** */
-            background: url("../images/gesar_banner.jpeg") center center / cover no-repeat;
-            /* ******************************************************************* */
+            /* ********** 路径最终修正：图片在 HTML 文件同级目录 ********** */
+            background: url("genyen_banner.jpg") center center / cover no-repeat;
+            /* *************************************************************** */
             position: relative;
             display: flex;
             justify-content: center;
@@ -73,13 +73,12 @@
             padding: 1.5rem 1.75rem;
         }
 
-        /* -------------------- 修正后的动画 CSS (Bug 3 修复) -------------------- */
+        /* -------------------- 动画 CSS (已修复动画冲突 Bug 3) -------------------- */
         /* 基础状态：稍微缩小 + 下移 + 透明 */
         .hero-line {
             margin-bottom: 0.9rem;
             font-weight: 600;
             text-shadow: 0 6px 18px rgba(0,0,0,0.75);
-            /* 动画/过渡属性 */
             opacity: 0;
             transform: translateY(12px) scale(0.96);
             transition: opacity 0.55s ease, transform 0.6s ease; /* 0.6s 动画时长 */
@@ -103,7 +102,7 @@
         .hero-desc-cn,
         .hero-desc-en { font-size: 1.05rem; letter-spacing: 0.03em; }
 
-        /* 缩放控制：使用 data-hero-lang 状态控制缩放 */
+        /* 缩放控制（已修复 Bug 4 的稳定状态） */
         /* 非当前语言：缩小 + 变暗 */
         html[data-hero-lang="zh"] .hero-en {
             transform: translateY(0) scale(0.92);
@@ -124,7 +123,7 @@
         }
         
         /* --------------------
-           FLOATING BUTTONS (略)
+           FLOATING BUTTONS
         -------------------- */
 
         .float-btn,
@@ -380,57 +379,32 @@
     <script>
         let currentLang = 'en';
 
-        /**
-         * 切换语言
-         * @param {('en'|'zh')} lang
-         * @param {boolean} withAnimation 是否播放 Hero 动画
-         */
         function setLang(lang, withAnimation = true) {
             currentLang = lang;
-
-            // 按钮状态
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-
-            // 正文中英文显示 (使用 ID 和 active 类控制显示，配合 CSS .body-lang.active)
             const bodyEn = document.getElementById('body-en');
             const bodyZh = document.getElementById('body-zh');
             if (bodyEn) bodyEn.classList.toggle('active', lang === 'en');
             if (bodyZh) bodyZh.classList.toggle('active', lang === 'zh');
-            
-            // <html> 上挂状态（用于控制 Hero 文本的缩放/透明度）
             document.documentElement.setAttribute('data-lang', lang);
             document.documentElement.setAttribute('data-hero-lang', lang);
-
-            // Hero 动画
             if (withAnimation) {
                 runHeroAnimation(lang);
             }
         }
 
-        /**
-         * Hero 三行文字依次放大
-         */
         function runHeroAnimation(lang) {
-            // 当前语言要动画的 3 行 ID
             const ids = lang === 'en'
                 ? ['hero-en-1', 'hero-en-2', 'hero-en-3']
                 : ['hero-cn-1', 'hero-cn-2', 'hero-cn-3'];
-
-            // Hero 里所有 6 行 ID
             const all = [
-                'hero-cn-1', 'hero-en-1',
-                'hero-cn-2', 'hero-en-2',
-                'hero-cn-3', 'hero-en-3'
+                'hero-cn-1', 'hero-en-1', 'hero-cn-2', 
+                'hero-en-2', 'hero-cn-3', 'hero-en-3'
             ];
             
-            // 动画总时长计算：
-            // 延迟时间 = 260ms/行 * 2行 = 520ms
-            // 动画/过渡时间 = 600ms
-            // 动画完全结束时间 > 520ms + 600ms
             const transitionDuration = 600; 
-            const maxDelay = 2 * 260; // 最大的行延迟是 520ms (index=2)
-            // 确保在所有行都过渡完成后移除类，给一个安全裕度 100ms
+            const maxDelay = 2 * 260;
             const removeClassDelay = maxDelay + transitionDuration + 100; 
 
             // 1. 先把所有行的动画类清掉
@@ -438,24 +412,21 @@
                 const el = document.getElementById(id);
                 if (!el) return;
                 el.classList.remove('hero-anim');
-                // 强制回流，确保浏览器注意到类已移除
                 void el.offsetWidth;
             });
 
-            // 2. 延迟执行（Bug 2 修复）
+            // 2. 延迟执行
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     ids.forEach((id, index) => {
                         const el = document.getElementById(id);
                         if (!el) return;
                         
-                        // 使用 setTimeout 实现逐行延迟触发
                         const currentDelay = index * 260;
                         setTimeout(() => {
                             el.classList.add('hero-anim');
                             
-                            // 3. 动画结束后移除类（Bug 4 修复）
-                            // 移除 .hero-anim，让 scale(1.22) 的稳定状态接管。
+                            // 3. 动画结束后移除类
                             setTimeout(() => {
                                 el.classList.remove('hero-anim');
                             }, removeClassDelay); 
@@ -466,19 +437,14 @@
             });
         }
 
-        // 绑定事件
         const btnEn = document.getElementById('btn-en');
         const btnZh = document.getElementById('btn-zh');
 
         if (btnEn) btnEn.addEventListener('click', () => setLang('en'));
         if (btnZh) btnZh.addEventListener('click', () => setLang('zh'));
 
-        /**
-         * 初始加载：
-         * 只设置「英文」默认状态，不触发动画 (Bug 1 修复)
-         */
         window.addEventListener('DOMContentLoaded', () => {
-            setLang('en', false); // 第二个参数 false => 不播动画
+            setLang('en', false);
         });
     </script>
 
