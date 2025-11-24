@@ -41,7 +41,9 @@
         .hero {
             width: 100vw;
             height: 100vh;
-            background: url("images/gesar_banner.jpeg") center center / cover no-repeat;
+            /* ********** 路径修正：使用 ../images/ 假设 HTML 文件在子目录中 ********** */
+            background: url("../images/gesar_banner.jpeg") center center / cover no-repeat;
+            /* ******************************************************************* */
             position: relative;
             display: flex;
             justify-content: center;
@@ -426,7 +428,10 @@
             // 延迟时间 = 260ms/行 * 2行 = 520ms
             // 动画/过渡时间 = 600ms
             // 动画完全结束时间 > 520ms + 600ms
-            const totalDuration = 1200; // 确保覆盖所有过渡
+            const transitionDuration = 600; 
+            const maxDelay = 2 * 260; // 最大的行延迟是 520ms (index=2)
+            // 确保在所有行都过渡完成后移除类，给一个安全裕度 100ms
+            const removeClassDelay = maxDelay + transitionDuration + 100; 
 
             // 1. 先把所有行的动画类清掉
             all.forEach(id => {
@@ -445,7 +450,7 @@
                         if (!el) return;
                         
                         // 使用 setTimeout 实现逐行延迟触发
-                        const delayTime = index * 260;
+                        const currentDelay = index * 260;
                         setTimeout(() => {
                             el.classList.add('hero-anim');
                             
@@ -453,9 +458,9 @@
                             // 移除 .hero-anim，让 scale(1.22) 的稳定状态接管。
                             setTimeout(() => {
                                 el.classList.remove('hero-anim');
-                            }, delayTime + totalDuration); // 总延迟 + 确保过渡完成的时间
+                            }, removeClassDelay); 
                             
-                        }, delayTime); 
+                        }, currentDelay); 
                     });
                 });
             });
