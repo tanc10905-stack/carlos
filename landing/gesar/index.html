@@ -1,260 +1,270 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>格聂中线 · 荒野里的第三种秩序</title>
+<title>Gesar South Traverse</title>
 
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-        background: #000;
+        margin: 0;
+        background-color: #000;
         color: #fff;
-        line-height: 1.7;
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1.8;
     }
 
-    /* 全屏海报 */
-    .hero {
+    .banner {
         width: 100%;
         height: 100vh;
-        background: url('../images/gesar_banner.jpeg') center center / cover no-repeat;
-        position: relative;
-    }
-    .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.35);
+        background: url('../../images/gesar_banner.jpeg') center center / cover no-repeat;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 0 24px;
-    }
-    .hero-title {
-        font-size: 42px;
-        font-weight: 300;
-        letter-spacing: 2px;
-        margin-bottom: 12px;
-    }
-    .hero-sub {
-        font-size: 16px;
-        opacity: 0.85;
-        letter-spacing: 1px;
+        padding: 0 20px;
     }
 
-    /* 内容区 */
+    .banner h1 {
+        font-size: 42px;
+        letter-spacing: 6px;
+        font-weight: 300;
+        margin: 0;
+    }
+
+    .banner h2 {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 300;
+        opacity: 0.85;
+    }
+
+    .subtitle {
+        margin-top: 16px;
+        font-size: 15px;
+        opacity: 0.6;
+    }
+
     .content {
         max-width: 900px;
-        margin: 80px auto;
-        padding: 0 24px;
-    }
-    .section-title {
-        font-size: 26px;
-        font-weight: 300;
-        margin-bottom: 22px;
-    }
-    .divider {
-        height: 1px;
-        background: rgba(255,255,255,0.20);
-        margin: 70px 0;
+        margin: 120px auto;
+        padding: 0 20px;
+        font-size: 17px;
     }
 
-    /* 返回按钮 */
+    h3 {
+        font-weight: 400;
+        margin-top: 60px;
+        font-size: 20px;
+    }
+
+    /* Back button */
     .back-btn {
         position: fixed;
-        top: 24px;
-        left: 24px;
-        z-index: 999;
+        top: 20px;
+        left: 20px;
+        background: rgba(255,255,255,0.09);
         padding: 8px 16px;
+        border-radius: 20px;
         font-size: 13px;
-        border-radius: 999px;
-        background: rgba(0,0,0,0.45);
-        border: 1px solid rgba(255,215,160,0.45);
-        color: #f5f5f5;
-        backdrop-filter: blur(8px);
-        cursor: pointer;
         letter-spacing: 1px;
-    }
-
-    /* 悬浮语言按钮 */
-    .lang-switch {
-        position: fixed;
-        top: 24px;
-        right: 24px;
-        z-index: 999;
-        display: inline-flex;
-        border-radius: 999px;
-        overflow: hidden;
-        border: 1.5px solid rgba(255,215,160,0.7);
-        backdrop-filter: blur(8px);
-    }
-    .lang-btn {
-        padding: 6px 16px;
-        font-size: 12px;
-        letter-spacing: 2px;
-        color: #f5f5f5;
-        background: rgba(255,215,160,0.05);
-        border: none;
         cursor: pointer;
-    }
-    .lang-btn.active {
-        background: rgba(255,215,160,0.3);
-        color: #fff9e8;
-    }
-    .lang-btn:hover {
-        background: rgba(255,215,160,0.15);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .lang-section { display: none; }
-    .lang-section.active { display: block; }
+    /* Language toggle */
+    .lang-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .lang-btn {
+        background: rgba(255,255,255,0.1);
+        padding: 6px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .active {
+        background: #fff;
+        color: #000;
+        font-weight: bold;
+    }
 </style>
-</head>
-
-<body>
-
-<!-- 返回首页 -->
-<a class="back-btn" href="../../index.html">← BACK</a>
-
-<!-- 语言切换 -->
-<div class="lang-switch">
-    <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
-    <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
-</div>
-
-<!-- 海报区 -->
-<div class="hero">
-    <div class="hero-overlay">
-        <div class="hero-title">格聂中线 · 荒野里的第三种秩序</div>
-        <div class="hero-sub">The Gesar South Traverse — A Different Kind of Precision</div>
-    </div>
-</div>
-
-<!-- 内容区（两种语言） -->
-<div class="content">
-
-<!-- 中文 -->
-<div class="lang-section active" id="lang-zh">
-
-    <div class="section-title">一｜抵达边缘之前：静止的力量</div>
-    <p>
-        进入格聂前，你以为自己准备好了：风景、海拔、冲击感。  
-        但格聂不会给你这些。  
-        它做的第一件事，是拿走你对“速度”的幻想。
-        导航上只剩几十公里，车速却无法超过二十。  
-        在这里，静止比前进更重要。
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">二｜风把尺度重新定义</div>
-    <p>
-        山峰仿佛触手可及，但你走了半小时，它仍在原地。  
-        格聂的距离不是地理单位，而是情绪单位。  
-        你不能要求荒野按你的节奏运转，只能让自己融入它的秩序。
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">三｜孤独不是缺席，而是被允许</div>
-    <p>
-        有一段路，风突然停了下来。  
-        世界像被按下静音键。  
-        那不是“空”，而是世界为你腾出的空间。  
-        孤独不是没有人，而是终于没有噪音。
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">四｜夜晚是格聂的真实形状</div>
-    <p>
-        当营灯亮起，你会看到黑暗有了厚度。  
-        白天是你穿过格聂，夜晚是格聂穿过你。  
-        真正的奢侈不是风景，而是重新拥有感受世界的能力。
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">五｜结语</div>
-    <p>
-        格聂不会给你答案，它教你面对没有答案的能力。  
-        而当你驶上柏油路的那一刻，你会忽然明白：  
-        <strong>幸福，就是重新拥有方向。</strong>
-    </p>
-
-</div>
-
-
-<!-- 英文 -->
-<div class="lang-section" id="lang-en">
-
-    <div class="section-title">1 · The Power of Stillness</div>
-    <p>
-        Before entering Gesar, you think you're ready—views, altitude, impact.  
-        But Gesar removes your expectations first.  
-        Here, silence comes before movement, stillness before progress.
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">2 · When Wind Redefines Distance</div>
-    <p>
-        A mountain looks close, yet after half an hour it hasn’t moved.  
-        Distances in Gesar are emotional, not geographic.  
-        You cannot force the wilderness to match your rhythm—you learn to match its precision.
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">3 · Solitude as Permission</div>
-    <p>
-        When the wind suddenly stops, the world goes silent.  
-        It isn’t emptiness—it’s space being returned to you.  
-        Solitude here is not the absence of people, but the absence of noise.
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">4 · Night Is Gesar’s True Shape</div>
-    <p>
-        Camp lights reveal the thickness of darkness.  
-        Daytime is you moving through Gesar; nighttime is Gesar moving through you.  
-        Real luxury is regaining the ability to feel.
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="section-title">5 · Ending</div>
-    <p>
-        Gesar gives no answers—it teaches you how to stand without them.  
-        And the moment your tires touch pavement again,  
-        you finally understand:  
-        <strong>Happiness is having a direction again.</strong>
-    </p>
-
-</div>
-
-</div>
 
 <script>
-let currentLang = 'zh';
-
 function switchLang(lang) {
-    if (lang === currentLang) return;
+    document.querySelectorAll(".zh").forEach(el => {
+        el.style.display = lang === "zh" ? "block" : "none";
+    });
+    document.querySelectorAll(".en").forEach(el => {
+        el.style.display = lang === "en" ? "block" : "none";
+    });
 
-    const scrollTop = window.scrollY;
-
-    document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
-    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-
-    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-    currentLang = lang;
-    window.scrollTo({ top: scrollTop });
+    document.getElementById("btn-zh").classList.toggle("active", lang === "zh");
+    document.getElementById("btn-en").classList.toggle("active", lang === "en");
 }
 </script>
+
+</head>
+
+<body onload="switchLang('zh')">
+
+<a class="back-btn" href="../../index.html">← BACK / 返回主页</a>
+
+<div class="lang-toggle">
+    <div id="btn-en" class="lang-btn" onclick="switchLang('en')">EN</div>
+    <div id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</div>
+</div>
+
+<!-- Banner -->
+<div class="banner">
+    <h1>GESAR SOUTH TRAVERSE</h1>
+    <h2>格聂中线：荒野里的第三种秩序</h2>
+    <div class="subtitle">Where wilderness quietly rewrites your sense of distance, silence, and luxury.</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- 中文版本 -->
+<div class="zh">
+
+<h3>一｜抵达边缘之前：静止的力量</h3>
+<p>
+进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种“冲击”。  
+但格聂做的第一件事，是拿走你对速度的幻想。  
+导航上只剩几十公里，车速却很难超过 20 公里。路不再是路，而是被风削过、被时间啃过的痕迹。
+</p>
+<p>在这片荒野里，你第一次意识到：真正的秩序不是从前进开始，而是从停下来开始。</p>
+
+<h3>二｜风把尺度重新定义</h3>
+<p>
+在格聂，距离不再听你的常识指挥。  
+一座山，看起来近在眼前；你走了半个小时，它依旧停在原位。  
+这里的“远近”，从来不是地理单位，而是一种情绪单位。
+</p>
+<p>你慢慢接受：你无法让荒野配合你的尺度，只能让自己掉进它的节奏里。</p>
+<p>被世界重新校准比例尺，本身就是一种极其安静的奢侈。</p>
+
+<h3>三｜孤独不是缺席，而是被允许</h3>
+<p>
+在中线的某一段，风突然停了下来，像是有人按下了世界的静音键。  
+那不是“什么都没有”，而是世界为你让出的一块空白。
+</p>
+<p>
+你站在那里，没有人知道你在这里，没有人等你报平安。  
+但第一次，你也不需要任何人知道。
+</p>
+<p>在这里，孤独不是没人，而是终于没有噪音。</p>
+
+<h3>四｜夜晚是格聂的真实形状</h3>
+<p>
+白天给你看的是地貌，夜晚露出来的才是秩序。  
+当营地的灯亮起，黑暗开始有了厚度，声音被一点点压低，  
+连你的呼吸都在悄悄对齐山体的节奏。
+</p>
+<p>在那片静夜里，你忽然明白：白天是你穿过荒野，夜晚是荒野穿过你。</p>
+<p>而这里真正的奢侈，从来不是风景，而是重新拥有感受世界的能力。</p>
+
+<h3>五｜格聂 · 结语</h3>
+<p>
+格聂不会给你答案，也不会替你解释世界。  
+它教给你的，是一种藏得更深的秩序：  
+世界不会主动为你让路，但你可以学会为世界让出一点空间。
+</p>
+<p>
+它不宏大，也不戏剧，却会在你离开的某一天，  
+在某个选择、某段沉默里轻轻回响。
+</p>
+<p>
+当你终于驶上柏油公路的那一刻，  
+你会突然明白：所谓幸福，从来不是抵达哪里，  
+而是重新拥有继续走下去的能力。
+</p>
+
+</div>
+
+
+<!-- 英文版本 -->
+<div class="en">
+
+<h3>I. Before the Edge — The Power of Stillness</h3>
+<p>
+Before entering Gesar, you think you are ready: altitude, scenery, some sort of emotional impact.  
+But Gesar removes something first — your illusion of speed.
+</p>
+<p>
+Although the map says only a few dozen kilometers remain, the car can barely stay above 20 km/h.  
+The “road” is no longer a road, but traces carved by wind and time.
+</p>
+<p>
+You realize: the true order of wilderness begins not with movement, but with stopping.
+</p>
+
+<h3>II. When Wind Redefines Scale</h3>
+<p>
+In Gesar, distance stops obeying your logic.  
+A mountain looks close; after half an hour of walking, it still stays where it was.  
+Here, distance is emotional, not geographical.
+</p>
+<p>
+You slowly accept: you cannot make the wilderness fit your scale —  
+you can only fall into its rhythm.
+</p>
+<p>Being resized by the world is, in itself, a quiet form of luxury.</p>
+
+<h3>III. Solitude Is Not Absence — It Is Permission</h3>
+<p>
+At one point on the route, the wind suddenly stops, as if someone pressed the mute button on the world.  
+It is not emptiness — it is space the world has made for you.
+</p>
+<p>
+You stand there. Nobody knows you are here, nobody waits for your message.  
+For the first time, you don’t need anyone to know.
+</p>
+<p>Solitude here is not about lacking people — it is about finally lacking noise.</p>
+
+<h3>IV. Night Reveals Gesar’s True Shape</h3>
+<p>
+Daytime shows the landforms; nighttime reveals the order.  
+When the camp lights come on, darkness gains depth,  
+and even your breathing begins aligning itself with the mountains.
+</p>
+<p>
+You realize: in the day you pass through the wilderness,  
+at night the wilderness passes through you.
+</p>
+<p>The real luxury here is not the view — but the ability to feel the world again.</p>
+
+<h3>V. Conclusion</h3>
+<p>
+Gesar gives no answers, nor explanations.  
+It teaches something quieter and deeper:  
+the world will not give way for you — but you can learn to give way for the world.
+</p>
+<p>
+It is not grand, not dramatic,  
+yet someday after you leave,  
+it will echo gently inside a choice or a silence.
+</p>
+<p>
+And when you finally drive onto the paved road,  
+you will suddenly understand:  
+Happiness was never about reaching somewhere —  
+but regaining the ability to keep going.
+</p>
+
+</div>
+
+</div>
 
 </body>
 </html>
