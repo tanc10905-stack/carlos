@@ -2,27 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Gesar South Traverse | Carlos Tan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gesar South Traverse | 格聂中线 · 荒野里的第三种秩序</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg-dark: #050506;
-      --text-main: #f5f5f5;
-      --text-muted: #b0b0b0;
-
-      /* Hero language scale (base = 1) */
-      --hero-en-scale: 1.4;
-      --hero-zh-scale: 1.4;
-    }
-
-    body.lang-en {
-      --hero-en-scale: 2;
-      --hero-zh-scale: 1;
-    }
-
-    body.lang-zh {
-      --hero-en-scale: 1;
-      --hero-zh-scale: 2;
+      --bg-color: #050505;
+      --text-color: #f5f5f5;
+      --muted-color: #b3b3b3;
+      --accent-color: #f5d19a;
+      --pill-bg: #ffffff;
+      --pill-text: #111111;
+      --transition-fast: 0.25s ease;
+      --transition-slow: 0.5s ease;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, system-ui, sans-serif;
+      --base-cn: 16px;
+      --base-en: 16px;
+      --scale-factor: 2;
     }
 
     * {
@@ -32,11 +28,10 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
-        -system-ui, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      line-height: 1.7;
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-color);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -45,117 +40,25 @@
       text-decoration: none;
     }
 
-    /* Top controls */
-    .top-bar {
-      position: fixed;
-      top: 24px;
-      left: 24px;
-      right: 24px;
-      z-index: 20;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      pointer-events: none;
-    }
+    /* ====== Layout ====== */
 
-    .back-btn,
-    .lang-toggle {
-      pointer-events: auto;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 8px 18px;
-      background: rgba(255, 255, 255, 0.96);
-      color: #111;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: 1px solid rgba(0, 0, 0, 0.04);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
-      transition: background 0.2s ease, transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .pill:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .back-btn span {
-      margin-left: 6px;
-      font-weight: 600;
-    }
-
-    .lang-toggle {
-      display: inline-flex;
-      gap: 6px;
-      padding: 4px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
-    }
-
-    .lang-btn {
-      border: none;
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: transparent;
-      color: #555;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease,
-        transform 0.15s ease;
-    }
-
-    .lang-btn.active {
-      background: #111;
+    .page {
+      min-height: 100vh;
+      background-color: #000;
       color: #fff;
-      transform: translateY(-1px);
     }
 
-    .lang-btn:focus-visible {
-      outline: 2px solid #111;
-      outline-offset: 2px;
-    }
-
-    /* Floating language toggle for mobile (right side) */
-    .floating-lang {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 20;
-    }
-
-    .floating-lang .pill {
-      border-radius: 999px;
-      padding: 9px 14px;
-      font-size: 11px;
-    }
-
-    .floating-lang span {
-      font-weight: 700;
-    }
-
-    /* Hero */
     .hero {
       position: relative;
-      min-height: 100vh;
       width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff;
-      overflow: hidden;
+      isolation: isolate;
     }
 
     .hero::before {
@@ -164,407 +67,637 @@
       inset: 0;
       background: url("../../images/gesar_banner.jpeg") center center / cover no-repeat;
       transform: scale(1.02);
-      will-change: transform;
+      filter: brightness(0.85) contrast(1.05);
+      transition: filter 0.8s ease, transform 8s linear;
+      z-index: -2;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(
-          circle at 50% 0,
-          rgba(0, 0, 0, 0.1),
-          transparent 50%
-        ),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.45), #050506 70%);
-      mix-blend-mode: multiply;
+      background: radial-gradient(circle at 50% 20%, rgba(0,0,0,0.15), transparent 55%),
+                  linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.85));
+      z-index: -1;
+    }
+
+    .hero:hover::before {
+      transform: scale(1.06);
+      filter: brightness(0.9) contrast(1.08);
     }
 
     .hero-inner {
       position: relative;
-      z-index: 5;
-      max-width: 960px;
-      padding: 120px 24px 96px;
+      max-width: 1080px;
+      padding: 0 24px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero-line {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      text-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
-      transform-origin: center;
-      transition: font-size 0.4s ease, transform 0.4s ease,
-        opacity 0.4s ease;
-    }
+    /* ====== Global Controls ====== */
 
-    .hero-line.main-en {
-      font-size: calc(20px * var(--hero-en-scale));
-      letter-spacing: 0.28em;
-    }
-
-    .hero-line.main-zh {
-      font-size: calc(18px * var(--hero-zh-scale));
-      letter-spacing: 0.2em;
-    }
-
-    .hero-line.sub-zh {
-      font-size: calc(14px * var(--hero-zh-scale));
-      letter-spacing: 0.16em;
-      margin-top: 12px;
-    }
-
-    .hero-line.sub-en {
-      font-size: calc(13px * var(--hero-en-scale));
-      letter-spacing: 0.18em;
-      margin-bottom: 18px;
-    }
-
-    .hero-line.tagline-en {
-      font-size: calc(13px * var(--hero-en-scale));
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.86);
-    }
-
-    .hero-line.tagline-zh {
-      font-size: calc(13px * var(--hero-zh-scale));
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.86);
-      margin-top: 4px;
+    .top-bar {
+      position: fixed;
+      inset: 24px 24px auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 20;
+      pointer-events: none;
     }
 
     @media (max-width: 768px) {
-      .hero-inner {
-        padding-top: 140px;
-      }
-
-      .hero-line.main-en {
-        letter-spacing: 0.22em;
-      }
-
-      .hero-line.main-zh {
-        letter-spacing: 0.16em;
+      .top-bar {
+        inset: 16px 16px auto 16px;
       }
     }
 
-    /* Content */
-    main {
-      position: relative;
-      z-index: 5;
-      padding: 72px 16px 96px;
-      max-width: 880px;
-      margin: 0 auto;
-    }
-
-    .section {
-      margin-bottom: 64px;
-    }
-
-    .section h2 {
-      font-size: 20px;
+    .pill,
+    .lang-toggle {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      font-size: 13px;
       font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.40);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast);
+      backdrop-filter: blur(14px);
+    }
+
+    .pill:hover,
+    .lang-toggle button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .pill span.icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px;
+      gap: 4px;
+      background: var(--pill-bg);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.40);
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.55);
+      transition: background var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .lang-toggle button.active {
+      background: #111111;
+      color: #f7f7f7;
+      transform: translateY(-0.5px);
+    }
+
+    /* ====== Hero Text ====== */
+
+    .hero-text-wrapper {
+      position: relative;
+      display: inline-block;
+      padding: 28px 36px 30px;
+      border-radius: 32px;
+      background: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.36), rgba(0,0,0,0.78));
+      box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      transform: translateY(-4vh);
+      opacity: 0;
+      animation: heroFadeIn 1s ease forwards 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .hero-text-wrapper {
+        padding: 20px 18px 22px;
+        border-radius: 22px;
+        transform: translateY(-2vh);
+      }
+    }
+
+    .hero-text-inner {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text-block {
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        opacity var(--transition-slow),
+        transform var(--transition-slow);
+    }
+
+    .hero-text-block.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-title-en {
+      font-size: clamp(26px, 4.2vw, 40px);
+      letter-spacing: 0.45em;
+      text-indent: 0.45em;
+      font-weight: 800;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .hero-title-cn {
+      font-size: clamp(18px, 2.3vw, 22px);
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      text-indent: 0.26em;
       margin-bottom: 16px;
     }
 
-    .section p {
-      font-size: 15px;
-      color: var(--text-muted);
+    .hero-sub-cn,
+    .hero-sub-en {
+      font-weight: 700;
       margin-bottom: 14px;
     }
 
-    .section-separator {
-      height: 1px;
-      width: 56px;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
-      margin: 32px 0 24px;
+    .hero-sub-en {
+      letter-spacing: 0.12em;
+      text-indent: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-desc-en,
+    .hero-desc-cn {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted-color);
+      max-width: 760px;
+      margin: 6px auto 0;
+      font-weight: 600;
+    }
+
+    .hero-line-space {
+      height: 8px;
+    }
+
+    @keyframes heroFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ====== Content ====== */
+
+    .content {
+      background: #050608;
+      padding: 72px 0 80px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        padding: 52px 0 64px;
+      }
+    }
+
+    .content-inner {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 24px 24px;
+    }
+
+    .section {
+      margin-bottom: 42px;
     }
 
     .section:last-of-type {
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
 
-    .footer-space {
-      height: 32px;
-    }
-
-    /* Language visibility for body content (not hero) */
-    .text-en,
-    .text-zh {
-      display: none;
-    }
-
-    body.lang-en .text-en {
+    .section-title-en,
+    .section-title-cn {
       display: block;
+      font-weight: 700;
+      margin-bottom: 16px;
     }
 
-    body.lang-zh .text-zh {
-      display: block;
+    .section-title-en {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
     }
 
-    @media (max-width: 640px) {
-      main {
-        padding-inline: 20px;
+    .section-title-cn {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .para-en,
+    .para-cn {
+      font-size: 15px;
+      line-height: 1.9;
+      color: rgba(235, 235, 235, 0.86);
+      margin-bottom: 10px;
+    }
+
+    .para-en:last-child,
+    .para-cn:last-child {
+      margin-bottom: 0;
+    }
+
+    .para-en {
+      color: rgba(220, 220, 220, 0.9);
+    }
+
+    .para-cn {
+      color: rgba(235, 235, 235, 0.94);
+    }
+
+    .muted {
+      color: var(--muted-color);
+    }
+
+    /* ====== Language Scaling ====== */
+
+    .lang-cn .hero-title-cn,
+    .lang-cn .hero-sub-cn,
+    .lang-cn .hero-desc-cn,
+    .lang-cn .section-title-cn,
+    .lang-cn .para-cn {
+      font-size: calc(var(--base-cn) * var(--scale-factor));
+    }
+
+    .lang-cn .hero-title-en,
+    .lang-cn .hero-sub-en,
+    .lang-cn .hero-desc-en,
+    .lang-cn .section-title-en,
+    .lang-cn .para-en {
+      font-size: var(--base-en);
+    }
+
+    .lang-en .hero-title-en,
+    .lang-en .hero-sub-en,
+    .lang-en .hero-desc-en,
+    .lang-en .section-title-en,
+    .lang-en .para-en {
+      font-size: calc(var(--base-en) * var(--scale-factor));
+    }
+
+    .lang-en .hero-title-cn,
+    .lang-en .hero-sub-cn,
+    .lang-en .hero-desc-cn,
+    .lang-en .section-title-cn,
+    .lang-en .para-cn {
+      font-size: var(--base-cn);
+    }
+
+    /* Base size tokens */
+    .hero-title-cn,
+    .section-title-cn,
+    .para-cn,
+    .hero-desc-cn,
+    .hero-sub-cn {
+      font-size: var(--base-cn);
+    }
+
+    .hero-title-en,
+    .section-title-en,
+    .para-en,
+    .hero-desc-en,
+    .hero-sub-en {
+      font-size: var(--base-en);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .lang-cn .hero-title-cn,
+      .lang-cn .hero-sub-cn {
+        font-size: calc(17px * var(--scale-factor));
+      }
+      .lang-en .hero-title-en,
+      .lang-en .hero-sub-en {
+        font-size: calc(17px * var(--scale-factor));
+      }
+      .hero-desc-en,
+      .hero-desc-cn,
+      .para-en,
+      .para-cn {
+        line-height: 1.8;
       }
     }
   </style>
 </head>
 <body class="lang-en">
   <!-- Top controls -->
-  <div class="top-bar">
-    <a href="../../index.html" class="back-btn pill">
-      <span>← BACK / 返回主页</span>
-    </a>
+  <div class="page">
+    <div class="top-bar">
+      <!-- Back to main -->
+      <a href="../../index.html" class="pill">
+        <span class="icon">←</span>
+        <span class="label-en">BACK</span>
+        <span>/</span>
+        <span class="label-cn">返回主页</span>
+      </a>
 
-    <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="zh">中文</button>
+      <!-- Language toggle -->
+      <div class="lang-toggle" id="langToggle">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="cn">中文</button>
+      </div>
     </div>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text-wrapper">
+          <div class="hero-text-inner">
+            <div class="hero-text-block active" id="heroText">
+              <!-- 1. EN Title -->
+              <div class="hero-title-en">
+                <strong>GESAR SOUTH TRAVERSE</strong>
+              </div>
+              <!-- 2. CN Title -->
+              <div class="hero-title-cn">
+                <strong>格聂中线穿越</strong>
+              </div>
+
+              <div class="hero-line-space"></div>
+
+              <!-- 3. CN Sub -->
+              <div class="hero-sub-cn">
+                <strong>格聂中线：荒野里的第三种秩序</strong>
+              </div>
+              <!-- 4. EN Sub -->
+              <div class="hero-sub-en">
+                <strong>Gesar South Traverse: The Third Order Hidden in the Wilderness</strong>
+              </div>
+
+              <div class="hero-line-space"></div>
+
+              <!-- 5. EN Desc -->
+              <p class="hero-desc-en">
+                <strong>Where wilderness quietly rewrites your sense of distance, silence, and luxury.</strong>
+              </p>
+              <!-- 6. CN Desc -->
+              <p class="hero-desc-cn">
+                <strong>在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content section -->
+    <main class="content">
+      <div class="content-inner">
+        <!-- Section 1 -->
+        <section class="section">
+          <span class="section-title-cn">一｜抵达边缘之前：静止的力量</span>
+          <span class="section-title-en">I. Before the Edge — The Power of Stillness</span>
+
+          <p class="para-cn">
+            进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种“冲击”。
+          </p>
+          <p class="para-en">
+            Before entering Gesar, you think you are ready: altitude, scenery, some expected rush of emotion.
+          </p>
+          <p class="para-cn">
+            但格聂做的第一件事，是拿走你对速度的幻想。
+          </p>
+          <p class="para-en">
+            Gesar does something else first. It takes away your illusion of speed.
+          </p>
+          <p class="para-cn">
+            导航上只剩几十公里，车速却很难超过 20 公里。路不再是路，而是被风削过、被时间啃过的痕迹。
+          </p>
+          <p class="para-en">
+            On the map, there are only a few dozen kilometers left. In reality, the car can barely stay above 20 km/h. The “road” is no longer a road, but traces carved by wind and time.
+          </p>
+          <p class="para-cn">
+            在这片荒野里，你第一次意识到：真正的秩序不是从前进开始，而是从停下来开始。
+          </p>
+          <p class="para-en">
+            In this wilderness, you realize for the first time: true order doesn’t begin with moving forward, but with stopping.
+          </p>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="section">
+          <span class="section-title-cn">二｜风把尺度重新定义</span>
+          <span class="section-title-en">II. When Wind Redefines Scale</span>
+
+          <p class="para-cn">
+            在格聂，距离不再听你的常识指挥。
+          </p>
+          <p class="para-en">
+            In Gesar, distance no longer obeys your common sense.
+          </p>
+          <p class="para-cn">
+            一座山，看起来近在眼前；你走了半个小时，它依旧停在原位。
+          </p>
+          <p class="para-en">
+            A mountain looks just ahead; after walking for half an hour, it is still in the same place.
+          </p>
+          <p class="para-cn">
+            这里的“远近”，从来不是地理单位，而是一种情绪单位。
+          </p>
+          <p class="para-en">
+            Here, “far” and “near” are not measured in geography, but in emotion.
+          </p>
+          <p class="para-cn">
+            你慢慢接受：你无法让荒野配合你的尺度，只能让自己掉进它的节奏里。
+          </p>
+          <p class="para-en">
+            You slowly accept: you cannot force the wilderness to match your scale; you can only let yourself fall into its rhythm.
+          </p>
+          <p class="para-cn">
+            被世界重新校准比例尺，本身就是一种极其安静的奢侈。
+          </p>
+          <p class="para-en">
+            Having your inner scale quietly recalibrated by the world — that, in itself, is a rare kind of luxury.
+          </p>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="section">
+          <span class="section-title-cn">三｜孤独不是缺席，而是被允许</span>
+          <span class="section-title-en">III. Solitude as Permission, Not Absence</span>
+
+          <p class="para-cn">
+            在中线的某一段，风突然停了下来，像是有人按下了世界的静音键。
+          </p>
+          <p class="para-en">
+            On one stretch of the traverse, the wind suddenly dies, as if someone has pressed mute on the world.
+          </p>
+          <p class="para-cn">
+            那不是“什么都没有”，而是世界为你让出的一块空白。
+          </p>
+          <p class="para-en">
+            It isn’t “nothingness” — it’s the world making room for you.
+          </p>
+          <p class="para-cn">
+            你站在那里，没有人知道你在这里，没有人等你报平安。但第一次，你也不需要任何人知道。
+          </p>
+          <p class="para-en">
+            You stand there. No one knows where you are; no one is waiting for you to check in. For the first time, you don’t need anyone to know.
+          </p>
+          <p class="para-cn">
+            在这里，孤独不是没人，而是终于没有噪音。
+          </p>
+          <p class="para-en">
+            Here, solitude is not the absence of people, but finally the absence of noise.
+          </p>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="section">
+          <span class="section-title-cn">四｜夜晚是格聂的真实形状</span>
+          <span class="section-title-en">IV. Night Reveals Gesar’s True Shape</span>
+
+          <p class="para-cn">
+            白天给你看的是地貌，夜晚露出来的才是秩序。
+          </p>
+          <p class="para-en">
+            Daytime shows you the terrain; night reveals the underlying order.
+          </p>
+          <p class="para-cn">
+            当营地的灯亮起，黑暗开始有了厚度，声音被一点点压低，连你的呼吸都在悄悄对齐山体的节奏。
+          </p>
+          <p class="para-en">
+            When the camp lights come on, darkness gains thickness. Sounds are pressed down, and even your breathing quietly aligns with the rhythm of the mountains.
+          </p>
+          <p class="para-cn">
+            在那片静夜里，你忽然明白：白天是你穿过荒野，夜晚是荒野穿过你。
+          </p>
+          <p class="para-en">
+            In that still night, you suddenly understand: by day, you pass through the wilderness; by night, the wilderness passes through you.
+          </p>
+          <p class="para-cn">
+            而这里真正的奢侈，从来不是风景，而是重新拥有感受世界的能力。
+          </p>
+          <p class="para-en">
+            The true luxury here has never been the view — it is regaining the ability to feel the world.
+          </p>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="section">
+          <span class="section-title-cn">五｜格聂 · 结语</span>
+          <span class="section-title-en">V. Gesar · Coda</span>
+
+          <p class="para-cn">
+            格聂不会给你答案，也不会替你解释世界。
+          </p>
+          <p class="para-en">
+            Gesar will not give you answers, nor will it explain the world for you.
+          </p>
+          <p class="para-cn">
+            它教给你的，是一种藏得更深的秩序：世界不会主动为你让路，但你可以学会为世界让出一点空间。
+          </p>
+          <p class="para-en">
+            What it teaches is a quieter order: the world will not step aside for you, but you can learn to make a little space for the world.
+          </p>
+          <p class="para-cn">
+            它不宏大，也不戏剧，却会在你离开的某一天，在某个选择、某段沉默里轻轻回响。
+          </p>
+          <p class="para-en">
+            It is neither grand nor dramatic, yet one day after you leave, it will echo softly in some choice, some silence.
+          </p>
+          <p class="para-cn">
+            当你终于驶上柏油公路的那一刻，你会突然明白：所谓幸福，从来不是抵达哪里，而是重新拥有继续走下去的能力。
+          </p>
+          <p class="para-en">
+            When you finally roll back onto asphalt, you suddenly understand: happiness has never been about where you arrive, but about regaining the ability to keep going.
+          </p>
+        </section>
+      </div>
+    </main>
   </div>
-
-  <!-- Floating lang hint on mobile -->
-  <div class="floating-lang">
-    <div class="pill">
-      <span id="floatingLangLabel">EN</span>
-    </div>
-  </div>
-
-  <!-- Hero section -->
-  <section class="hero">
-    <div class="hero-inner">
-      <span class="hero-line main-en">GESAR SOUTH TRAVERSE</span>
-      <span class="hero-line main-zh">格聂中线穿越</span>
-
-      <span class="hero-line sub-zh">格聂中线：荒野里的第三种秩序</span>
-      <span class="hero-line sub-en">
-        Gesar South Traverse: The Third Order Hidden in the Wilderness
-      </span>
-
-      <span class="hero-line tagline-en">
-        Where wilderness quietly rewrites your sense of distance, silence, and luxury.
-      </span>
-      <span class="hero-line tagline-zh">
-        在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。
-      </span>
-    </div>
-  </section>
-
-  <!-- Main story -->
-  <main>
-    <!-- EN -->
-    <div class="text-en">
-      <section class="section">
-        <h2>I. Before the Edge — The Power of Stillness</h2>
-        <p>
-          Before entering Gesar, you think you are ready: for altitude, for
-          scenery, for some kind of emotional “impact”.
-        </p>
-        <p>
-          Gesar does something else first. It takes away your illusion of
-          speed.
-        </p>
-        <p>
-          On the map, there are only a few dozen kilometers left. In reality,
-          the car can barely stay above 20 km/h. The “road” is no longer a road,
-          but traces carved by wind and time.
-        </p>
-        <p>
-          In this wilderness, you realize for the first time: real order doesn’t
-          start from moving forward, it starts from stopping.
-        </p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>II. When Wind Redefines Scale</h2>
-        <p>
-          In Gesar, distance no longer obeys your common sense.
-        </p>
-        <p>
-          A mountain looks close enough to touch. You walk for half an hour, and
-          it is still exactly where it was.
-        </p>
-        <p>
-          Here, “near” and “far” are not geographical units, but emotional
-          ones.
-        </p>
-        <p>
-          Slowly you accept: you cannot force the wilderness to fit your scale;
-          you can only fall into its rhythm.
-        </p>
-        <p>
-          Being re-calibrated by the world itself is a very quiet kind of
-          luxury.
-        </p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>III. Solitude Is Not Absence, but Permission</h2>
-        <p>
-          On one stretch of the traverse, the wind suddenly drops, as if someone
-          pressed mute on the world.
-        </p>
-        <p>
-          It is not that “nothing is there”. It is the world making space for
-          you.
-        </p>
-        <p>
-          You stand there. No one knows you are here, no one is waiting for your
-          location pin. For the first time, you do not need anyone to know.
-        </p>
-        <p>
-          Here, solitude is not the lack of people. It is finally the lack of
-          noise.
-        </p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>IV. Night Is the True Shape of Gesar</h2>
-        <p>
-          Daylight shows you the terrain; night reveals the order underneath.
-        </p>
-        <p>
-          When camp lights come on, darkness gains thickness. Sound is pressed
-          down. Even your breathing quietly aligns with the rhythm of the
-          mountains.
-        </p>
-        <p>
-          Somewhere in that still night you understand: daytime is you passing
-          through the wilderness; night is the wilderness passing through you.
-        </p>
-        <p>
-          The real luxury here has never been the view. It is the ability to
-          feel the world again.
-        </p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>V. Gesar · Epilogue</h2>
-        <p>
-          Gesar will not give you answers, nor explain the world for you.
-        </p>
-        <p>
-          What it teaches is a quieter kind of order: the world will not
-          automatically make way for you, but you can learn to leave a bit of
-          space for the world.
-        </p>
-        <p>
-          It is neither grand nor dramatic, yet it will echo later — inside a
-          decision, a silence, a moment when you don’t know what to choose.
-        </p>
-        <p>
-          When you finally roll back onto asphalt, you suddenly realize: what we
-          call happiness has never been about where you arrive, but about
-          regaining the ability to keep going.
-        </p>
-      </section>
-    </div>
-
-    <!-- ZH -->
-    <div class="text-zh">
-      <section class="section">
-        <h2>一｜抵达边缘之前：静止的力量</h2>
-        <p>
-          进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种「冲击」。
-        </p>
-        <p>但格聂做的第一件事，是拿走你对速度的幻想。</p>
-        <p>
-          导航上只剩几十公里，车速却很难超过 20 公里。路不再是路，而是被风削过、被时间啃过的痕迹。
-        </p>
-        <p>在这片荒野里，你第一次意识到：真正的秩序不是从前进开始，而是从停下来开始。</p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>二｜风把尺度重新定义</h2>
-        <p>在格聂，距离不再听你的常识指挥。</p>
-        <p>一座山，看起来近在眼前；你走了半个小时，它依旧停在原位。</p>
-        <p>这里的「远近」，从来不是地理单位，而是一种情绪单位。</p>
-        <p>
-          你慢慢接受：你无法让荒野配合你的尺度，只能让自己掉进它的节奏里。
-        </p>
-        <p>被世界重新校准比例尺，本身就是一种极其安静的奢侈。</p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>三｜孤独不是缺席，而是被允许</h2>
-        <p>在中线的某一段，风突然停了下来，像是有人按下了世界的静音键。</p>
-        <p>那不是「什么都没有」，而是世界为你让出的一块空白。</p>
-        <p>
-          你站在那里，没有人知道你在这里，没有人等你报平安。但第一次，你也不需要任何人知道。
-        </p>
-        <p>在这里，孤独不是没人，而是终于没有噪音。</p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>四｜夜晚是格聂的真实形状</h2>
-        <p>白天给你看的是地貌，夜晚露出来的才是秩序。</p>
-        <p>
-          当营地的灯亮起，黑暗开始有了厚度，声音被一点点压低，连你的呼吸都在悄悄对齐山体的节奏。
-        </p>
-        <p>在那片静夜里，你忽然明白：白天是你穿过荒野，夜晚是荒野穿过你。</p>
-        <p>而这里真正的奢侈，从来不是风景，而是重新拥有感受世界的能力。</p>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <section class="section">
-        <h2>五｜格聂 · 结语</h2>
-        <p>格聂不会给你答案，也不会替你解释世界。</p>
-        <p>
-          它教给你的是一种藏得更深的秩序：世界不会主动为你让路，但你可以学会为世界让出一点空间。
-        </p>
-        <p>
-          它不宏大，也不戏剧，却会在你离开的某一天，在某个选择、某段沉默里轻轻回响。
-        </p>
-        <p>
-          当你终于驶上柏油公路的那一刻，你会突然明白：所谓幸福，从来不是抵达哪里，而是重新拥有继续走下去的能力。
-        </p>
-      </section>
-    </div>
-
-    <div class="footer-space"></div>
-  </main>
 
   <script>
     (function () {
-      const buttons = document.querySelectorAll(".lang-btn");
-      const floatingLabel = document.getElementById("floatingLangLabel");
+      const body = document.body;
+      const toggle = document.getElementById("langToggle");
+      const heroText = document.getElementById("heroText");
 
-      function setLanguage(lang) {
-        document.body.classList.remove("lang-en", "lang-zh");
-        document.body.classList.add("lang-" + lang);
+      function setLang(lang) {
+        if (lang === "cn") {
+          body.classList.remove("lang-en");
+          body.classList.add("lang-cn");
+        } else {
+          body.classList.remove("lang-cn");
+          body.classList.add("lang-en");
+        }
 
-        buttons.forEach((btn) => {
+        // 按钮状态
+        toggle.querySelectorAll("button").forEach((btn) => {
           btn.classList.toggle("active", btn.dataset.lang === lang);
         });
 
-        floatingLabel.textContent = lang === "en" ? "EN" : "中文";
+        // 英中切换时，给海报文字一个轻微重新淡入动画
+        heroText.classList.remove("active");
+        heroText.style.opacity = 0;
+        heroText.style.transform = "translateY(8px)";
+        setTimeout(() => {
+          heroText.classList.add("active");
+          heroText.style.opacity = 1;
+          heroText.style.transform = "translateY(0)";
+        }, 40);
       }
 
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const lang = btn.dataset.lang;
-          setLanguage(lang);
-        });
+      toggle.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-lang]");
+        if (!btn) return;
+        const lang = btn.dataset.lang;
+        setLang(lang);
       });
 
-      // initial
-      setLanguage("en");
+      // 默认英文
+      setLang("en");
     })();
   </script>
 </body>
