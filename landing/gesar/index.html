@@ -254,21 +254,19 @@
     }
 
     @media (max-width: 768px) {
-      :root {
-        --font-hero-en: 30px;
-        --font-hero-cn: 20px;
-        --font-hero-sub-en: 16px;
-        --font-hero-sub-cn: 15px;
-      }
+    .hero-cn-1 { font-size: 1.6rem !important; }
+    .hero-en-1 { font-size: 2.2rem !important; letter-spacing: 0.12em !important; }
+    .hero-cn-2 { font-size: 1.1rem !important; }
+    .hero-en-2 { font-size: 1.15rem !important; }
+    .hero-cn-3, .hero-en-3 { font-size: 1rem !important; padding: 0 10px; }
+}
 
-      .hero {
-        padding: 0 18px;
-      }
-
-      .hero-line.main-en {
-        letter-spacing: 0.16em;
-      }
-    }
+@media (max-width: 430px) {
+    .hero-cn-1 { font-size: 1.4rem !important; }
+    .hero-en-1 { font-size: 1.8rem !important; }
+    .hero-cn-2, .hero-en-2 { font-size: 1rem !important; }
+    .hero-cn-3, .hero-en-3 { font-size: 0.95rem !important; }
+}
 
     /* 正文区域 */
 
