@@ -354,7 +354,7 @@
                     <b> “pre-trip imagination – feelings on arrival – cared-for details – the longing after departure” </b>,
                     so guests can “experience the stay once in content” before they truly book it.
                   </div>
-                  <a href="story.html" style="font-size:12px;color:#a57226;text-decoration:underline;display:block;margin-top:6px;">
+                  <a href="landing/story.html" style="font-size:12px;color:#a57226;text-decoration:underline;display:block;margin-top:6px;">
                     View Details
                   </a>
                 </div>
@@ -428,7 +428,8 @@
             <div>
               <div class="sub-heading">TRAVEL & SCENES I DRAW FROM</div>
               <div class="photo-grid">
-                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="openWip()">
+                <!-- TIBET：跳转西藏承接页 -->
+                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="goTibetStory()">
                   <div class="photo-overlay"></div>
                   <div class="photo-label">TIBET</div>
                 </div>
@@ -444,7 +445,7 @@
                   <div class="photo-overlay"></div>
                   <div class="photo-label">MULU NATIONAL PARK</div>
                 </div>
-                <!-- 城市度假：跳转到 city_retreat_story.html -->
+                <!-- 城市度假：跳转 landing/story.html -->
                 <div class="photo-cell" style="background-image:url('images/city_vacation_thumbnail.jpg');" onclick="goCityStory()">
                   <div class="photo-overlay"></div>
                   <div class="photo-label">URBAN RETREATS</div>
@@ -485,7 +486,7 @@
                     <b>“出发前的想象—抵达当下的情绪—被照顾的细节—离开后的留恋”</b>，
                     让用户在内容里提前“住过一次”，而不是只看过一次营地介绍。
                   </div>
-                  <a href="story.html" style="font-size:12px;color:#a57226;text-decoration:underline;display:block;margin-top:6px;">
+                  <a href="landing/story.html" style="font-size:12px;color:#a57226;text-decoration:underline;display:block;margin-top:6px;">
                     查看详细
                   </a>
                 </div>
@@ -559,7 +560,8 @@
             <div>
               <div class="sub-heading">这些场景，是我创作的灵感来源</div>
               <div class="photo-grid">
-                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="openWip()">
+                <!-- 西藏：跳转西藏承接页 -->
+                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="goTibetStory()">
                   <div class="photo-overlay"></div>
                   <div class="photo-label">西藏</div>
                 </div>
@@ -654,8 +656,7 @@
       }
 
       currentLang = lang;
-
-      // 切换语言后回到原本滚动位置
+      // 切换语言后仍保持原位置
       window.scrollTo({ top: y });
     }
 
@@ -667,9 +668,14 @@
       document.getElementById('wip-overlay').style.display = 'none';
     }
 
-    // 城市度假：跳转城市故事页
+    // 城市度假：跳转城市故事页（landing/story.html）
     function goCityStory() {
-      window.location.href = 'city_retreat_story.html';
+      window.location.href = 'landing/story.html';
+    }
+
+    // 西藏：跳转西藏承接页
+    function goTibetStory() {
+      window.location.href = 'landing/tibet/landing-page.html';
     }
   </script>
 </body>
