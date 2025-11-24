@@ -11,14 +11,14 @@
       --text-main: #f5f5f7;
       --text-soft: #a9b1be;
       --gold: #d4af37;
-      --gold-soft: rgba(212, 175, 55, 0.5);
+      --gold-soft: rgba(212, 175, 55, 0.4);
     }
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top, #161c28 0, var(--bg) 46%, #020308 100%);
+      background: radial-gradient(circle at top, #171d29 0, var(--bg) 50%, #020308 100%);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, system-ui,
         "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -34,22 +34,22 @@
     /* 悬浮语言切换按钮 */
     .lang-toggle {
       position: fixed;
-      right: 20px;
+      right: 24px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 50;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
     .lang-btn {
       border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.6);
-      background: rgba(5, 7, 11, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      background: rgba(5, 7, 11, 0.92);
       color: #f3f3f3;
       font-size: 11px;
-      padding: 6px 11px;
-      letter-spacing: 0.14em;
+      padding: 7px 12px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       cursor: pointer;
       transition:
@@ -60,7 +60,7 @@
     }
     .lang-btn:hover {
       background: rgba(212, 175, 55, 0.12);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.5);
       transform: translateY(-1px);
     }
     .lang-btn-active {
@@ -74,17 +74,14 @@
     body[data-lang="zh"] .lang-zh { display: block; }
     body[data-lang="en"] .lang-en { display: block; }
 
-    /* 顶部 Banner */
+    /* 顶部全宽 Banner */
     .hero {
-      max-width: 1080px;
-      margin: 18px auto 32px;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow:
-        0 32px 70px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.02);
       position: relative;
+      width: 100%;
+      margin: 0 0 42px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.9);
     }
     .hero-media {
       position: absolute;
@@ -92,74 +89,67 @@
       background-image: url("../../images/everest-c742-full.jpg");
       background-size: cover;
       background-position: center bottom;
-      filter: saturate(0.9) contrast(1.02) brightness(0.78);
-      transform: scale(1.02);
+      filter: saturate(0.9) contrast(1.06) brightness(0.8);
+      transform: scale(1.03);
     }
     .hero-overlay {
       position: relative;
       inset: 0;
       background:
         radial-gradient(circle at top left,
-          rgba(3, 7, 16, 0.55), transparent 62%),
+          rgba(3, 7, 16, 0.6), transparent 60%),
         linear-gradient(to top,
-          rgba(3, 6, 12, 0.88),
+          rgba(3, 6, 12, 0.9),
           rgba(3, 6, 12, 0.18));
-      padding: 32px 28px 26px;
+      padding: 34px 7vw 30px;
     }
     .hero-inner {
-      max-width: 520px;
+      max-width: 860px;
     }
     .hero-kicker {
       font-size: 11px;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--text-soft);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .hero-title {
-      margin: 0 0 4px;
-      font-size: 24px;
-      letter-spacing: 0.18em;
+      margin: 0 0 6px;
+      font-size: 26px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
     .hero-subtitle {
-      margin: 0 0 14px;
+      margin: 0 0 16px;
       font-size: 13px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-soft);
     }
     .hero-tagline {
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.9;
       margin: 0;
       color: var(--text-main);
     }
 
-    /* 主体内容 */
+    /* 主体：更接近全屏的通栏文字 */
     .main {
       flex: 1;
-      padding: 16px 16px 60px;
+      padding: 40px 7vw 80px;
     }
     .content-wrap {
-      max-width: 820px;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
     .section {
-      background: radial-gradient(circle at top left,
-        #151b24, var(--bg-soft));
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      box-shadow:
-        0 26px 60px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.02);
-      padding: 22px 22px 20px;
-      margin-bottom: 32px;
+      padding: 26px 0 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .section-header {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
     .section-kicker {
       font-size: 11px;
@@ -169,21 +159,21 @@
       margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .section-kicker::before {
       content: "";
-      width: 26px;
+      width: 32px;
       height: 1px;
       background: linear-gradient(to right, var(--gold-soft), transparent);
     }
     .section-title-main {
-      font-size: 17px;
+      font-size: 18px;
       letter-spacing: 0.08em;
-      margin: 0 0 2px;
+      margin: 0 0 4px;
     }
     .section-title-sub {
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-soft);
@@ -191,62 +181,123 @@
     }
 
     .section-body {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 2.1;
-      margin-top: 10px;
+      margin-top: 12px;
       color: var(--text-main);
     }
     .section-body p {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
     }
 
     .divider {
-      margin: 14px 0;
+      margin: 18px 0 16px;
       text-align: center;
       font-size: 11px;
       letter-spacing: 0.3em;
       color: rgba(139, 147, 162, 0.9);
     }
 
-    .section-note {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 12px;
+    .section-footer-note {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
       color: var(--text-soft);
-      line-height: 1.9;
+      line-height: 2;
     }
 
-    @media (max-width: 768px) {
-      .hero {
-        border-radius: 22px;
-        margin-inline: 12px;
-      }
+    /* 镶嵌式图片区域 */
+    .images-section {
+      border-bottom: none;
+      padding-bottom: 0;
+      padding-top: 32px;
+    }
+
+    .images-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .image-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #080b10;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      text-decoration: none;
+      color: inherit;
+      transition:
+        transform 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        border-color 0.18s ease-out;
+    }
+    .image-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.95);
+      border-color: rgba(212, 175, 55, 0.85);
+    }
+    .image-thumb {
+      position: relative;
+      padding-top: 62%;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1) contrast(1.04) brightness(0.9);
+    }
+    .image-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(0, 0, 0, 0.52),
+        transparent 52%);
+    }
+    .image-meta {
+      padding: 10px 12px 12px;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .image-title {
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+    .image-caption {
+      color: var(--text-soft);
+    }
+
+    .thumb-everest {
+      background-image: url("../../images/everest-c742-full.jpg");
+    }
+    .thumb-ngari {
+      background-image: url("../../images/ngari-44e1-full.jpg");
+    }
+    .thumb-guge {
+      background-image: url("../../images/guge-ecf7-full.jpg");
+    }
+
+    @media (max-width: 900px) {
       .hero-overlay {
-        padding: 24px 18px 20px;
-      }
-      .hero-title {
-        font-size: 20px;
-        letter-spacing: 0.16em;
-      }
-      .hero-subtitle {
-        font-size: 11px;
-      }
-      .hero-tagline {
-        font-size: 12px;
+        padding-inline: 18px;
       }
       .main {
-        padding-inline: 12px;
+        padding-inline: 18px;
       }
-      .section {
-        border-radius: 18px;
-        padding: 18px 16px 16px;
+      .images-grid {
+        grid-template-columns: 1fr;
+      }
+      .lang-toggle {
+        right: 10px;
+      }
+      .hero-title {
+        font-size: 22px;
       }
       .section-title-main {
         font-size: 16px;
       }
-      .lang-toggle {
-        right: 10px;
+      .section-body {
+        font-size: 14px;
       }
     }
   </style>
@@ -261,7 +312,7 @@
     <button class="lang-btn" data-lang-target="en">EN</button>
   </div>
 
-  <!-- 顶部 Banner：Everest 图像 -->
+  <!-- 顶部全宽 Banner：Everest 图像 -->
   <header class="hero">
     <div class="hero-media"></div>
     <div class="hero-overlay">
@@ -294,87 +345,68 @@
 
         <div class="section-body lang lang-zh">
           <p>1）靠近</p>
-          <p>第一次去珠峰那晚，我因为高海拔一直无法入睡。<br>胸口发紧，头痛像敲在骨头上。</p>
-          <p>我凌晨三点走出去。<br>外面已有几个人，也在失眠。<br>我们互相望了一眼，不需要语言。</p>
-          <p>抬头时，星空沉下来。<br>近得像一张冰冷的脸。</p>
-          <p>那一刻，我第一次明白——<br>安全感来自真实，而不是稳定。</p>
+          <p>第一次去珠峰那晚，我因为高海拔一直无法入睡。胸口发紧，头痛像敲在骨头上。</p>
+          <p>我凌晨三点走出去。外面已有几个人，也在失眠。我们互相望了一眼，不需要语言。</p>
+          <p>抬头时，星空沉下来。近得像一张冰冷的脸。</p>
+          <p>那一刻，我第一次明白——安全感来自真实，而不是稳定。</p>
 
           <div class="divider">⸻</div>
 
           <p>2）退后</p>
-          <p>多年后我再到珠峰。<br>帐篷更亮，食物更丰盛，网络更快。</p>
-          <p>夜里有人围着音箱跳舞。<br>光、声、热闹，把山体照得失了颜色。</p>
-          <p>我站在暗处，<br>突然意识到自己与这个时代越来越不同步。</p>
-          <p>第一次珠峰让我在自然前渺小。<br>第二次珠峰让我在时代前渺小。</p>
-          <p>山没有变，<br>变的是人类制造的声音。</p>
+          <p>多年后我再到珠峰。帐篷更亮，食物更丰盛，网络更快。</p>
+          <p>夜里有人围着音箱跳舞。光、声、热闹，把山体照得失了颜色。</p>
+          <p>我站在暗处，突然意识到自己与这个时代越来越不同步。</p>
+          <p>第一次珠峰让我在自然前渺小。第二次珠峰让我在时代前渺小。</p>
+          <p>山没有变，变的是人类制造的声音。</p>
 
           <div class="divider">⸻</div>
 
           <p>3）安静的价值</p>
           <p>我退到更远处，希望再听见第一次那种安静。</p>
-          <p>风声里却混进了节奏，<br>连山的回声都不干净了。</p>
-          <p>那夜我才明白：<br>安静不是被世界给予的，<br>是被世界夺走后才会被想念。</p>
+          <p>风声里却混进了节奏，连山的回声都不干净了。</p>
+          <p>那夜我才明白：安静不是被世界给予的，是被世界夺走后才会被想念。</p>
 
           <div class="divider">⸻</div>
 
           <p>珠峰·结语</p>
-          <p>第一次珠峰教我如何靠近世界；<br>第二次珠峰教我如何远离世界。</p>
-          <p>第一次教我什么是安全感；<br>第二次教我什么是失去安全感。</p>
-          <p>第一次让我渺小；<br>第二次让我在时代面前再次渺小。</p>
-          <p>山从未变过。<br>变的是人、时代、和我们对安静的忍受度。</p>
-          <p>而我因此明白：<br>有些地方不是被征服，而是被理解。<br>理解，是安静永恒的形状。</p>
+          <p>第一次珠峰教我如何靠近世界；第二次珠峰教我如何远离世界。</p>
+          <p>第一次教我什么是安全感；第二次教我什么是失去安全感。</p>
+          <p>第一次让我渺小；第二次让我在时代面前再次渺小。</p>
+          <p>山从未变过。变的是人、时代、和我们对安静的忍受度。</p>
+          <p>而我因此明白：有些地方不是被征服，而是被理解。理解，是安静永恒的形状。</p>
         </div>
 
         <div class="section-body lang lang-en">
           <p>1) Drawing closer</p>
-          <p>On my first trip to Everest, I couldn’t sleep at all that night because of the altitude.<br>
-             My chest felt tight, and the headache landed on my skull like a hammer.</p>
-          <p>At three in the morning I walked outside.<br>
-             A few others were already there, just as sleepless.<br>
-             We looked at each other, and no words were necessary.</p>
-          <p>When I looked up, the sky had sunk down—<br>
-             close like a cold face.</p>
-          <p>In that moment I understood for the first time:<br>
-             a sense of safety comes from what is real, not from what is stable.</p>
+          <p>On my first trip to Everest, I couldn’t sleep at all that night because of the altitude. My chest felt tight, and the headache landed on my skull like a hammer.</p>
+          <p>At three in the morning I walked outside. A few others were already there, just as sleepless. We looked at each other, and no words were necessary.</p>
+          <p>When I looked up, the sky had sunk down—close like a cold face.</p>
+          <p>In that moment I understood for the first time: a sense of safety comes from what is real, not from what is stable.</p>
 
           <div class="divider">⸻</div>
 
           <p>2) Stepping back</p>
-          <p>Years later, I returned to Everest.<br>
-             Brighter tents, richer food, faster internet.</p>
-          <p>At night, people danced around speakers.<br>
-             Light, sound and noise washed over the mountain until it lost its original color.</p>
-          <p>I stood in the dark, realizing suddenly<br>
-             how out of sync I had become with this era.</p>
-          <p>The first Everest made me small in front of nature.<br>
-             The second Everest made me small in front of my own time.</p>
-          <p>The mountain did not change.<br>
-             What changed was the sound humanity poured onto it.</p>
+          <p>Years later, I returned to Everest. Brighter tents, richer food, faster internet.</p>
+          <p>At night, people danced around speakers. Light, sound and noise washed over the mountain until it lost its original color.</p>
+          <p>I stood in the dark, realizing suddenly how out of sync I had become with this era.</p>
+          <p>The first Everest made me small in front of nature; the second Everest made me small in front of my own time.</p>
+          <p>The mountain did not change. What changed was the sound humanity poured onto it.</p>
 
           <div class="divider">⸻</div>
 
           <p>3) The value of silence</p>
           <p>I stepped farther back, hoping to hear the silence of that first visit again.</p>
-          <p>But even the wind now carried a rhythm,<br>
-             and the echo of the mountain was no longer clean.</p>
-          <p>That night I learned:<br>
-             silence is not something the world gives you; <br>
-             it is something you miss only after it has been taken away.</p>
+          <p>But even the wind now carried a rhythm, and the echo of the mountain was no longer clean.</p>
+          <p>That night I learned: silence is not something the world gives you; it is something you miss only after it has been taken away.</p>
 
           <div class="divider">⸻</div>
 
           <p>Everest · Closing</p>
-          <p>The first Everest taught me how to approach the world;<br>
-             the second taught me how to step away from it.</p>
-          <p>The first taught me what safety feels like;<br>
-             the second taught me what it means to lose it.</p>
-          <p>The first made me small;<br>
-             the second made me small again in front of my era.</p>
-          <p>The mountain has never changed.<br>
-             What changes are people, the times, and how much silence we can still bear.</p>
-          <p>And so I learned:<br>
-             some places are not meant to be conquered, but to be understood.<br>
-             Understanding is the enduring shape of silence.</p>
+          <p>The first Everest taught me how to approach the world; the second taught me how to step away from it.</p>
+          <p>The first taught me what safety feels like; the second taught me what it means to lose it.</p>
+          <p>The first made me small; the second made me small again in front of my era.</p>
+          <p>The mountain has never changed. What changes are people, the times, and how much silence we can still bear.</p>
+          <p>And so I learned: some places are not meant to be conquered, but to be understood. Understanding is the enduring shape of silence.</p>
         </div>
       </section>
 
@@ -390,88 +422,50 @@
 
         <div class="section-body lang lang-zh">
           <p>1）脆弱</p>
-          <p>从札达进古格的路像沿着大地的旧伤行走。<br>
-             河湖相地貌一层层堆叠，<br>
-             像地壳暴露出的横截面。</p>
-          <p>远看像土丘，<br>
-             走近才看到那是一座倒下的城市。</p>
-          <p>没有废墟的悲伤，<br>
-             只有一种彻底的脆弱：<br>
-             倒下时，连声音都没有留下。</p>
+          <p>从札达进古格的路像沿着大地的旧伤行走。河湖相地貌一层层堆叠，像地壳暴露出的横截面。</p>
+          <p>远看像土丘，走近才看到那是一座倒下的城市。</p>
+          <p>没有废墟的悲伤，只有一种彻底的脆弱：倒下时，连声音都没有留下。</p>
 
           <div class="divider">⸻</div>
 
           <p>2）沉默</p>
           <p>古格的沉默不是空白，是密度。</p>
-          <p>墙体的裂纹、<br>
-             被雨反复改写的痕迹、<br>
-             风蚀留下的棱角——<br>
-             每一道都在告诉你：</p>
-          <p>时间没有停下来，<br>
-             也不会解释。</p>
-          <p>文明不是被摧毁，<br>
-             是被时间轻轻收回。</p>
-          <p>这种沉默，<br>
-             我在非洲草原的夜里也见过——<br>
-             只是草原用生命说，<br>
-             古格用残缺说。</p>
+          <p>墙体的裂纹、被雨反复改写的痕迹、风蚀留下的棱角——每一道都在告诉你：</p>
+          <p>时间没有停下来，也不会解释。</p>
+          <p>文明不是被摧毁，是被时间轻轻收回。</p>
+          <p>这种沉默，我在非洲草原的夜里也见过——只是草原用生命说，古格用残缺说。</p>
 
           <div class="divider">⸻</div>
 
           <p>3）耐心</p>
-          <p>我蹲在一处断裂的岩层前，<br>
-             看见风在砂砾上刻着细小、稳定的纹理。</p>
-          <p>大地写字的速度太慢，<br>
-             慢到需要几个世纪才形成一句。</p>
-          <p>古格没有要求被记住，<br>
-             它只是被土地重新接住。<br>
-             城倒了，土盖上；<br>
-             壁裂了，风刻下。</p>
-          <p>草原展示生命的循环；<br>
-             古格展示文明的循环。</p>
-          <p>大地对两者都一样耐心。</p>
+          <p>我蹲在一处断裂的岩层前，看见风在砂砾上刻着细小、稳定的纹理。</p>
+          <p>大地写字的速度太慢，慢到需要几个世纪才形成一句。</p>
+          <p>古格没有要求被记住，它只是被土地重新接住。城倒了，土盖上；壁裂了，风刻下。</p>
+          <p>草原展示生命的循环；古格展示文明的循环。大地对两者都一样耐心。</p>
         </div>
 
         <div class="section-body lang lang-en">
           <p>1) Fragility</p>
-          <p>The road from Zhada into Guge feels like walking along one of the earth’s old scars.<br>
-             River–lake landforms stack in layers, like exposed cross-sections of the crust.</p>
-          <p>From a distance it looks like a field of dusty hills;<br>
-             only up close do you realize it is a fallen city.</p>
-          <p>There is no tragic pose of ruins here—<br>
-             only a kind of total fragility:<br>
-             when it collapsed, it left almost no sound behind.</p>
+          <p>The road from Zhada into Guge feels like walking along one of the earth’s old scars. River–lake landforms stack in layers, like exposed cross-sections of the crust.</p>
+          <p>From a distance it looks like a field of dusty hills; only up close do you realize it is a fallen city.</p>
+          <p>There is no tragic pose of ruins here—only a kind of total fragility: when it collapsed, it left almost no sound behind.</p>
 
           <div class="divider">⸻</div>
 
           <p>2) Silence</p>
           <p>The silence of Guge is not emptiness; it is density.</p>
-          <p>Cracks in the walls,<br>
-             traces rewritten by rain again and again,<br>
-             the sharp edges carved out by wind—<br>
-             each detail says the same thing:</p>
-          <p>time has never stopped,<br>
-             and it will not explain.</p>
-          <p>Civilizations are not simply destroyed;<br>
-             they are gently reclaimed by time.</p>
-          <p>I have seen the same silence on African grasslands at night—<br>
-             only there, life speaks it;<br>
-             here in Guge, brokenness speaks it.</p>
+          <p>Cracks in the walls, traces rewritten by rain again and again, the sharp edges carved out by wind—each detail says the same thing:</p>
+          <p>time has never stopped, and it will not explain.</p>
+          <p>Civilizations are not simply destroyed; they are gently reclaimed by time.</p>
+          <p>I have seen the same silence on African grasslands at night—only there, life speaks it; here in Guge, brokenness speaks it.</p>
 
           <div class="divider">⸻</div>
 
           <p>3) Patience</p>
-          <p>I crouch beside a fractured rock layer<br>
-             and watch the wind carve small, steady lines into the gravel.</p>
-          <p>The earth writes unbearably slowly—<br>
-             so slowly that a single sentence takes centuries.</p>
-          <p>Guge never asked to be remembered;<br>
-             it has simply been caught again by the land.<br>
-             Cities fall, soil covers them;<br>
-             walls split, wind inscribes.</p>
-          <p>The grassland shows the cycle of life;<br>
-             Guge shows the cycle of civilizations.</p>
-          <p>The earth is equally patient with both.</p>
+          <p>I crouch beside a fractured rock layer and watch the wind carve small, steady lines into the gravel.</p>
+          <p>The earth writes unbearably slowly—so slowly that a single sentence takes centuries.</p>
+          <p>Guge never asked to be remembered; it has simply been caught again by the land. Cities fall, soil covers them; walls split, wind inscribes.</p>
+          <p>The grassland shows the cycle of life; Guge shows the cycle of civilizations. The earth is equally patient with both.</p>
         </div>
       </section>
 
@@ -489,102 +483,110 @@
 
         <div class="section-body lang lang-zh">
           <p>1）黑暗的入口</p>
-          <p>晚上踏入暗夜公园时，<br>
-             我感到这里的黑不是没有光，<br>
-             而是光被拒绝。</p>
-          <p>温度从骨头里往外散，<br>
-             呼吸有了重量。</p>
-          <p>科研人员把红光压得很低，<br>
-             像是怕惊扰夜色。</p>
-          <p>在那一刻，我知道——<br>
-             这里不是为人类准备的地方。<br>
-             我们只是在黑暗的边缘停留。</p>
+          <p>晚上踏入暗夜公园时，我感到这里的黑不是没有光，而是光被拒绝。</p>
+          <p>温度从骨头里往外散，呼吸有了重量。</p>
+          <p>科研人员把红光压得很低，像是怕惊扰夜色。</p>
+          <p>在那一刻，我知道——这里不是为人类准备的地方。我们只是在黑暗的边缘停留。</p>
 
           <div class="divider">⸻</div>
 
           <p>2）天空的深处</p>
-          <p>再走五步，<br>
-             天空突然深了下去。</p>
-          <p>深得像夜被拉开一条缝，<br>
-             另一层世界从里面亮出来。</p>
-          <p>银河低得像贴在呼吸上。<br>
-             星光一层一层沉着，<br>
-             像无数只静静观察的眼睛。</p>
-          <p>科研人员在记录数据，<br>
-             红光被风带走。</p>
-          <p>我只是抬头，<br>
-             胸腔被拉得很开。<br>
-             原来世界可以大成这样。</p>
+          <p>再走五步，天空突然深了下去。</p>
+          <p>深得像夜被拉开一条缝，另一层世界从里面亮出来。</p>
+          <p>银河低得像贴在呼吸上。星光一层一层沉着，像无数只静静观察的眼睛。</p>
+          <p>科研人员在记录数据，红光被风带走。</p>
+          <p>我只是抬头，胸腔被拉得很开。原来世界可以大成这样。</p>
 
           <div class="divider">⸻</div>
 
           <p>3）宇宙的质地</p>
-          <p>站在暗夜公园中央，<br>
-             我突然分辨出一件事：</p>
-          <p>宇宙不是画面，<br>
-             是一种质地。</p>
-          <p>冷、巨大、毫无情绪，<br>
-             像一块悬在空中的金属。</p>
-          <p>流星从深处划过，<br>
-             细、快、白，<br>
-             像在黑暗里划破一层皮。</p>
-          <p>那一瞬间我不觉得自己在看宇宙——<br>
-             更像是宇宙轻轻碰了我一下。</p>
-          <p>回程时科研人员还在记录。<br>
-             仪器发出低低的振动声。</p>
-          <p>我回头看天空：<br>
-             深、干净、毫无动机。<br>
-             却让人想再站久一点，<br>
-             为了确认自己仍然在呼吸。</p>
+          <p>站在暗夜公园中央，我突然分辨出一件事：</p>
+          <p>宇宙不是画面，是一种质地。</p>
+          <p>冷、巨大、毫无情绪，像一块悬在空中的金属。</p>
+          <p>流星从深处划过，细、快、白，像在黑暗里划破一层皮。</p>
+          <p>那一瞬间我不觉得自己在看宇宙——更像是宇宙轻轻碰了我一下。</p>
+          <p>回程时科研人员还在记录。仪器发出低低的振动声。</p>
+          <p>我回头看天空：深、干净、毫无动机。却让人想再站久一点，为了确认自己仍然在呼吸。</p>
         </div>
 
         <div class="section-body lang lang-en">
           <p>1) The entrance of darkness</p>
-          <p>When I stepped into the dark sky park at night,<br>
-             I felt that the darkness there was not the absence of light,<br>
-             but light being refused.</p>
-          <p>Cold seeped out from inside my bones,<br>
-             and breathing suddenly had weight.</p>
-          <p>Researchers kept their red lights low,<br>
-             as if afraid to disturb the night itself.</p>
-          <p>In that moment I knew—<br>
-             this place was not prepared for humans; <br>
-             we were only lingering at the edge of the dark.</p>
+          <p>When I stepped into the dark sky park at night, I felt that the darkness there was not the absence of light, but light being refused.</p>
+          <p>Cold seeped out from inside my bones, and breathing suddenly had weight.</p>
+          <p>Researchers kept their red lights low, as if afraid to disturb the night itself.</p>
+          <p>In that moment I knew—this place was not prepared for humans; we were only lingering at the edge of the dark.</p>
 
           <div class="divider">⸻</div>
 
           <p>2) The depth of the sky</p>
           <p>Five more steps, and the sky dropped deeper.</p>
-          <p>It was as if the night had been opened with a cut,<br>
-             and another layer of the world shone through from behind.</p>
-          <p>The Milky Way hung so low it felt pressed against my breath.<br>
-             The starlight settled in layers,<br>
-             like countless quiet, watching eyes.</p>
-          <p>The researchers kept recording data,<br>
-             their red light carried away by the wind.</p>
-          <p>I only looked up, my chest pulled wide open.<br>
-             I realized the world could be this vast.</p>
+          <p>It was as if the night had been opened with a cut, and another layer of the world shone through from behind.</p>
+          <p>The Milky Way hung so low it felt pressed against my breath. The starlight settled in layers, like countless quiet, watching eyes.</p>
+          <p>The researchers kept recording data, their red light carried away by the wind. I only looked up, my chest pulled wide open. I realized the world could be this vast.</p>
 
           <div class="divider">⸻</div>
 
           <p>3) The texture of the universe</p>
-          <p>Standing in the center of the dark sky park,<br>
-             I suddenly understood one thing:</p>
-          <p>The universe is not an image;<br>
-             it is a texture.</p>
-          <p>Cold, enormous, emotionless—<br>
-             like a piece of metal suspended overhead.</p>
-          <p>A meteor cut across the depth:<br>
-             thin, fast, white,<br>
-             as if slicing a thin layer of skin off the dark.</p>
-          <p>In that instant, I no longer felt that I was looking at the universe—<br>
-             it felt more like the universe had brushed gently against me.</p>
-          <p>On the way back, the researchers were still recording.<br>
-             Instruments hummed at a low, steady pitch.</p>
-          <p>I turned to look at the sky again:<br>
-             deep, clean, without intention—<br>
-             yet it made me want to stand there a little longer,<br>
-             just to confirm that I was still breathing.</p>
+          <p>Standing in the center of the dark sky park, I suddenly understood one thing:</p>
+          <p>The universe is not an image; it is a texture.</p>
+          <p>Cold, enormous, emotionless—like a piece of metal suspended overhead.</p>
+          <p>A meteor cut across the depth: thin, fast, white, as if slicing a thin layer of skin off the dark.</p>
+          <p>In that instant, I no longer felt that I was looking at the universe—it felt more like the universe had brushed gently against me.</p>
+          <p>On the way back, the researchers were still recording. Instruments hummed at a low, steady pitch.</p>
+          <p>I turned to look at the sky again: deep, clean, without intention—yet it made me want to stand there a little longer, just to confirm that I was still breathing.</p>
+        </div>
+      </section>
+
+      <!-- 镶嵌式三张实地图片 -->
+      <section class="section images-section">
+        <header class="section-header">
+          <div class="section-kicker">FIELD IMAGES · 实地影像</div>
+          <h2 class="section-title-main lang lang-zh">三处坐标，三种尺度</h2>
+          <h2 class="section-title-main lang lang-en">Three Coordinates, Three Scales</h2>
+        </header>
+
+        <div class="images-grid">
+          <!-- 珠峰 C742 -->
+          <a class="image-card" href="everest-c742.html" target="_blank">
+            <div class="image-thumb thumb-everest"></div>
+            <div class="image-meta">
+              <div class="image-title">
+                珠峰北坡大本营 · Everest North Base Camp
+              </div>
+              <div class="image-caption">
+                定日县 · 日喀则 · 西藏 · 中国 · 2021.06.11 · 18:58<br>
+                Tingri County · Shigatse · Tibet, China · 2021.06.11 · 18:58
+              </div>
+            </div>
+          </a>
+
+          <!-- 阿里暗夜公园 44E1 -->
+          <a class="image-card" href="ngari-44e1.html" target="_blank">
+            <div class="image-thumb thumb-ngari"></div>
+            <div class="image-meta">
+              <div class="image-title">
+                阿里暗夜公园 · Ngari Dark Sky Park
+              </div>
+              <div class="image-caption">
+                噶尔县 · 阿里 · 西藏 · 中国 · 2021.06.22 · 02:19<br>
+                Gar County · Ngari · Tibet, China · 2021.06.22 · 02:19
+              </div>
+            </div>
+          </a>
+
+          <!-- 古格王朝 ECF7 -->
+          <a class="image-card" href="guge-ecf7.html" target="_blank">
+            <div class="image-thumb thumb-guge"></div>
+            <div class="image-meta">
+              <div class="image-title">
+                古格王朝遗址 · Guge Kingdom Ruins
+              </div>
+              <div class="image-caption">
+                札达县 · 阿里 · 西藏 · 中国 · 2021.06.21 · 16:53<br>
+                Zhada County · Ngari · Tibet, China · 2021.06.21 · 16:53
+              </div>
+            </div>
+          </a>
         </div>
       </section>
 
