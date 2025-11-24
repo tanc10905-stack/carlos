@@ -67,12 +67,45 @@
       border-color: rgba(212, 175, 55, 0.98);
     }
 
+    /* 悬浮返回按钮（同样高度，放左侧） */
+    .back-toggle {
+      position: fixed;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+    }
+    .back-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      background: rgba(5, 7, 11, 0.92);
+      color: #f3f3f3;
+      font-size: 11px;
+      padding: 7px 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        border-color 0.18s ease-out,
+        transform 0.18s ease-out;
+    }
+    .back-btn:hover {
+      background: rgba(212, 175, 55, 0.12);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.5);
+      transform: translateY(-1px);
+    }
+
     /* 语言显示控制 */
     .lang { display: none; }
     body[data-lang="zh"] .lang-zh { display: block; }
     body[data-lang="en"] .lang-en { display: block; }
 
-    /* 顶部全宽 Banner */
+    /* 顶部 Banner：日照金山全宽 */
     .hero {
       position: relative;
       width: 100%;
@@ -208,7 +241,6 @@
       color: rgba(139, 147, 162, 0.9);
     }
 
-    /* 镶嵌式图片区域 */
     .images-section {
       border-bottom: none;
       padding-top: 40px;
@@ -301,12 +333,23 @@
       .lang-toggle {
         right: 10px;
       }
+      .back-toggle {
+        left: 10px;
+      }
     }
   </style>
 </head>
 <body data-lang="zh">
 
 <div class="page">
+
+  <!-- 悬浮返回按钮 -->
+  <div class="back-toggle">
+    <button class="back-btn" id="back-button">
+      <span>←</span>
+      <span id="back-label">返回</span>
+    </button>
+  </div>
 
   <!-- 悬浮语言按钮 -->
   <div class="lang-toggle">
@@ -600,13 +643,21 @@
   (function () {
     const root = document.body;
     const buttons = document.querySelectorAll(".lang-btn");
+    const backLabel = document.getElementById("back-label");
+    const backButton = document.getElementById("back-button");
 
     function setLang(lang) {
       const scrollY = window.scrollY || window.pageYOffset || 0;
       root.setAttribute("data-lang", lang);
       buttons.forEach(btn => {
-        btn.classList.toggle("lang-btn-active", btn.getAttribute("data-lang-target") === lang);
+        btn.classList.toggle(
+          "lang-btn-active",
+          btn.getAttribute("data-lang-target") === lang
+        );
       });
+      // 返回按钮文案
+      backLabel.textContent = lang === "zh" ? "返回" : "Back";
+      // 保持当前滚动位置
       window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
     }
 
@@ -615,6 +666,16 @@
         const lang = btn.getAttribute("data-lang-target");
         setLang(lang);
       });
+    });
+
+    // 返回上一个页面
+    backButton.addEventListener("click", () => {
+      if (document.referrer && window.history.length > 1) {
+        window.history.back();
+      } else {
+        // 没有上一页时回到主页（根目录 index）
+        window.location.href = "../../index.html";
+      }
     });
 
     // 默认中文
