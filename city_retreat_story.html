@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Urban Retreat: Looking for “Undisturbed Luxury” in the City</title>
@@ -40,7 +40,7 @@
     .lang-section { display: none; }
     .lang-section.active { display: block; }
 
-    /* 悬浮语言切换 */
+    /* 悬浮语言切换：金色胶囊，默认英文 */
     .lang-toggle {
       position: fixed;
       top: 16px;
@@ -48,13 +48,14 @@
       z-index: 999;
       display: inline-flex;
       border-radius: 999px;
-      border: 1px solid rgba(246,212,138,0.5);
+      border: 1.5px solid rgba(246,212,138,0.9);
       overflow: hidden;
       background: rgba(11,12,16,0.9);
       backdrop-filter: blur(6px);
       font-size: 12px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      box-shadow: 0 0 0 rgba(246,212,138,0); /* 初始无光晕 */
     }
     .lang-btn {
       padding: 6px 14px;
@@ -62,27 +63,35 @@
       background: transparent;
       border: none;
       color: #f5f5f5;
-      transition: background 0.18s ease, color 0.18s ease;
+      transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease;
     }
     .lang-btn.active {
-      background: rgba(246,212,138,0.2);
+      background: rgba(246,212,138,0.18); /* 约 18% 金色透层 */
       color: #fbe8bf;
+      box-shadow: 0 0 10px rgba(246,212,138,0.5);
+    }
+    .lang-btn:hover {
+      background: rgba(246,212,138,0.08); /* hover 时 8% 透层 */
     }
   </style>
 </head>
 <body>
-  <!-- 悬浮语言切换 -->
+  <!-- 悬浮语言切换：默认英文 EN 激活 -->
   <div class="lang-toggle">
-    <button id="btn-zh" class="lang-btn active" onclick="switchLang('zh')">中文</button>
-    <button id="btn-en" class="lang-btn" onclick="switchLang('en')">EN</button>
+    <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
+    <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
   </div>
 
   <div class="page">
 
     <!-- 中文版本 -->
-    <div id="lang-zh" class="lang-section active">
+    <div id="lang-zh" class="lang-section">
       <div class="title">城市度假：在城市里寻找“不被打扰的奢侈”</div>
-      <div class="sub">Urban Retreat: The Quiet Luxury Hidden in Kuala Lumpur</div>
+      <!-- 中文副标题：纯中文 -->
+      <div class="sub">在最吵闹的城市中心，留一块只属于自己的安静</div>
 
       <p>
         吉隆坡的 Westin Kuala Lumpur，楼下是车水马龙的武吉免登路，旁边是灯火通明的 Pavilion 百威年广场，
@@ -118,13 +127,14 @@
         当客人说“我想放松一下”的时候，他真正需要的，到底是什么。
       </p>
 
-      <p class="back"><a href="index.html">← 返回主页 Back to Home</a></p>
+      <p class="back"><a href="index.html">← 返回主页</a></p>
     </div>
 
     <!-- English version -->
-    <div id="lang-en" class="lang-section">
+    <div id="lang-en" class="lang-section active">
       <div class="title">Urban Retreat: Looking for “Undisturbed Luxury” in the City</div>
-      <div class="sub">城市度假：在城市里寻找“不被打扰的奢侈”</div>
+      <!-- English subtitle: pure English -->
+      <div class="sub">Finding a private pocket of quiet in the loudest part of Kuala Lumpur</div>
 
       <p>
         At the Westin Kuala Lumpur, the hotel sits right above the busy Bukit Bintang road.
@@ -143,15 +153,15 @@
       </p>
 
       <p>
-        For many hotels, “good service” means doing more; at the Westin, it feels more like they know when to
-        <b>step back</b>. The front desk remembers I’m a returning guest, and a soft “Welcome back” is enough to
-        pull me out of the city’s rhythm without too much small talk. Housekeeping finishes while I’m away;
-        when I return, everything is simply, quietly, in place.
+        For many hotels, “good service” often means doing more; at the Westin, it feels more like they know when to
+        <b>step back</b>. The front desk remembers I’m a returning guest – a soft “Welcome back” is enough to pull me
+        out of the city’s high-frequency rhythm without turning small talk into a burden. Housekeeping finishes while
+        I’m away; when I return, everything is quietly reset, without any sense of intrusion.
       </p>
 
       <p>
-        From a luxury travel storytelling perspective, this kind of experience is perfect for narrative.
-        It’s not dramatic in a way that screams for photos, but it is made of details only real stays can reveal:
+        From a luxury travel storytelling perspective, this kind of experience is perfect to write about.
+        It isn’t dramatic in a way that screams for photos, but it is made of details only real stays can reveal:
         <b>in the loudest part of the city, there is a space where you are not disturbed; in the moments you most need care,
         it appears without shouting</b>.
       </p>
@@ -162,13 +172,13 @@
         when a guest says “I just want to relax”, what are they really asking for?
       </p>
 
-      <p class="back"><a href="index.html">← Back to Home 返回主页</a></p>
+      <p class="back"><a href="index.html">← Back to Home</a></p>
     </div>
 
   </div>
 
   <script>
-    let currentLang = 'zh';
+    let currentLang = 'en';
 
     function switchLang(lang) {
       if (lang === currentLang) return;
