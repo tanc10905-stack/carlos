@@ -1,129 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Gesar South Traverse</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Helvetica Neue',Arial,sans-serif;background:#000;color:#fff;}
-.hero{
-  width:100vw;height:100vh;
-  background:url('images/gesar_banner.jpeg') center center/cover no-repeat;
-  position:relative;display:flex;justify-content:center;align-items:center;
-  text-align:center;padding:0 20px;
-}
-.hero-text-box{max-width:90%;animation:fadeIn 1.2s ease-out;}
-.hero-line{margin-bottom:18px;font-weight:700;transition:all .4s ease;}
-.hero-cn{font-size:2rem;}
-.hero-en{font-size:2.2rem;letter-spacing:0.06em;}
-.hero-sub-cn,.hero-sub-en{font-size:1.1rem;font-weight:600;margin-top:8px;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gesar South Traverse</title>
 
-.lang-switch,.back-btn{
-  position:fixed;top:24px;z-index:1000;display:inline-flex;
-  background:#fff;border-radius:999px;border:1px solid #000;overflow:hidden;font-weight:700;
-}
-.lang-switch{right:24px;}
-.back-btn{left:24px;}
-.lang-btn,.back-btn-inner{
-  padding:8px 16px;cursor:pointer;background:transparent;border:none;font-size:14px;font-weight:700;
-}
-.lang-btn.active{background:#000;color:#fff;}
-.back-btn-inner{color:#000;font-weight:700;}
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.page{max-width:900px;margin:80px auto;padding:0 24px 160px;}
-.section-title{font-size:1.6rem;font-weight:600;margin-bottom:18px;}
-.section-text{font-size:1.15rem;line-height:1.85;margin-bottom:70px;}
+    body {
+      font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.7;
+      /* 默认英文 */
+      --hero-cn-scale: 0.9;
+      --hero-en-scale: 1.15;
+      --hero-cn-opacity: 0.72;
+      --hero-en-opacity: 1;
+    }
 
-.lang-body{display:none;}
-.lang-body.active{display:block;}
+    body[data-lang="zh"] {
+      /* 中文模式时，中文放大、英文减小 */
+      --hero-cn-scale: 1.15;
+      --hero-en-scale: 0.9;
+      --hero-cn-opacity: 1;
+      --hero-en-opacity: 0.72;
+    }
 
-@keyframes fadeIn{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:none;}}
+    /* HERO 区域 */
+    .hero {
+      width: 100vw;
+      height: 100vh;
+      background: url("images/gesar_banner.jpeg") center center / cover no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-@media(max-width:768px){
-  .hero-cn{font-size:1.6rem!important;}
-  .hero-en{font-size:2rem!important;}
-  .hero-sub-cn,.hero-sub-en{font-size:1rem!important;}
-}
-@media(max-width:430px){
-  .hero-cn{font-size:1.35rem!important;}
-  .hero-en{font-size:1.7rem!important;}
-}
-</style>
+    .hero-text-box {
+      max-width: 90%;
+      animation: heroFadeIn 1.1s ease-out;
+    }
+
+    .hero-line {
+      margin-bottom: 14px;
+      font-weight: 700;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    /* 中文三行 */
+    .hero-cn {
+      font-size: 1.9rem;
+      opacity: var(--hero-cn-opacity);
+      transform: scale(var(--hero-cn-scale));
+    }
+
+    /* 英文三行 */
+    .hero-en {
+      font-size: 2.1rem;
+      letter-spacing: 0.08em;
+      opacity: var(--hero-en-opacity);
+      transform: scale(var(--hero-en-scale));
+    }
+
+    .hero-sub-cn,
+    .hero-sub-en {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .hero-sub-cn {
+      opacity: var(--hero-cn-opacity);
+      transform: scale(var(--hero-cn-scale));
+    }
+
+    .hero-sub-en {
+      opacity: var(--hero-en-opacity);
+      transform: scale(var(--hero-en-scale));
+    }
+
+    @keyframes heroFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 悬浮按钮：返回 + 语言切换（白色胶囊） */
+    .lang-switch,
+    .back-btn {
+      position: fixed;
+      top: 24px;
+      z-index: 1000;
+      display: inline-flex;
+      background: #ffffff;
+      border-radius: 999px;
+      border: 1px solid #000;
+      overflow: hidden;
+      font-weight: 700;
+    }
+
+    .lang-switch {
+      right: 24px;
+    }
+
+    .back-btn {
+      left: 24px;
+    }
+
+    .lang-btn,
+    .back-btn-inner {
+      padding: 8px 16px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .lang-btn.active {
+      background: #000;
+      color: #fff;
+    }
+
+    .back-btn-inner {
+      color: #000;
+    }
+
+    .back-btn-inner:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    /* 正文区 */
+    .page {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 24px 160px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .section-text {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      margin-bottom: 70px;
+    }
+
+    /* 中英文正文显示切换 */
+    .lang-body {
+      display: none;
+    }
+
+    .lang-body.active {
+      display: block;
+    }
+
+    /* 简单淡入动画（切换语言时正文更顺滑） */
+    .fade-reveal {
+      animation: fadeReveal 0.25s ease-out;
+    }
+
+    @keyframes fadeReveal {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      .hero-cn {
+        font-size: 1.6rem;
+      }
+
+      .hero-en {
+        font-size: 1.9rem;
+      }
+
+      .hero-sub-cn,
+      .hero-sub-en {
+        font-size: 0.98rem;
+      }
+
+      .page {
+        margin-top: 60px;
+        padding-bottom: 120px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-cn {
+        font-size: 1.4rem;
+      }
+
+      .hero-en {
+        font-size: 1.7rem;
+      }
+
+      .hero-sub-cn,
+      .hero-sub-en {
+        font-size: 0.95rem;
+      }
+
+      .lang-btn,
+      .back-btn-inner {
+        padding: 7px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
-<body>
 
-<div class="back-btn"><button class="back-btn-inner" onclick="history.back()">BACK</button></div>
-
-<div class="lang-switch">
-  <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
-  <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
-</div>
-
-<div class="hero">
-  <div class="hero-text-box" id="hero-box">
-    <div id="hero-cn-1" class="hero-line hero-cn">格聂中线穿越</div>
-    <div id="hero-en-1" class="hero-line hero-en">Genyen Middle Traverse</div>
-
-    <div id="hero-cn-2" class="hero-line hero-cn">格聂中线：荒野里的第三种秩序</div>
-    <div id="hero-en-2" class="hero-line hero-en">Genyen Middle Traverse: The Third Order Hidden in the Wilderness</div>
-
-    <div id="hero-cn-3" class="hero-sub-cn">在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。</div>
-    <div id="hero-en-3" class="hero-sub-en">Where wilderness quietly rewrites your sense of distance, silence, and luxury.</div>
+<body data-lang="en">
+  <!-- 左侧返回按钮（与右侧语言切换风格统一） -->
+  <div class="back-btn">
+    <button class="back-btn-inner" onclick="history.back()">BACK</button>
   </div>
-</div>
 
-<div id="body-zh" class="page lang-body">
-  <div class="section-title">一｜抵达边缘之前：静止的力量</div>
-  <div class="section-text">进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种“冲击”。但格聂做的第一件事，是拿走你对速度的幻想。</div>
+  <!-- 右上角语言切换 -->
+  <div class="lang-switch">
+    <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
+    <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
+  </div>
 
-  <div class="section-title">二｜风把尺度重新定义</div>
-  <div class="section-text">在格聂，距离不再听你的常识。一座山看似近在眼前，你走了半小时，它依旧纹丝不动。</div>
+  <!-- HERO 海报 -->
+  <div class="hero">
+    <div class="hero-text-box" id="hero-box">
+      <!-- 顺序：中文 → 英文 → 中文 → 英文 → 中文 → 英文 -->
+      <div id="hero-cn-1" class="hero-line hero-cn">
+        格聂中线穿越
+      </div>
+      <div id="hero-en-1" class="hero-line hero-en">
+        Genyen Middle Traverse
+      </div>
 
-  <div class="section-title">三｜孤独不是缺席，而是被允许</div>
-  <div class="section-text">某一段风突然停下，世界像被按下静音键。那不是空，而是世界为你让出的一个位置。</div>
+      <div id="hero-cn-2" class="hero-line hero-cn">
+        格聂中线：荒野里的第三种秩序
+      </div>
+      <div id="hero-en-2" class="hero-line hero-en">
+        Genyen Middle Traverse: The Third Order Hidden in the Wilderness
+      </div>
 
-  <div class="section-title">四｜夜晚是格聂的真实形状</div>
-  <div class="section-text">白天展示地貌，夜晚展示秩序。黑暗有了厚度，声音被压低。真正的奢侈，是重新拥有感受能力。</div>
+      <div id="hero-cn-3" class="hero-line hero-sub-cn">
+        在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。
+      </div>
+      <div id="hero-en-3" class="hero-line hero-sub-en">
+        Where wilderness quietly rewrites your sense of distance, silence, and luxury.
+      </div>
+    </div>
+  </div>
 
-  <div class="section-title">五｜格聂·结语</div>
-  <div class="section-text">格聂不会给你答案，却能让你面对没有答案的日子。当你驶上柏油公路那一刻，你会懂得幸福是继续走下去的能力。</div>
-</div>
+  <!-- 正文：中文版本 -->
+  <div id="body-zh" class="page lang-body">
+    <div class="section-title">一｜抵达边缘之前：静止的力量</div>
+    <div class="section-text">
+      进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种“冲击”。<br /><br />
+      但格聂做的第一件事，是拿走你对速度的幻想。<br /><br />
+      导航上只剩几十公里，车速却难以超过二十公里。路不再是路，而是被风削过、被时间啃过的痕迹。<br /><br />
+      在这片荒野里，你第一次意识到：<br />
+      <strong>真正的秩序，不是从前进开始，而是从停下来开始。</strong>
+    </div>
 
-<div id="body-en" class="page lang-body active">
-  <div class="section-title">I｜Before the Edge</div>
-  <div class="section-text">Before entering Genyen, you think you’re prepared. But Genyen removes your sense of speed.</div>
+    <div class="section-title">二｜风把尺度重新定义</div>
+    <div class="section-text">
+      在格聂，距离不再听你的常识指挥。<br /><br />
+      一座山，看起来近在眼前；你走了半个小时，它依旧停在原位。<br /><br />
+      这里的“远近”，从来不是地理单位，而是一种情绪单位。<br /><br />
+      你慢慢接受：你无法让荒野配合你的尺度，只能让自己掉进它的节奏里。<br /><br />
+      <strong>被世界重新校准比例尺，本身就是一种极其安静的奢侈。</strong>
+    </div>
 
-  <div class="section-title">II｜Wind Redefines Scale</div>
-  <div class="section-text">A mountain looks near; thirty minutes later, it hasn’t moved. Scale becomes emotional.</div>
+    <div class="section-title">三｜孤独不是缺席，而是被允许</div>
+    <div class="section-text">
+      在中线的某一段，风突然停了下来，像是有人按下了世界的静音键。<br /><br />
+      那不是“什么都没有”，而是世界为你让出的一块空白。<br /><br />
+      你站在那里，没有人知道你在这里，没有人等你报平安；<br />
+      但第一次，你也不需要任何人知道。<br /><br />
+      <strong>在这里，孤独不是没人，而是终于没有噪音。</strong>
+    </div>
 
-  <div class="section-title">III｜Solitude Is Permission</div>
-  <div class="section-text">The wind stops. Silence expands. The world leaves room for you.</div>
+    <div class="section-title">四｜夜晚是格聂的真实形状</div>
+    <div class="section-text">
+      白天给你看的是地貌，夜晚露出来的才是秩序。<br /><br />
+      当营地的灯亮起，黑暗开始有了厚度，声音被一点点压低，连你的呼吸都在悄悄对齐山体的节奏。<br /><br />
+      在那片静夜里，你忽然明白：<br />
+      <strong>白天是你穿过荒野，夜晚是荒野穿过你。</strong><br /><br />
+      而这里真正的奢侈，从来不是风景，而是——重新拥有感受世界的能力。
+    </div>
 
-  <div class="section-title">IV｜Night Reveals Order</div>
-  <div class="section-text">Darkness thickens, sound thins. Luxury is the ability to feel again.</div>
+    <div class="section-title">五｜格聂 · 结语</div>
+    <div class="section-text">
+      格聂不会给你答案，也不会替你解释世界。<br /><br />
+      它教给你的，是一种藏得更深的秩序：<br />
+      世界不会主动为你让路，但你可以学会，为世界让出一点空间。<br /><br />
+      它不宏大，也不戏剧，却会在你离开的某一天，在某个选择、某段沉默里轻轻回响。<br /><br />
+      当你终于驶上柏油公路的那一刻，你会突然明白：<br />
+      <strong>所谓幸福，从来不是抵达哪里，而是重新拥有继续走下去的能力。</strong>
+    </div>
+  </div>
 
-  <div class="section-title">V｜Closing</div>
-  <div class="section-text">Genyen doesn’t answer; it teaches you to keep walking. Asphalt feels like clarity.</div>
-</div>
+  <!-- 正文：英文版本（默认展示） -->
+  <div id="body-en" class="page lang-body active">
+    <div class="section-title">I｜Before the Edge: The Discipline of Stillness</div>
+    <div class="section-text">
+      Before entering Genyen, you think you are ready—altitude, scenery, and some kind of emotional impact.<br /><br />
+      But the first thing Genyen does is quietly remove your illusion of speed.<br /><br />
+      A few dozen kilometers remain on the map, yet your car can barely reach twenty kilometers per hour. The road stops being a road and becomes a trace carved by wind and time.<br /><br />
+      In this wilderness, you realize for the first time:<br />
+      <strong>order does not begin with moving forward, but with learning to stop.</strong>
+    </div>
 
-<script>
-let currentLang='en';
+    <div class="section-title">II｜Where Wind Redefines Scale</div>
+    <div class="section-text">
+      In Genyen, distance no longer obeys your logic.<br /><br />
+      A peak looks close enough to reach; half an hour later, it has not moved at all.<br /><br />
+      Here, “near” and “far” are not geographic units—they are emotional ones.<br /><br />
+      Gradually, you accept that you cannot ask the wilderness to fit your scale; you can only let yourself fall into its rhythm.<br /><br />
+      <strong>Having your sense of scale quietly recalibrated by the world is a rare, silent kind of luxury.</strong>
+    </div>
 
-function switchLang(lang){
-  currentLang=lang;
-  document.getElementById('btn-en').classList.toggle('active',lang==='en');
-  document.getElementById('btn-zh').classList.toggle('active',lang==='zh');
+    <div class="section-title">III｜Solitude Is Permission, Not Absence</div>
+    <div class="section-text">
+      Somewhere along the traverse, the wind suddenly stops, as if someone pressed the mute button on the world.<br /><br />
+      It is not emptiness; it is space being given to you.<br /><br />
+      You stand there, with no one knowing where you are and no one waiting for a message—<br />
+      and for the first time, you no longer need anyone to know.<br /><br />
+      <strong>Here, solitude is not the lack of people; it is the rare moment when noise finally steps back.</strong>
+    </div>
 
-  document.getElementById('body-en').classList.toggle('active',lang==='en');
-  document.getElementById('body-zh').classList.toggle('active',lang==='zh');
+    <div class="section-title">IV｜Night Is Genyen’s True Shape</div>
+    <div class="section-text">
+      Daytime shows you terrain; nighttime reveals structure.<br /><br />
+      As camp lights turn on, darkness gains thickness, and sound becomes thinner and thinner, until even your breathing begins to match the rhythm of the mountains.<br /><br />
+      In that still night, you realize:<br />
+      <strong>in the day, you pass through the wilderness; at night, the wilderness passes through you.</strong><br /><br />
+      And here, luxury is not the view—it is the simple ability to feel the world again.
+    </div>
 
-  const heroBox=document.getElementById('hero-box');
-  heroBox.style.animation='none';
-  void heroBox.offsetWidth;
-  heroBox.style.animation='fadeIn 0.8s ease-out';
-}
-</script>
+    <div class="section-title">V｜Genyen · Closing</div>
+    <div class="section-text">
+      Genyen does not offer answers, nor does it explain the world for you.<br /><br />
+      What it teaches is a quieter order: the world will not automatically make room for you, but you can choose to make room for the world.<br /><br />
+      It is not grand or dramatic, yet it echoes softly in later days—in a decision, in a pause, in a silence you finally learn to stay with.<br /><br />
+      And when you finally roll back onto asphalt, you understand:<br />
+      <strong>happiness has never been about reaching a destination—it is about regaining the ability to keep going.</strong>
+    </div>
+  </div>
 
+  <script>
+    let currentLang = "en";
+
+    function switchLang(lang) {
+      if (lang === currentLang) return;
+
+      const y = window.scrollY || window.pageYOffset;
+
+      currentLang = lang;
+      document.body.setAttribute("data-lang", lang);
+
+      // 按钮高亮
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      document.getElementById("btn-zh").classList.toggle("active", lang === "zh");
+
+      // 正文切换
+      const bodyEn = document.getElementById("body-en");
+      const bodyZh = document.getElementById("body-zh");
+
+      if (lang === "en") {
+        bodyEn.classList.add("active", "fade-reveal");
+        bodyZh.classList.remove("active", "fade-reveal");
+      } else {
+        bodyZh.classList.add("active", "fade-reveal");
+        bodyEn.classList.remove("active", "fade-reveal");
+      }
+
+      // 重新触发 Hero 动画（使放大/切换更有“进入感”）
+      const heroBox = document.getElementById("hero-box");
+      heroBox.style.animation = "none";
+      void heroBox.offsetWidth; // 强制重绘
+      heroBox.style.animation = "heroFadeIn 0.85s ease-out";
+
+      // 保持在当前滚动位置
+      window.scrollTo({ top: y });
+    }
+  </script>
 </body>
 </html>
