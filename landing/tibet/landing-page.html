@@ -13,11 +13,9 @@
       --gold: #d4af37;
       --gold-soft: rgba(212, 175, 55, 0.4);
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin:0; padding:0; }
 
     body {
-      margin: 0;
-      padding: 0;
       background: radial-gradient(circle at top, #171d29 0, var(--bg) 50%, #020308 100%);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, system-ui,
@@ -78,7 +76,9 @@
     .hero {
       position: relative;
       width: 100%;
-      margin: 0 0 42px;
+      height: 56vh;
+      min-height: 360px;
+      max-height: 620px;
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       box-shadow: 0 32px 90px rgba(0, 0, 0, 0.9);
@@ -88,23 +88,27 @@
       inset: 0;
       background-image: url("../../images/everest-c742-full.jpg");
       background-size: cover;
-      background-position: center bottom;
-      filter: saturate(0.9) contrast(1.06) brightness(0.8);
-      transform: scale(1.03);
+      background-position: center top;
+      filter: saturate(0.98) contrast(1.06) brightness(0.9);
     }
     .hero-overlay {
       position: relative;
       inset: 0;
+      height: 100%;
       background:
         radial-gradient(circle at top left,
-          rgba(3, 7, 16, 0.6), transparent 60%),
+          rgba(3, 7, 16, 0.55), transparent 65%),
         linear-gradient(to top,
-          rgba(3, 6, 12, 0.9),
+          rgba(3, 6, 12, 0.92),
           rgba(3, 6, 12, 0.18));
-      padding: 34px 7vw 30px;
+      padding: 0 8vw 28px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
     }
     .hero-inner {
-      max-width: 860px;
+      max-width: 960px;
     }
     .hero-kicker {
       font-size: 11px;
@@ -128,49 +132,55 @@
     }
     .hero-tagline {
       font-size: 14px;
-      line-height: 1.9;
+      line-height: 2;
       margin: 0;
       color: var(--text-main);
     }
 
-    /* 主体：更接近全屏的通栏文字 */
+    /* 主体：通栏居中文本 */
     .main {
       flex: 1;
-      padding: 40px 7vw 80px;
+      padding: 60px 8vw 90px;
     }
     .content-wrap {
-      max-width: 1120px;
+      max-width: 1200px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .section {
-      padding: 26px 0 24px;
+      padding: 40px 0 34px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .section-header {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .section-kicker {
       font-size: 11px;
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--text-soft);
-      margin-bottom: 6px;
-      display: flex;
+      margin-bottom: 10px;
+      display: inline-flex;
       align-items: center;
       gap: 10px;
     }
-    .section-kicker::before {
+    .section-kicker::before,
+    .section-kicker::after {
       content: "";
       width: 32px;
       height: 1px;
       background: linear-gradient(to right, var(--gold-soft), transparent);
     }
+    .section-kicker::after {
+      background: linear-gradient(to left, var(--gold-soft), transparent);
+    }
+
     .section-title-main {
       font-size: 18px;
       letter-spacing: 0.08em;
-      margin: 0 0 4px;
+      margin: 0 0 6px;
     }
     .section-title-sub {
       font-size: 13px;
@@ -182,51 +192,42 @@
 
     .section-body {
       font-size: 15px;
-      line-height: 2.1;
-      margin-top: 12px;
+      line-height: 2.2;
+      margin-top: 16px;
       color: var(--text-main);
     }
     .section-body p {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
     }
 
     .divider {
-      margin: 18px 0 16px;
+      margin: 20px 0 18px;
       text-align: center;
       font-size: 11px;
       letter-spacing: 0.3em;
       color: rgba(139, 147, 162, 0.9);
     }
 
-    .section-footer-note {
-      margin-top: 16px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 2;
-    }
-
     /* 镶嵌式图片区域 */
     .images-section {
       border-bottom: none;
+      padding-top: 40px;
       padding-bottom: 0;
-      padding-top: 32px;
     }
 
     .images-grid {
-      margin-top: 18px;
+      margin-top: 22px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
     .image-card {
       position: relative;
       border-radius: 18px;
       overflow: hidden;
       background: #080b10;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.95);
       text-decoration: none;
       color: inherit;
       transition:
@@ -236,15 +237,15 @@
     }
     .image-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.95);
-      border-color: rgba(212, 175, 55, 0.85);
+      box-shadow: 0 28px 66px rgba(0, 0, 0, 1);
+      border-color: rgba(212, 175, 55, 0.9);
     }
     .image-thumb {
       position: relative;
-      padding-top: 62%;
+      padding-top: 65%;
       background-size: cover;
       background-position: center;
-      filter: saturate(1) contrast(1.04) brightness(0.9);
+      filter: saturate(1) contrast(1.06) brightness(0.9);
     }
     .image-thumb::after {
       content: "";
@@ -255,9 +256,9 @@
         transparent 52%);
     }
     .image-meta {
-      padding: 10px 12px 12px;
+      padding: 10px 12px 14px;
       font-size: 11px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     .image-title {
       margin-bottom: 4px;
@@ -280,24 +281,25 @@
     @media (max-width: 900px) {
       .hero-overlay {
         padding-inline: 18px;
-      }
-      .main {
-        padding-inline: 18px;
-      }
-      .images-grid {
-        grid-template-columns: 1fr;
-      }
-      .lang-toggle {
-        right: 10px;
+        align-items: flex-end;
       }
       .hero-title {
         font-size: 22px;
+      }
+      .main {
+        padding-inline: 18px;
       }
       .section-title-main {
         font-size: 16px;
       }
       .section-body {
         font-size: 14px;
+      }
+      .images-grid {
+        grid-template-columns: 1fr;
+      }
+      .lang-toggle {
+        right: 10px;
       }
     }
   </style>
@@ -312,7 +314,7 @@
     <button class="lang-btn" data-lang-target="en">EN</button>
   </div>
 
-  <!-- 顶部全宽 Banner：Everest 图像 -->
+  <!-- 顶部全宽 Banner：Everest 日照金山 -->
   <header class="hero">
     <div class="hero-media"></div>
     <div class="hero-overlay">
