@@ -587,34 +587,47 @@
   </div>
 
   <script>
-    function switchLang(lang) {
-  var enSec = document.getElementById('lang-en');
-  var zhSec = document.getElementById('lang-zh');
-  var btnEn = document.getElementById('btn-en');
-  var btnZh = document.getElementById('btn-zh');
-  var quote = document.getElementById('quote-text');
-  var subtitle = document.getElementById('subtitle');
-  var footerLeft = document.getElementById('footer-left');
+    <script>
+let currentLang = 'zh';
 
-  if (lang === 'en') {
-    enSec.classList.add('active');
-    zhSec.classList.remove('active');
+function switchLang(lang) {
+  if (lang === currentLang) return;
+
+  // 记录当前滚动位置
+  const y = window.scrollY || window.pageYOffset;
+
+  const zh = document.getElementById('lang-zh');
+  const en = document.getElementById('lang-en');
+  const btnZh = document.getElementById('btn-zh');
+  const btnEn = document.getElementById('btn-en');
+  const quote = document.getElementById('quote-text');
+  const subtitle = document.getElementById('subtitle');
+  const footerLeft = document.getElementById('footer-left');
+
+  if (lang === 'zh') {
+    zh.classList.add('active');
+    en.classList.remove('active');
+    btnZh.classList.add('active');
+    btnEn.classList.remove('active');
+    quote.textContent = "“真实体验，是奢旅内容里最贵的资产。”";
+    subtitle.textContent = "奢旅内容叙事者 & 品牌策略人 · 面向中国市场";
+    footerLeft.textContent = "联系 · tanc10905@gmail.com";
+  } else {
+    en.classList.add('active');
+    zh.classList.remove('active');
     btnEn.classList.add('active');
     btnZh.classList.remove('active');
     quote.textContent = "“Lived experience is the most valuable asset in luxury travel storytelling.”";
     subtitle.textContent = "Luxury Travel Content Storyteller & Brand Strategist · China Market";
     footerLeft.textContent = "CONTACT · tanc10905@gmail.com";
-  } else {
-    enSec.classList.remove('active');
-    zhSec.classList.add('active');
-    btnEn.classList.remove('active');
-    btnZh.classList.add('active');
-    quote.textContent = "“真实体验，是奢旅内容里最贵的资产。”";
-    subtitle.textContent = "奢旅内容叙事者 & 品牌策略人 · 面向中国市场";
-    footerLeft.textContent = "联系 · tanc10905@gmail.com";
   }
-}
 
+  currentLang = lang;
+
+  // 切换语言后回到原本滚动位置
+  window.scrollTo({ top: y });
+}
+</script>
     function openWip() {
       document.getElementById('wip-overlay').style.display = 'flex';
     }
