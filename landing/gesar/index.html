@@ -1,543 +1,157 @@
+<!-- Final bilingual gesar-index.html with correct hero behaviour + bilingual body switching -->
 <!DOCTYPE html>
-<html lang="en" data-hero-lang="en">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Genyen Middle Traverse · 格聂中线</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Genyen Middle Traverse · 格聂中线：荒野里的第三种秩序。在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。"
-  />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gesar South Traverse</title>
+<style>
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Helvetica Neue", Arial, sans-serif; background: #000; color: #fff; }
 
-    :root {
-      --bg: #050607;
-      --text-main: #ffffff;
-      --text-sub: #d0d0d0;
-      --pill-bg: #ffffff;
-      --pill-text: #111111;
-      --pill-border: rgba(0, 0, 0, 0.08);
-      --pill-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      --accent: #f2c16b;
-      --content-width: min(960px, 100vw - 48px);
-      --font-hero-en: 42px;
-      --font-hero-cn: 28px;
-      --font-hero-sub-en: 20px;
-      --font-hero-sub-cn: 18px;
-    }
-
-    html,
-    body {
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
-        -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
-        sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      line-height: 1.7;
-    }
-
-    /* 顶部导航：返回 + 语言切换 */
-
-    .top-nav {
-      position: fixed;
-      top: 20px;
-      left: 24px;
-      right: 24px;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    .nav-left,
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      pointer-events: auto;
-    }
-
-    .pill-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 18px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      color: var(--pill-text);
-      border: 1px solid var(--pill-border);
-      box-shadow: var(--pill-shadow);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
-        background 0.18s ease-out;
-      white-space: nowrap;
-    }
-
-    .pill-btn span.cn-label {
-      font-size: 11px;
-      letter-spacing: 0.04em;
-    }
-
-    .pill-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
-    }
-
-    .pill-btn:active {
-      transform: translateY(0);
-      box-shadow: var(--pill-shadow);
-    }
-
-    .lang-toggle {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid var(--pill-border);
-      box-shadow: var(--pill-shadow);
-      overflow: hidden;
-    }
-
-    .lang-option {
-      padding: 8px 16px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      color: var(--pill-text);
-      opacity: 0.6;
-      transition: background 0.18s ease-out, color 0.18s ease-out,
-        opacity 0.18s ease-out;
-      user-select: none;
-    }
-
-    .lang-option + .lang-option {
-      border-left: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .lang-option.active {
-      background: rgba(0, 0, 0, 0.85);
-      color: #ffffff;
-      opacity: 1;
-    }
-
-    /* Hero 区域 */
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      background-image: url("../../images/gesar_banner.jpeg");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 24px;
-    }
-
-    .hero-inner {
-      max-width: 920px;
-      margin: 0 auto;
-      color: #ffffff;
-      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.65);
-    }
-
-    .hero-line {
-      transition: transform 0.4s ease, opacity 0.4s ease,
-        font-size 0.4s ease;
-      will-change: transform, opacity, font-size;
-      margin-bottom: 12px;
-    }
-
-    .hero-line.main-cn {
-      font-size: var(--font-hero-cn);
-      letter-spacing: 0.16em;
-      font-weight: 700;
-    }
-
-    .hero-line.main-en {
-      font-size: var(--font-hero-en);
-      letter-spacing: 0.2em;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-line.sub-cn {
-      font-size: var(--font-hero-sub-cn);
-      font-weight: 600;
-    }
-
-    .hero-line.sub-en {
-      font-size: var(--font-hero-sub-en);
-      font-weight: 600;
-    }
-
-    .hero-line.desc-en,
-    .hero-line.desc-cn {
-      margin-top: 20px;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--text-sub);
-    }
-
-    /* 语言切换时的大小关系：只作用在 hero 里的文字 */
-
-    html[data-hero-lang="en"] .hero-line.en {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    html[data-hero-lang="en"] .hero-line.cn {
-      opacity: 0.85;
-    }
-
-    html[data-hero-lang="en"] .hero-line.main-en {
-      font-size: calc(var(--font-hero-en) * 1.35);
-    }
-
-    html[data-hero-lang="en"] .hero-line.main-cn {
-      font-size: calc(var(--font-hero-cn) * 0.8);
-    }
-
-    html[data-hero-lang="en"] .hero-line.sub-en {
-      font-size: calc(var(--font-hero-sub-en) * 1.1);
-    }
-
-    html[data-hero-lang="en"] .hero-line.sub-cn {
-      font-size: calc(var(--font-hero-sub-cn) * 0.9);
-    }
-
-    html[data-hero-lang="zh"] .hero-line.cn {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    html[data-hero-lang="zh"] .hero-line.en {
-      opacity: 0.85;
-    }
-
-    html[data-hero-lang="zh"] .hero-line.main-cn {
-      font-size: calc(var(--font-hero-cn) * 1.6);
-    }
-
-    html[data-hero-lang="zh"] .hero-line.main-en {
-      font-size: calc(var(--font-hero-en) * 0.75);
-    }
-
-    html[data-hero-lang="zh"] .hero-line.sub-cn {
-      font-size: calc(var(--font-hero-sub-cn) * 1.35);
-    }
-
-    html[data-hero-lang="zh"] .hero-line.sub-en {
-      font-size: calc(var(--font-hero-sub-en) * 0.85);
-    }
-
-    @media (max-width: 768px) {
-    .hero-cn-1 { font-size: 1.6rem !important; }
-    .hero-en-1 { font-size: 2.2rem !important; letter-spacing: 0.12em !important; }
-    .hero-cn-2 { font-size: 1.1rem !important; }
-    .hero-en-2 { font-size: 1.15rem !important; }
-    .hero-cn-3, .hero-en-3 { font-size: 1rem !important; padding: 0 10px; }
+/* HERO */
+.hero {
+  width: 100vw;
+  height: 100vh;
+  background: url('images/gesar_banner_optimized.jpeg') center center / cover no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
 }
+.hero-text-box { max-width: 90%; }
+.hero-line { margin-bottom: 18px; font-weight: 700; }
+.hero-cn { font-size: 2rem; }
+.hero-en { font-size: 2.2rem; letter-spacing: 0.06em; }
+.hero-sub-cn { font-size: 1.1rem; font-weight: 600; margin-top: 10px; }
+.hero-sub-en { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
 
+/* Floating buttons */
+.lang-switch, .back-btn {
+  position: fixed;
+  top: 24px;
+  z-index: 1000;
+  display: inline-flex;
+  background: rgba(255,255,255,1);
+  border-radius: 999px;
+  border: 1px solid #000;
+  overflow: hidden;
+  font-weight: 700;
+}
+.lang-switch { right: 24px; }
+.back-btn { left: 24px; }
+.lang-btn, .back-btn-inner {
+  padding: 8px 16px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+}
+.lang-btn.active { background: #000; color: #fff; }
+.back-btn-inner { color: #000; }
+
+/* BODY */
+.page { max-width: 900px; margin: 80px auto; padding: 0 24px 160px; }
+.section-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 18px; }
+.section-text { font-size: 1.15rem; line-height: 1.85; margin-bottom: 70px; }
+
+/* LANGUAGE DISPLAY */
+.lang-body { display: none; }
+.lang-body.active { display: block; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero-cn { font-size: 1.6rem !important; }
+  .hero-en { font-size: 2rem !important; }
+  .hero-sub-cn, .hero-sub-en { font-size: 1rem !important; }
+}
 @media (max-width: 430px) {
-    .hero-cn-1 { font-size: 1.4rem !important; }
-    .hero-en-1 { font-size: 1.8rem !important; }
-    .hero-cn-2, .hero-en-2 { font-size: 1rem !important; }
-    .hero-cn-3, .hero-en-3 { font-size: 0.95rem !important; }
+  .hero-cn { font-size: 1.35rem !important; }
+  .hero-en { font-size: 1.7rem !important; }
 }
-
-    /* 正文区域 */
-
-    .page {
-      background: radial-gradient(
-          circle at top,
-          rgba(255, 255, 255, 0.02),
-          transparent 55%
-        ),
-        #050607;
-      color: var(--text-main);
-      padding: 72px 0 96px;
-    }
-
-    .section {
-      max-width: var(--content-width);
-      margin: 0 auto 56px;
-    }
-
-    .section:last-of-type {
-      margin-bottom: 0;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-      margin-bottom: 20px;
-    }
-
-    .section-title span.cn {
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      margin-left: 6px;
-      opacity: 0.8;
-    }
-
-    .section-body {
-      font-size: 15px;
-      color: #f3f3f3;
-      line-height: 1.9;
-      word-break: break-word;
-    }
-
-    .section-body p + p {
-      margin-top: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .page {
-        padding: 56px 0 72px;
-      }
-
-      .section-title {
-        font-size: 15px;
-      }
-
-      .section-body {
-        font-size: 14px;
-      }
-    }
-
-    /* 页脚 */
-
-    .footer {
-      max-width: var(--content-width);
-      margin: 32px auto 0;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4);
-    }
-  </style>
+</style>
 </head>
 <body>
-  <!-- 顶部导航 -->
-  <div class="top-nav">
-    <div class="nav-left">
-      <a href="../../index.html" class="pill-btn" id="backButton">
-        <span>← BACK</span>
-        <span class="cn-label">/ 返回主页</span>
-      </a>
-    </div>
-    <div class="nav-right">
-      <div class="lang-toggle" id="heroLangToggle">
-        <div class="lang-option active" data-lang="en">EN</div>
-        <div class="lang-option" data-lang="zh">中文</div>
-      </div>
-    </div>
+
+<!-- BACK BUTTON -->
+<div class="back-btn"><button class="back-btn-inner" onclick="history.back()">BACK</button></div>
+
+<!-- LANG SWITCH -->
+<div class="lang-switch">
+  <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
+  <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text-box">
+    <!-- ORDER: 中文 → 英文 → 中文 → 英文 → 中文 → 英文 -->
+    <div id="hero-cn-1" class="hero-line hero-cn">格聂中线穿越</div>
+    <div id="hero-en-1" class="hero-line hero-en">Genyen Middle Traverse</div>
+
+    <div id="hero-cn-2" class="hero-line hero-cn">格聂中线：荒野里的第三种秩序</div>
+    <div id="hero-en-2" class="hero-line hero-en">Genyen Middle Traverse: The Third Order Hidden in the Wilderness</div>
+
+    <div id="hero-cn-3" class="hero-sub-cn">在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。</div>
+    <div id="hero-en-3" class="hero-sub-en">Where wilderness quietly rewrites your sense of distance, silence, and luxury.</div>
   </div>
+</div>
 
-  <!-- Hero Banner Text -->
-<section class="hero">
-  <div class="hero-content">
-    
-    <!-- 中文主标题 -->
-    <div class="hero-line main-cn cn">
-      格聂中线穿越
-    </div>
+<!-- BODY: CHINESE -->
+<div id="body-zh" class="page lang-body">
+  <div class="section-title">一｜抵达边缘之前：静止的力量</div>
+  <div class="section-text">进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种“冲击”。<br><br>
+但格聂做的第一件事，是拿走你对速度的幻想。导航上只剩几十公里，车速却难以超过二十公里。路不再是路，而是被风削过、被时间啃过的痕迹。</div>
 
-    <!-- 英文主标题 -->
-    <div class="hero-line main-en en">
-      Genyen Middle Traverse
-    </div>
+  <div class="section-title">二｜风把尺度重新定义</div>
+  <div class="section-text">在格聂，距离不再由你掌控。一座山看似近在眼前，你走了半小时，它依旧纹丝不动。这里的远近，从来不是地理单位，而是情绪单位。</div>
 
-    <!-- 中文副标题 -->
-    <div class="hero-line sub-cn cn">
-      格聂中线：荒野里的第三种秩序
-    </div>
+  <div class="section-title">三｜孤独不是缺席，而是被允许</div>
+  <div class="section-text">在中线的某一段，风突然停了下来，世界像被按下静音键。那不是空，而是世界为你让出的位置。</div>
 
-    <!-- 英文副标题 -->
-    <div class="hero-line sub-en en">
-      Genyen Middle Traverse: The Third Order Hidden in the Wilderness
-    </div>
+  <div class="section-title">四｜夜晚是格聂的真实形状</div>
+  <div class="section-text">白天给你看的是地貌，夜晚露出来的才是秩序。黑暗有了厚度，声音被压低。真正的奢侈，是重新拥有感受世界的能力。</div>
 
-    <!-- 描述（中文） -->
-    <div class="hero-line desc-cn cn">
-      在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。
-    </div>
+  <div class="section-title">五｜格聂 · 结语</div>
+  <div class="section-text">格聂不会给你答案，却能让你面对没有答案的日子。当你驶上柏油公路的那一刻，你会突然知道：幸福，是重新拥有继续走下去的能力。</div>
+</div>
 
-    <!-- 描述（英文） -->
-    <div class="hero-line desc-en en">
-      Where wilderness quietly rewrites your sense of distance, silence, and luxury.
-    </div>
+<!-- BODY: ENGLISH -->
+<div id="body-en" class="page lang-body active">
+  <div class="section-title">I｜Before the Edge: The Discipline of Stillness</div>
+  <div class="section-text">Before entering Genyen, you think you're prepared—altitude, landscape, impact. But Genyen removes your illusions about speed. A few dozen kilometers take hours. The road dissolves into wind‑carved traces.</div>
 
-  </div>
-</section>
+  <div class="section-title">II｜Where Wind Redefines Scale</div>
+  <div class="section-text">Distance stops making sense. A peak looks close; half an hour later it hasn’t moved. Scale here is emotional, not geographical.</div>
 
-  <!-- 正文 -->
-  <main class="page">
-    <section class="section">
-      <div class="section-title">
-        I. BEFORE THE EDGE
-        <span class="cn">一｜抵达边缘之前：静止的力量</span>
-      </div>
-      <div class="section-body">
-        <p>
-          进入格聂之前，你以为自己已经准备好了：海拔、风景、情绪上的某种“冲击”。
-        </p>
-        <p>
-          但格聂做的第一件事，是拿走你对速度的幻想。
-        </p>
-        <p>
-          导航上只剩几十公里，车速却很难超过 20 公里。路不再是路，而是被风削过、被时间啃过的痕迹。
-        </p>
-        <p>
-          在这片荒野里，你第一次意识到：真正的秩序不是从前进开始，而是从停下来开始。
-        </p>
-      </div>
-    </section>
+  <div class="section-title">III｜Solitude Is Permission, Not Absence</div>
+  <div class="section-text">Somewhere along the traverse, the wind stops. The world falls silent—not empty, but spacious. It leaves room for you.</div>
 
-    <section class="section">
-      <div class="section-title">
-        II. RESHAPED SCALE
-        <span class="cn">二｜风把尺度重新定义</span>
-      </div>
-      <div class="section-body">
-        <p>
-          在格聂，距离不再听你的常识指挥。
-        </p>
-        <p>
-          一座山，看起来近在眼前；你走了半个小时，它依旧停在原位。
-        </p>
-        <p>
-          这里的“远近”，从来不是地理单位，而是一种情绪单位。
-        </p>
-        <p>
-          你慢慢接受：你无法让荒野配合你的尺度，只能让自己掉进它的节奏里。
-        </p>
-        <p>
-          被世界重新校准比例尺，本身就是一种极其安静的奢侈。
-        </p>
-      </div>
-    </section>
+  <div class="section-title">IV｜Night Is Genyen’s True Shape</div>
+  <div class="section-text">Day reveals landscape; night reveals order. Darkness gains thickness; sound thins out. Luxury here is the ability to feel again.</div>
 
-    <section class="section">
-      <div class="section-title">
-        III. PERMITTED LONELINESS
-        <span class="cn">三｜孤独不是缺席，而是被允许</span>
-      </div>
-      <div class="section-body">
-        <p>
-          在中线的某一段，风突然停了下来，像是有人按下了世界的静音键。
-        </p>
-        <p>
-          那不是“什么都没有”，而是世界为你让出的一块空白。
-        </p>
-        <p>
-          你站在那里，没有人知道你在这里，没有人等你报平安。
-          但第一次，你也不需要任何人知道。
-        </p>
-        <p>
-          在这里，孤独不是没人，而是终于没有噪音。
-        </p>
-      </div>
-    </section>
+  <div class="section-title">V｜Genyen · Closing</div>
+  <div class="section-text">Genyen doesn’t offer answers—it trains you to walk through days that have none. And when you finally return to asphalt, you understand: happiness is simply the ability to keep going.</div>
+</div>
 
-    <section class="section">
-      <div class="section-title">
-        IV. NIGHT AS THE TRUE SHAPE
-        <span class="cn">四｜夜晚是格聂的真实形状</span>
-      </div>
-      <div class="section-body">
-        <p>
-          白天给你看的是地貌，夜晚露出来的才是秩序。
-        </p>
-        <p>
-          当营地的灯亮起，黑暗开始有了厚度，声音被一点点压低，
-          连你的呼吸都在悄悄对齐山体的节奏。
-        </p>
-        <p>
-          在那片静夜里，你忽然明白：白天是你穿过荒野，夜晚是荒野穿过你。
-        </p>
-        <p>
-          而这里真正的奢侈，从来不是风景，而是重新拥有感受世界的能力。
-        </p>
-      </div>
-    </section>
+<script>
+let currentLang = 'en';
 
-    <section class="section">
-      <div class="section-title">
-        V. NO ANSWERS
-        <span class="cn">五｜格聂 · 结语</span>
-      </div>
-      <div class="section-body">
-        <p>
-          格聂不会给你答案，也不会替你解释世界。
-        </p>
-        <p>
-          它教给你的，是一种藏得更深的秩序：世界不会主动为你让路，但你可以学会为世界让出一点空间。
-        </p>
-        <p>
-          它不宏大，也不戏剧，却会在你离开的某一天，在某个选择、某段沉默里轻轻回响。
-        </p>
-        <p>
-          当你终于驶上柏油公路的那一刻，你会突然明白：所谓幸福，从来不是抵达哪里，而是重新拥有继续走下去的能力。
-        </p>
-      </div>
-    </section>
+function switchLang(lang) {
+  currentLang = lang;
 
-    <div class="footer">
-      GENYEN MIDDLE TRAVERSE · PERSONAL NARRATIVE LANDING
-    </div>
-  </main>
+  // Buttons
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-zh').classList.toggle('active', lang==='zh');
 
-  <script>
-    (function () {
-      const html = document.documentElement;
-      const toggle = document.getElementById("heroLangToggle");
-      const options = toggle.querySelectorAll(".lang-option");
+  // Body
+  document.getElementById('body-en').classList.toggle('active', lang==='en');
+  document.getElementById('body-zh').classList.toggle('active', lang==='zh');
+}
+</script>
 
-      function setLang(lang) {
-        html.setAttribute("data-hero-lang", lang);
-        options.forEach((opt) => {
-          opt.classList.toggle("active", opt.dataset.lang === lang);
-        });
-      }
-
-      options.forEach((opt) => {
-        opt.addEventListener("click", () => {
-          const lang = opt.dataset.lang === "zh" ? "zh" : "en";
-          setLang(lang);
-        });
-      });
-
-      // 默认英文
-      setLang("en");
-    })();
-  </script>
 </body>
 </html>
