@@ -4,17 +4,22 @@
   <meta charset="UTF-8" />
   <title>Carlos Tan – Luxury Travel Content & Brand</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet"> 
+  
   <style>
     /* -------------------- GENERAL & RESET -------------------- */
     * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text", system-ui, sans-serif;
       /* 风格重构：纯白色背景 */
       background: #fff; 
       color: #1a1a1a; /* 黑色主文字 */
       scroll-behavior: smooth;
+    }
+    /* 字体优化：应用 Cinzel 衬线字体 */
+    body, .nav-title, .nav-link, .header-content {
+        font-family: 'Cinzel', serif, -apple-system, BlinkMacSystemFont, "SF Pro Display";
     }
     a { color: inherit; text-decoration: none; }
     
@@ -25,7 +30,7 @@
       padding: 0 24px;
     }
 
-    /* -------------------- NEW: TOP STICKY HEADER WRAPPER (V2.1.1 核心) -------------------- */
+    /* -------------------- NEW: TOP STICKY HEADER WRAPPER (V2.1.3 核心) -------------------- */
     #top-branding-wrapper {
         position: sticky; /* 粘性定位 */
         top: 0; /* 粘在顶部 */
@@ -34,45 +39,47 @@
         box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* 增加轻微阴影，体现粘性 */
     }
     
-    /* 居中内容容器 - 包含了 Header 的内容 */
+    /* Header 留白优化：内容居中容器 */
     .header-content {
         max-width: 1120px;
         margin: 0 auto;
         padding: 0 24px;
         text-align: center;
-        padding-top: 25px; /* 减少顶部留白 */
-        padding-bottom: 25px; /* 减少底部留白 */
-        position: relative; /* 确保 lang-switch 可以居中定位 */
+        /* 减少顶部留白 */
+        padding-top: 18px; 
+        padding-bottom: 18px; 
+        position: relative; 
     }
 
     .name {
       font-size: 36px;
-      letter-spacing: 0.22em; 
+      letter-spacing: 0.25em; /* 略微增加间距 */
       text-transform: uppercase;
       font-weight: 700;
       color: #1a1a1a;
+      font-family: 'Cinzel', serif; /* 确保主标题使用 Cinzel */
     }
     .subtitle {
-      margin-top: 5px;
-      font-size: 14px;
+      margin-top: 5px; /* 减少间距 */
+      font-size: 13px; 
       color: #666;
     }
     .quote {
-      margin-top: 15px; 
-      font-size: 14px;
+      margin-top: 10px; /* 减少间距 */
+      font-size: 13px;
       color: #444;
       font-style: italic;
     }
     .quote span {
       display: block;
       margin: 0 auto;
-      border-bottom: 1px solid #eee; /* 将分隔线移到 quote 底部 */
-      padding-bottom: 20px; /* 增加与分隔线的间距 */
+      border-bottom: 1px solid #eee; 
+      padding-bottom: 15px; /* 减少分隔线内边距 */
     }
 
-    /* -------------------- LANGUAGE SWITCH (居中定位) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (V2.1.3 核心修复：居中定位) -------------------- */
     .lang-switch {
-      position: absolute; /* 绝对定位，相对于 header-content */
+      position: absolute; /* 绝对定位，相对于 .header-content */
       top: 50%;
       right: 24px;
       transform: translateY(-50%); /* 垂直居中 */
@@ -93,7 +100,7 @@
     .lang-switch:hover {
       background: rgba(255, 255, 255, 0.9);
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      transform: translateY(-1px) translateY(-50%); /* 悬浮效果和居中同时生效 */
+      transform: translateY(-50%) scale(1.05); /* 悬浮效果和居中同时生效 */
     }
     .lang-btn {
       padding: 7px 16px;
@@ -127,7 +134,7 @@
       border: 1px solid #ddd;
     }
     .nav-link {
-        color: #333; 
+        color: #333;
         text-decoration: none;
         padding: 8px 10px;
         font-size: 12px;
@@ -138,6 +145,7 @@
         transition: all 0.3s ease;
         text-align: center;
         white-space: nowrap;
+        font-family: -apple-system, sans-serif; /* 导航链接使用普通字体 */
     }
     .nav-link:hover {
         background: #f0d8a5; 
@@ -149,10 +157,10 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         margin-bottom: 5px;
+        font-family: -apple-system, sans-serif;
     }
 
-
-    /* -------------------- MAIN HERO VISUAL BLOCK (紧贴 Header) -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK (全屏无遮挡) -------------------- */
     #main-hero {
         height: 55vh; 
         width: 100%; 
@@ -166,7 +174,7 @@
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
         background-size: cover; 
-        background-position: center top; 
+        background-position: center top; /* 焦点位置，确保寺庙在底部可见 */
         background-repeat: no-repeat;
         filter: brightness(0.9) contrast(1.1); 
     }
@@ -181,11 +189,12 @@
         background: rgba(255,255,255,0.0);
     }
     #hero-content h2 {
-        font-size: 3rem;
+        font-size: 3.5rem; /* 放大 Hero 标题 */
         letter-spacing: 0.25em;
         text-transform: uppercase;
         color: #1a1a1a; 
-        text-shadow: 0 2px 5px rgba(255,255,255,0.8); 
+        text-shadow: 0 2px 5px rgba(255,255,255,0.8);
+        font-family: 'Cinzel', serif;
     }
     #hero-content p {
         font-size: 1.2rem;
@@ -222,18 +231,53 @@
     .about-body b { color: #b18b46; font-weight: 700; } 
 
     #core-focus-panel {
+        margin-top: 40px; 
+        padding: 30px;
         background: #1a1a1a; 
         color: #fff;
         border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .card-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-    .card { border-radius: 10px; border: 1px solid rgba(255,215,160,0.3); background: rgba(255,255,255,0.05); padding: 18px; box-shadow: none; transition: transform 0.2s; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr; 
+      gap: 15px; 
+    }
+    .card {
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,160,0.3); 
+      background: rgba(255,255,255,0.05); 
+      padding: 18px; 
+      box-shadow: none;
+      transition: transform 0.2s;
+    }
     .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,215,160,0.1); }
-    .card-title { font-size: 14px; font-weight: 700; color: #f0d8a5; margin-bottom: 6px; }
-    .card-sub { font-size: 12px; color: #ccc; line-height: 1.6; }
-    .top-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 30px; }
-    .label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #9b8763; margin-bottom: 10px; font-weight: 600; }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f0d8a5; 
+      margin-bottom: 6px;
+    }
+    .card-sub {
+      font-size: 12px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 40px; 
+      margin-top: 30px;
+    }
+    .label {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
     .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
     .exp-year { font-weight: 700; color: #7c5a22; }
 
@@ -247,13 +291,57 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       margin-bottom: 60px;
     }
-    .metric-line { font-size: 28px; font-weight: 800; letter-spacing: 0.1em; color: #b18b46; text-align: center; margin-bottom: 8px; }
-    .metric-sub { font-size: 14px; color: #666; text-align: center; margin-bottom: 30px; }
-    .bottom-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
-    .why-title { font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; color: #b18b46; margin-bottom: 15px; font-weight: 600; }
-    .why-list { list-style: none; padding: 0; margin: 0 0 30px 0; font-size: 13px; line-height: 1.8; color: #444; }
-    .why-list li::before { content: '—'; color: #b18b46; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
-    .sub-heading { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: #9b8763; margin-bottom: 15px; font-weight: 600; }
+    .metric-line {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #b18b46; 
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .metric-sub {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    .why-title {
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b18b46;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px 0;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .why-list li::before {
+      content: '—'; 
+      color: #b18b46; 
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    .sub-heading {
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
 
     /* 移除旧的 project-navigation 样式 */
     #project-navigation { display: none; } 
@@ -284,17 +372,18 @@
       opacity: 1;
       transform: translateY(0);
     }
+
     .lang-section { display: none; }
     .lang-section.active { display: block; }
     
     /* -------------------- RESPONSIVE ADJUSTMENTS -------------------- */
     @media (max-width: 768px) {
       .page { padding: 0 16px; } 
-      .header-content { padding-top: 15px; padding-bottom: 15px; } /* 移动端减小 Header 留白 */
+      .header-content { padding-top: 15px; padding-bottom: 15px; } 
       .name { font-size: 28px; }
       .subtitle, .quote { font-size: 12px; }
       .lang-switch { top: 12px; right: 16px; transform: translateY(-50%); } 
-      #main-hero { height: 40vh; margin-top: 0; } /* 移动端 Hero 紧贴 Header */
+      #main-hero { height: 40vh; margin-top: 0; } 
       #hero-content h2 { font-size: 2rem; letter-spacing: 0.15em; }
       #hero-content p { font-size: 1rem; letter-spacing: 0.08em; }
       
