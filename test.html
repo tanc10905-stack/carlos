@@ -17,6 +17,10 @@
       color: #1a1a1a; 
       scroll-behavior: smooth;
     }
+    /* 字体优化：应用 Cinzel 衬线字体 */
+    body, .nav-title, .nav-link {
+        font-family: 'Cinzel', serif, -apple-system, BlinkMacSystemFont, "SF Pro Display";
+    }
     a { color: inherit; text-decoration: none; }
     
     /* -------------------- MAIN PAGE CONTAINER -------------------- */
@@ -33,9 +37,6 @@
         z-index: 100;
         background: #fff;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-        /* 关键：设置相对定位，但 lang-switch 不再依赖它，而是使用 fixed */
-        /* 仅保留 padding 和居中需要的属性 */
-        padding: 0 24px;
     }
     
     /* Header 留白优化：内容居中容器 */
@@ -47,7 +48,7 @@
         /* 减少顶部留白 */
         padding-top: 18px; 
         padding-bottom: 18px; 
-        /* 移除 position: relative，因为 lang-switch 是 fixed */
+        position: relative; /* NEW: 必须确保相对定位，让内部的 lang-switch 绝对定位生效 */
     }
 
     .name {
@@ -76,11 +77,11 @@
       padding-bottom: 15px; 
     }
 
-    /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：fixed 垂直居中) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：居中定位) -------------------- */
     .lang-switch {
-      /* 关键：使用 fixed 定位，使其独立于滚动和 Header */
-      position: fixed; 
-      top: 50px; /* 临时 top 值，实际由 JS 计算 */
+      /* 关键：绝对定位，相对于父级 .header-content */
+      position: absolute; 
+      top: 50%;
       right: 24px;
       transform: translateY(-50%); /* 垂直居中 */
       z-index: 1001; 
@@ -160,7 +161,7 @@
         font-family: -apple-system, sans-serif;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (紧贴 Header) -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK (全屏无遮挡) -------------------- */
     #main-hero {
         height: 55vh; 
         width: 100%; 
@@ -174,7 +175,7 @@
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
         background-size: cover; 
-        background-position: center top; 
+        background-position: center top; /* 焦点位置，确保寺庙在底部可见 */
         background-repeat: no-repeat;
         filter: brightness(0.9) contrast(1.1); 
     }
