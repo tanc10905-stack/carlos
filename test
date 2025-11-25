@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carlos Tan | Luxury Travel Storyteller</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Helvetica Neue',Arial,sans-serif; background:#000; color:#fff; overflow-x:hidden;}
+
+/* HERO SECTION */
+.hero {
+  position:relative;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+}
+.hero-slide {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.5s ease-in-out, transform 10s ease;
+  transform:scale(1.1);
+}
+.hero-slide.active {
+  opacity:1;
+  transform:scale(1.0);
+}
+.hero-overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.3);
+}
+.hero-text {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:10;
+}
+.hero-text h1 {
+  font-size:3.2rem;
+  letter-spacing:0.15em;
+  margin-bottom:0.5rem;
+}
+.hero-text p {
+  font-size:1.2rem;
+  letter-spacing:0.08em;
+  opacity:0.9;
+}
+.hero-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.2);
+  border:none;
+  color:#fff;
+  font-size:2rem;
+  padding:12px 20px;
+  cursor:pointer;
+  z-index:20;
+  transition:background 0.3s;
+}
+.hero-btn:hover {background:rgba(255,255,255,0.4);}
+.hero-btn.left {left:20px;}
+.hero-btn.right {right:20px;}
+
+.lang-switch {
+  position:fixed;
+  top:24px;
+  right:24px;
+  background:#fff;
+  border-radius:999px;
+  border:1px solid #000;
+  overflow:hidden;
+  z-index:1000;
+}
+.lang-btn {
+  padding:8px 16px;
+  cursor:pointer;
+  background:transparent;
+  border:none;
+  font-weight:700;
+  font-size:14px;
+}
+.lang-btn.active {background:#000; color:#fff;}
+
+/* PANELS */
+.panel {
+  padding:120px 10%;
+  text-align:center;
+}
+.panel h2 {
+  font-size:2.2rem;
+  letter-spacing:0.05em;
+  margin-bottom:20px;
+  color:#f6d48a;
+}
+.panel p {
+  font-size:1.1rem;
+  line-height:1.8;
+  max-width:900px;
+  margin:0 auto;
+  color:#eee;
+}
+.panel-light {background:#fffaf4; color:#111;}
+.panel-light p {color:#333;}
+
+/* CTA */
+.cta {text-align:center; padding:100px 0;}
+.cta a {
+  display:inline-block;
+  border:1px solid #f6d48a;
+  color:#f6d48a;
+  padding:12px 24px;
+  text-transform:uppercase;
+  margin:0 10px;
+  border-radius:4px;
+  transition:all 0.3s;
+}
+.cta a:hover {background:#f6d48a; color:#000;}
+
+footer {text-align:center; padding:40px; font-size:0.9rem; color:#777;}
+
+@media(max-width:768px){
+  .hero-text h1{font-size:2rem;}
+  .hero-text p{font-size:1rem;}
+  .panel{padding:80px 5%;}
+}
+</style>
+</head>
+<body>
+  <div class="lang-switch">
+    <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
+    <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
+  </div>
+
+  <section class="hero">
+    <div class="hero-slide active" style="background-image:url('images/hero1.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/hero2.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/hero3.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/hero4.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/hero5.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/hero6.webp');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <h1 class="hero-en">GENYEN MIDDLE TRAVERSE</h1>
+      <h1 class="hero-zh" style="display:none;">格聂中线穿越</h1>
+      <p class="hero-en">Where wilderness quietly rewrites your sense of distance, silence, and luxury.</p>
+      <p class="hero-zh" style="display:none;">在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。</p>
+    </div>
+    <button class="hero-btn left" onclick="prevSlide()">&#10094;</button>
+    <button class="hero-btn right" onclick="nextSlide()">&#10095;</button>
+  </section>
+
+  <div id="body-en">
+    <section class="panel panel-light">
+      <h2>About Carlos Tan</h2>
+      <p>Carlos is a luxury travel storyteller focused on the intersection of wilderness and refinement. His work bridges Asian curiosity and global hospitality, transforming journeys into cinematic experiences.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Philosophy</h2>
+      <p>Luxury, to Carlos, is not about having more — it's about feeling more. It’s the quiet between mountains, the pause before dawn, and the privilege of perspective found at the world’s edges.</p>
+    </section>
+
+    <section class="panel panel-light">
+      <h2>Experience</h2>
+      <p>From Tibet to the African savannas, Carlos documents the landscapes where silence speaks louder than cities. His narratives invite travelers to slow down and rediscover the meaning of presence.</p>
+    </section>
+  </div>
+
+  <div id="body-zh" style="display:none;">
+    <section class="panel panel-light">
+      <h2>关于 Carlos Tan</h2>
+      <p>Carlos 是一位专注于“荒野与精致之间”的奢旅叙事者。他以东方的细腻感受连接全球的待客哲学，让旅程成为一场具有电影感的心灵体验。</p>
+    </section>
+
+    <section class="panel">
+      <h2>理念</h2>
+      <p>对 Carlos 而言，奢侈并不是拥有更多，而是感受更多。是群山之间的宁静，是黎明前的停顿，是在世界边缘重获视角的片刻。</p>
+    </section>
+
+    <section class="panel panel-light">
+      <h2>旅程</h2>
+      <p>从西藏到非洲草原，Carlos 记录那些寂静比城市更有力量的地方。他的叙事邀请旅人放慢脚步，重新体会“存在”的意义。</p>
+    </section>
+  </div>
+
+  <section class="cta">
+    <a href="landing/tibet/index.html">Explore Tibet</a>
+    <a href="landing/kham/index.html">Explore Western Sichuan</a>
+  </section>
+
+  <footer>
+    © 2025 Carlos Tan · Crafted for KumbuKumbu Luxury Tented Camp
+  </footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) slide.classList.add('active');
+  });
+}
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+}
+setInterval(nextSlide, 3000);
+
+function switchLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnZh = document.getElementById('btn-zh');
+  const bodyEn = document.getElementById('body-en');
+  const bodyZh = document.getElementById('body-zh');
+  const heroEn = document.querySelectorAll('.hero-en');
+  const heroZh = document.querySelectorAll('.hero-zh');
+
+  if (lang === 'zh') {
+    btnZh.classList.add('active');
+    btnEn.classList.remove('active');
+    bodyZh.style.display = 'block';
+    bodyEn.style.display = 'none';
+    heroZh.forEach(el => el.style.display = 'block');
+    heroEn.forEach(el => el.style.display = 'none');
+  } else {
+    btnEn.classList.add('active');
+    btnZh.classList.remove('active');
+    bodyEn.style.display = 'block';
+    bodyZh.style.display = 'none';
+    heroEn.forEach(el => el.style.display = 'block');
+    heroZh.forEach(el => el.style.display = 'none');
+  }
+}
+</script>
+</body>
+</html>
