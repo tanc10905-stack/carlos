@@ -22,10 +22,10 @@
     .page {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 0 24px; /* 左右内边距，顶部由 header 自己控制 */
+      padding: 0 24px;
     }
 
-    /* -------------------- HEADER (回归 V1.0 样式) -------------------- */
+    /* -------------------- HEADER (保持 V1.0 精致化样式) -------------------- */
     header {
       padding: 16px 0 24px;
       border-bottom: 1px solid rgba(255,215,160,0.2); 
@@ -59,7 +59,7 @@
       display: inline-block;
     }
 
-    /* -------------------- LANGUAGE SWITCH (回归 V1.0 精致 UI) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (V1.0 精致 UI) -------------------- */
     .lang-switch {
       position: fixed;
       top: 20px;
@@ -99,8 +99,8 @@
     /* -------------------- MAIN HERO VISUAL BLOCK (全屏化，独立于 .page) -------------------- */
     #main-hero {
         height: 60vh; 
-        width: 100%; /* 确保全屏宽度 */
-        margin: 40px 0 0; /* 距离 header 的距离 */
+        width: 100%; 
+        margin: 40px 0 0; 
         position: relative;
         overflow: hidden;
         border-radius: 0; 
@@ -141,7 +141,7 @@
     }
 
 
-    /* -------------------- PANEL STYLES (内容面板，现在都包裹在 lang-section 内部) -------------------- */
+    /* -------------------- PANEL STYLES (内容面板) -------------------- */
     .panel-top {
       background: #fdfdfd; 
       color: #1a1a1a;
@@ -150,7 +150,7 @@
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 24px 50px rgba(0,0,0,0.3);
       line-height: 1.6;
-      margin-top: 40px; /* 确保内容区与 Hero 有间隔 */
+      margin-top: 40px; 
     }
     .section-title {
       font-size: 16px;
@@ -218,13 +218,14 @@
     .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
     .exp-year { font-weight: 700; color: #7c5a22; }
 
-    .panel-bottom { /* 调整这个区域以包含 Why I Fit 内容 */
+    .panel-bottom {
       margin-top: 40px;
       background: #15151f;
       border-radius: 12px;
       border: 1px solid rgba(255,215,160,0.5); 
       padding: 32px;
       box-shadow: 0 24px 50px rgba(0,0,0,0.8);
+      margin-bottom: 60px;
     }
     .metric-line {
       font-size: 28px;
@@ -242,7 +243,7 @@
     }
     .bottom-grid {
       display: grid;
-      grid-template-columns: 1fr; /* 底部内容现在是单列 */
+      grid-template-columns: 1fr;
       gap: 50px;
     }
     .why-title {
@@ -280,32 +281,30 @@
 
     /* -------------------- NEW: 作品集导航 (悬浮磨砂效果) -------------------- */
     #project-navigation {
-        position: sticky; /* 粘性定位 */
-        top: 20px; /* 距离顶部 20px 处开始粘性 */
-        z-index: 990; /* 确保在内容之上，但在语言切换按钮之下 */
-        margin-top: 40px; /* 与上一个内容区块的距离 */
-        max-width: 1120px; /* 与 .page 宽度一致 */
-        margin-left: auto; /* 居中 */
-        margin-right: auto;
-        padding: 20px 24px; /* 内部 padding */
-        background: rgba(18, 18, 25, 0.4); /* 暗色半透明背景 */
-        backdrop-filter: blur(10px); /* 磨砂效果 */
+        position: sticky; 
+        top: 20px; 
+        z-index: 990; 
+        max-width: 1120px;
+        margin: 40px auto 0; 
+        padding: 20px 24px; 
+        background: rgba(18, 18, 25, 0.4); 
+        backdrop-filter: blur(10px); 
         border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.5); /* 阴影增强浮动感 */
-        border: 1px solid rgba(255,215,160,0.1); /* 细致的边框 */
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5); 
+        border: 1px solid rgba(255,215,160,0.1); 
         text-align: center;
         transition: all 0.3s ease;
     }
     .project-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px; /* 减小间距 */
+        gap: 20px; 
         margin-top: 20px;
     }
     .project-card-nav {
         position: relative;
         padding-top: 60%; 
-        border-radius: 8px; /* 略微减小圆角 */
+        border-radius: 8px; 
         overflow: hidden;
         background-size: cover;
         background-position: center;
@@ -314,7 +313,7 @@
         border: 1px solid rgba(255,215,160,0.15);
     }
     .project-card-nav:hover {
-        transform: translateY(-3px); /* 轻微上浮 */
+        transform: translateY(-3px); 
         box-shadow: 0 10px 25px rgba(255,215,160,0.3); 
     }
     .card-nav-overlay {
@@ -330,14 +329,14 @@
         text-align: left;
     }
     .card-nav-text h3 {
-        font-size: 1.4rem; /* 调整字体大小 */
-        letter-spacing: 0.1em; /* 调整字间距 */
+        font-size: 1.4rem; 
+        letter-spacing: 0.1em; 
         text-transform: uppercase;
         margin-bottom: 4px;
         color: #f0d8a5;
     }
     .card-nav-text p {
-        font-size: 13px; /* 调整字体大小 */
+        font-size: 13px; 
         color: #e0e0e0;
         opacity: 0.9;
     }
@@ -354,7 +353,7 @@
         align-items: center;
         flex-wrap: wrap;
         max-width: 1120px;
-        margin: 60px auto 0; /* 调整 footer 顶部边距 */
+        margin: 60px auto 0; 
     }
     footer div:first-child { margin-right: 20px; }
 
@@ -369,6 +368,10 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* -------------------- LANGUAGE SECTION CONTROL -------------------- */
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
     
     /* -------------------- RESPONSIVE ADJUSTMENTS -------------------- */
     @media (max-width: 768px) {
@@ -385,26 +388,20 @@
         padding: 24px;
         margin-top: 25px;
       }
-      .section-title { font-size: 14px; margin-bottom: 10px; }
-      .about-body { font-size: 13px; }
-      .top-grid { grid-template-columns: 1fr; gap: 30px; } /* 改回单列 */
-      .bottom-grid { grid-template-columns: 1fr; } /* 确保单列 */
+      .top-grid { grid-template-columns: 1fr; gap: 30px; } 
+      .bottom-grid { grid-template-columns: 1fr; } 
 
       #project-navigation { 
-          padding: 15px 16px; /* 移动端调整 padding */
+          padding: 15px 16px; 
           margin-top: 30px;
-          top: 15px; /* 移动端顶部定位 */
+          top: 15px; 
       }
-      .project-grid { grid-template-columns: 1fr; gap: 15px; } /* 移动端单列 */
+      .project-grid { grid-template-columns: 1fr; gap: 15px; } 
       .project-card-nav { padding-top: 65%; border-radius: 6px; }
       .card-nav-text { left: 15px; bottom: 15px; }
       .card-nav-text h3 { font-size: 1.2rem; }
       .card-nav-text p { font-size: 11px; }
 
-      .metric-line { font-size: 22px; }
-      .metric-sub { font-size: 12px; }
-      .why-title, .sub-heading { font-size: 14px; }
-      .why-list li { font-size: 12px; }
       footer { padding: 20px 16px; flex-direction: column; align-items: flex-start; margin-top: 40px; }
       footer div:first-child { margin-bottom: 10px; margin-right: 0; }
     }
@@ -428,13 +425,15 @@
         <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
       </div>
     </header>
-  </div> <section id="main-hero" class="scroll-animate">
+  </div> 
+
+  <section id="main-hero" class="scroll-animate">
       <div id="hero-slide-fixed"></div>
       <div id="hero-content">
           <h2 id="hero-title-en">WILDERNESS & ELEGANCE</h2>
           <h2 id="hero-title-zh" style="display:none;">荒野与精致</h2>
           <p id="hero-sub-en">The world is my studio, silence is the language.</p>
-          <p id="hero-sub-zh" style="display:none">世界是我的工作室，宁静是叙事语言。</p>
+          <p id="hero-sub-zh" style="display:none;">世界是我的工作室，宁静是叙事语言。</p>
       </div>
   </section>
 
@@ -466,7 +465,10 @@
     </div>
   </div>
 
-  <div class="page"> <main>
+
+  <div class="page"> 
+    <main>
+      
       <div class="lang-section active" id="lang-en">
         <div class="panel-top scroll-animate">
           <div class="section-title">ABOUT ME</div>
@@ -559,3 +561,276 @@
               <div class="sub-heading">WHAT I CAN CONTRIBUTE</div>
               <ul class="why-list">
                 <li>Designing a Xiaohongshu content framework: travel diaries, emotional stories, FAQs, and trust-building posts.</li>
+                <li>Crafting briefs and scripts for creators and photographers, ensuring content stays on brand and on message.</li>
+                <li>Answering guest questions in native Chinese, reducing uncertainty and building pre-arrival trust.</li>
+                <li>Reviewing performance data (views, saves, inquiries, conversions) and iterating content themes accordingly.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lang-section" id="lang-zh">
+        <div class="panel-top scroll-animate">
+          <div class="section-title">关于我</div>
+          <div class="about-body">
+            我是一位面向中国市场的奢旅内容叙事者与品牌策略人，同时也是长期的高频酒店住客与真实的户外旅行者。
+            我走过西藏与川西的高海拔公路，停留过重庆周边的山地，也在马来西亚砂拉越 Mulu 国家公园的热带雨林中体验过完全断网的几天。
+            这些经历让我对中国旅行者如何在<b>“亲近自然、安全感、舒适度与自由感”</b>之间做平衡，有非常直觉的理解。
+            <br><br>
+            自 2019 年以来，我在电商与内容相关的工作重点一直放在
+            <b>品牌叙事、用户洞察与转化路径</b>，而不是单纯追逐表面数据。
+            这也让我在面对营地与酒店时，能够为其设计兼顾品牌故事、用户情绪与实际结果的内容体系，
+            尤其是针对小红书等中文社媒平台。
+          </div>
+
+          <div class="top-grid">
+            <div>
+              <div class="label" style="margin-top:20px;">简要经历</div>
+              <div class="exp-block">
+                <div class="exp-row">
+                  <div class="exp-year">2019 – 至今</div>
+                  <div class="exp-desc">电商与内容相关工作，主要负责品牌调性、故事包装与转化路径。</div>
+                </div>
+                <div class="exp-row">
+                  <div class="exp-year">旅行与停留</div>
+                  <div class="exp-desc">西藏、川西、重庆山地，马来西亚 Mulu 国家公园雨林，以及多次露营。</div>
+                </div>
+                <div class="exp-row">
+                  <div class="exp-year">长期观察</div>
+                  <div class="exp-desc">在不断旅行与入住中，观察奢旅客人的决策逻辑与记忆点。</div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="label" style="margin-top:20px;">方向擅长标签</div>
+              <div class="tag-row">
+                <div class="tag">故事化内容</div>
+                <div class="tag">小红书思维</div>
+                <div class="tag">KOL 协同</div>
+                <div class="tag">旅拍审美</div>
+                <div class="tag">中英文沟通</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="core-focus-panel" class="scroll-animate">
+            <div class="section-title">核心方向</div>
+            <div class="card-grid">
+                <div class="card">
+                  <div class="card-title">奢旅内容叙事</div>
+                  <div class="card-sub">
+                    通过图文、旅拍日记与长篇故事，把一次旅程拆解为
+                    <b>“出发前的想象—抵达当下的情绪—被照顾的细节—离开后的留恋”</b>，
+                    让用户在内容里提前“住过一次”，而不是只看过一次营地介绍。
+                  </div>
+                  <a href="landing/story.html" style="font-size:12px;color:#f0d8a5;text-decoration:underline;display:block;margin-top:6px;">
+                    查看详细
+                  </a>
+                </div>
+                <div class="card">
+                  <div class="card-title">品牌与账号运营</div>
+                  <div class="card-sub">从选题、月度排期到内容漏斗与复盘的完整链路。</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">高端住客视角</div>
+                  <div class="card-sub">每年 150+ 晚入住，熟悉高端客人的期待与敏感点。</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">户外与野奢体验</div>
+                  <div class="card-sub">真实经历高原、雨林与露营，而不是只在屏幕前想象。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-bottom scroll-animate">
+          <div class="metric-line">150+ NIGHTS / YEAR</div>
+          <div class="metric-sub">Marriott Titanium · Hyatt Globalist · Hilton Diamond</div>
+
+          <div class="bottom-grid">
+            <div>
+              <div class="why-title">为什么我适合做奢旅内容</div>
+              <ul class="why-list">
+                <li>同时是内容创作者与高频奢旅住客，可以从“住客视角”讲品牌故事。</li>
+                <li>真实体验过高原、雨林与断网夜晚，更理解“野奢场景下安全感”的重要性。</li>
+                <li>熟悉高端酒店服务与会员体系，从内部体验出发理解“被照顾的感觉”。</li>
+                <li>能够把营地的位置、动物、氛围与服务，翻译成中国用户看得懂、愿意收藏的内容。</li>
+                <li>习惯与 KOL、媒体与合作方沟通，把一次体验，变成长期可复用的内容资产。</li>
+              </ul>
+
+              <div class="sub-heading">我能为营地带来什么</div>
+              <ul class="why-list">
+                <li>为小红书搭建内容框架：旅拍日记、情绪故事、常见问题与建立信任的内容。</li>
+                <li>为创作者与摄影师准备脚本与 Brief，保证内容画面与文案符合品牌调性。</li>
+                <li>用中文回答客人的疑问，降低远程出行的不确定感，提升预定前信任度。</li>
+                <li>基于阅读、收藏、咨询与转化数据，持续优化选题方向与内容结构。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div id="footer-left">CONTACT · tanc10905@gmail.com</div>
+      <div>© 2025 Carlos Tan. All Rights Reserved.</div>
+    </footer>
+  </div>
+
+  <div class="wip-overlay" id="wip-overlay" onclick="closeWip()">
+    <div class="wip-box" onclick="event.stopPropagation()">
+      <div class="wip-title" id="wip-title">正在加班制作中</div>
+      <div id="wip-text">其他旅程故事正在整理中。</div>
+      <div class="wip-hint" id="wip-hint">点击任意空白处关闭 / Tap anywhere to close</div>
+    </div>
+  </div>
+
+  <script>
+    // 滚动优化辅助函数 (Throttle)
+    const throttle = (func, limit) => {
+      let inThrottle;
+      return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+          func.apply(context, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+      if (lang === currentLang) return;
+
+      const y = window.scrollY || window.pageYOffset;
+
+      const enSec = document.getElementById('lang-en');
+      const zhSec = document.getElementById('lang-zh');
+      const btnEn = document.getElementById('btn-en');
+      const btnZh = document.getElementById('btn-zh');
+      const quote = document.getElementById('quote-text');
+      const subtitle = document.getElementById('subtitle');
+      const footerLeft = document.getElementById('footer-left');
+      const wipTitle = document.getElementById('wip-title');
+      const wipText = document.getElementById('wip-text');
+      const wipHint = document.getElementById('wip-hint');
+      const heroTitleEn = document.getElementById('hero-title-en');
+      const heroTitleZh = document.getElementById('hero-title-zh');
+      const heroSubEn = document.getElementById('hero-sub-en');
+      const heroSubZh = document.getElementById('hero-sub-zh');
+
+      // 获取导航栏标题
+      const navTitleTibetEn = document.getElementById('nav-title-tibet-en');
+      const navTitleTibetZh = document.getElementById('nav-title-tibet-zh');
+      const navSubTibetEn = document.getElementById('nav-sub-tibet-en');
+      const navSubTibetZh = document.getElementById('nav-sub-tibet-zh');
+      const navTitleKhamEn = document.getElementById('nav-title-kham-en');
+      const navTitleKhamZh = document.getElementById('nav-title-kham-zh');
+      const navSubKhamEn = document.getElementById('nav-sub-kham-en');
+      const navSubKhamZh = document.getElementById('nav-sub-kham-zh');
+
+      if (lang === 'zh') {
+        zhSec.classList.add('active');
+        enSec.classList.remove('active');
+        btnZh.classList.add('active');
+        btnEn.classList.remove('active');
+
+        quote.textContent = "“真实体验，是奢旅内容里最贵的资产。”";
+        subtitle.textContent = "奢旅内容叙事者 & 品牌策略人 · 面向中国市场";
+        footerLeft.textContent = "联系 · tanc10905@gmail.com";
+        
+        heroTitleEn.style.display = 'none';
+        heroTitleZh.style.display = 'block';
+        heroSubEn.style.display = 'none';
+        heroSubZh.style.display = 'block';
+
+        wipTitle.textContent = "正在加班制作中";
+        wipText.textContent = "其他旅程故事正在整理中。";
+        wipHint.textContent = "点击任意空白处关闭 / Tap anywhere to close";
+        
+        // 切换导航栏标题
+        if (navTitleTibetEn) navTitleTibetEn.style.display = 'none';
+        if (navTitleTibetZh) navTitleTibetZh.style.display = 'block';
+        if (navSubTibetEn) navSubTibetEn.style.display = 'none';
+        if (navSubTibetZh) navSubTibetZh.style.display = 'block';
+        if (navTitleKhamEn) navTitleKhamEn.style.display = 'none';
+        if (navTitleKhamZh) navTitleKhamZh.style.display = 'block';
+        if (navSubKhamEn) navSubKhamEn.style.display = 'none';
+        if (navSubKhamZh) navSubKhamZh.style.display = 'block';
+
+      } else {
+        enSec.classList.add('active');
+        zhSec.classList.remove('active');
+        btnEn.classList.add('active');
+        btnZh.classList.remove('active');
+
+        quote.textContent = "“Lived experience is the most valuable asset in luxury travel storytelling.”";
+        subtitle.textContent = "Luxury Travel Content Storyteller & Brand Strategist · China Market";
+        footerLeft.textContent = "CONTACT · tanc10905@gmail.com";
+
+        heroTitleEn.style.display = 'block';
+        heroTitleZh.style.display = 'none';
+        heroSubEn.style.display = 'block';
+        heroSubZh.style.display = 'none';
+
+        wipTitle.textContent = "Work in progress";
+        wipText.textContent = "More journey stories are being crafted.";
+        wipHint.textContent = "Tap anywhere to close / 点击任意空白处关闭";
+        
+        // 切换导航栏标题
+        if (navTitleTibetEn) navTitleTibetEn.style.display = 'block';
+        if (navTitleTibetZh) navTitleTibetZh.style.display = 'none';
+        if (navSubTibetEn) navSubTibetEn.style.display = 'block';
+        if (navSubTibetZh) navSubTibetZh.style.display = 'none';
+        if (navTitleKhamEn) navTitleKhamEn.style.display = 'block';
+        if (navTitleKhamZh) navTitleKhamZh.style.display = 'none';
+        if (navSubKhamEn) navSubKhamEn.style.display = 'block';
+        if (navSubKhamZh) navSubKhamZh.style.display = 'none';
+      }
+
+      currentLang = lang;
+      window.scrollTo({ top: y });
+    }
+
+    function openWip() {
+      document.getElementById('wip-overlay').style.display = 'flex';
+    }
+
+    function closeWip() {
+      document.getElementById('wip-overlay').style.display = 'none';
+    }
+
+    // 滚动淡入动画逻辑
+    const animateScroll = () => {
+      const elements = document.querySelectorAll('.scroll-animate');
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          el.classList.add('visible');
+        }
+      });
+    };
+
+    // 城市度假：跳转城市故事页（landing/story.html）
+    function goCityStory() {
+      window.location.href = 'landing/story.html';
+    }
+
+    // 西藏：跳转西藏承接页
+    function goTibetStory() {
+      window.location.href = 'landing/tibet/landing-page.html';
+    }
+
+    // 确保页面加载时立刻检查一次
+    window.addEventListener('DOMContentLoaded', animateScroll);
+    
+    // 使用节流辅助函数优化滚动监听 (每 100ms 触发一次)
+    window.addEventListener('scroll', throttle(animateScroll, 100));
+  </script>
+</body>
+</html>
