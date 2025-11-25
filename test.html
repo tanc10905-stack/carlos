@@ -12,7 +12,6 @@
     body {
       margin: 0;
       padding: 0;
-      /* 字体优化：全局使用 Poppins (纤细、简约、大气) */
       font-family: 'Poppins', sans-serif; 
       background: #fff; 
       color: #1a1a1a; 
@@ -29,8 +28,8 @@
 
     /* -------------------- TOP STICKY HEADER WRAPPER (粘性定位) -------------------- */
     #top-branding-wrapper {
-        position: sticky; /* 粘性定位 */
-        top: 0; /* 粘在顶部 */
+        position: sticky; 
+        top: 0; 
         z-index: 100;
         background: #fff;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
@@ -168,7 +167,7 @@
         overflow: hidden;
         background-color: #fff;
         /* 核心修正：使用 padding-top 技巧设置等比例高度 (16:9) */
-        padding-top: 56.25%; /* (3078 / 5472) * 100 = 56.25% */
+        padding-top: 56.25%; /* 56.25% for 16:9 aspect ratio */
         height: 0; 
     }
     #hero-slide-fixed {
@@ -176,15 +175,10 @@
         width: 100%;
         height: 100%;
         top: 0; 
-        
-        /* 修正文件名 */
         background-image: url('images/main_hero_hd.jpg'); 
-        
-        /* 核心修正：使用 contain 显示完整图片，无裁切 */
         background-size: contain; 
-        background-position: center; /* 居中显示 */
+        background-position: center; 
         background-repeat: no-repeat;
-        
         filter: brightness(0.9) contrast(1.1); 
     }
     #hero-content {
@@ -399,7 +393,8 @@
       .name { font-size: 28px; }
       .subtitle, .quote { font-size: 12px; }
       .lang-switch { top: 12px; right: 16px; transform: translateY(-50%); } 
-      #main-hero { padding-top: 75%; height: auto; margin-top: 0; } /* 移动端 Hero 高度调整为 4:3 比例 */
+      /* NEW: 核心修正：使用 padding-top 技巧设置等比例高度 (4:3 比例) */
+      #main-hero { padding-top: 75%; height: auto; margin-top: 0; } /* 4:3 比例 */
       
       #hero-content h2 { font-size: 2rem; letter-spacing: 0.15em; }
       #hero-content p { font-size: 1rem; letter-spacing: 0.08em; }
@@ -821,13 +816,17 @@
         const langSwitch = document.querySelector('.lang-switch');
         
         if (headerContent && langSwitch) {
+            const subtitle = document.querySelector('.subtitle');
+            if (!subtitle) return;
+            
             const headerRect = headerContent.getBoundingClientRect();
+            const subtitleRect = subtitle.getBoundingClientRect();
+
+            // 计算 Header 的顶部到 subtitle 的中心位置
+            const targetCenterY = subtitleRect.top + subtitleRect.height / 2;
             
-            // 计算 Header 的垂直中心点 (Header 顶部 + Header 高度的一半)
-            const headerCenterY = headerRect.top + headerRect.height / 2;
-            
-            // 将 switch 的 top 值设置为 Header 的垂直中心点
-            langSwitch.style.top = `${headerCenterY}px`;
+            // 将 switch 的 top 值设置为目标中心点 (CSS transform: translateY(-50%) 会完成其余的居中)
+            langSwitch.style.top = `${targetCenterY}px`;
         }
     }
 
