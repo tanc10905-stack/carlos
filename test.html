@@ -160,24 +160,29 @@
         font-weight: 600;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (无裁切显示全部尺寸) -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK (等比例全屏显示) -------------------- */
     #main-hero {
-        height: 55vh; 
         width: 100%; 
         margin: 0; 
         position: relative;
         overflow: hidden;
-        background-color: #fff; /* 确保背景为白色 */
+        background-color: #fff;
+        /* 核心修正：使用 padding-top 技巧设置等比例高度 (16:9) */
+        padding-top: 56.25%; /* (3078 / 5472) * 100 = 56.25% */
+        height: 0; 
     }
     #hero-slide-fixed {
         position: absolute;
         width: 100%;
         height: 100%;
-        background-image: url('images/main_hero_bg.jpg'); 
+        top: 0; 
+        
+        /* 修正文件名 */
+        background-image: url('images/main_hero_hd.jpg'); 
         
         /* 核心修正：使用 contain 显示完整图片，无裁切 */
         background-size: contain; 
-        background-position: center; /* 图片居中显示 */
+        background-position: center; /* 居中显示 */
         background-repeat: no-repeat;
         
         filter: brightness(0.9) contrast(1.1); 
@@ -394,7 +399,8 @@
       .name { font-size: 28px; }
       .subtitle, .quote { font-size: 12px; }
       .lang-switch { top: 12px; right: 16px; transform: translateY(-50%); } 
-      #main-hero { height: 40vh; margin-top: 0; } 
+      #main-hero { padding-top: 75%; height: auto; margin-top: 0; } /* 移动端 Hero 高度调整为 4:3 比例 */
+      
       #hero-content h2 { font-size: 2rem; letter-spacing: 0.15em; }
       #hero-content p { font-size: 1rem; letter-spacing: 0.08em; }
       
