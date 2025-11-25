@@ -1,249 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Carlos Tan | Luxury Travel Storyteller</title>
-<style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:'Helvetica Neue',Arial,sans-serif; background:#000; color:#fff; overflow-x:hidden;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carlos Tan | Wilderness & Luxury Stories</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #000; color: #fff; overflow-x: hidden; }
 
-/* HERO SECTION */
-.hero {
-  position:relative;
-  height:100vh;
-  width:100%;
-  overflow:hidden;
-}
-.hero-slide {
-  position:absolute;
-  width:100%;
-  height:100%;
-  background-size:cover;
-  background-position:center;
-  opacity:0;
-  transition:opacity 1.5s ease-in-out, transform 10s ease;
-  transform:scale(1.1);
-}
-.hero-slide.active {
-  opacity:1;
-  transform:scale(1.0);
-}
-.hero-overlay {
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.3);
-}
-.hero-text {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  z-index:10;
-}
-.hero-text h1 {
-  font-size:3.2rem;
-  letter-spacing:0.15em;
-  margin-bottom:0.5rem;
-}
-.hero-text p {
-  font-size:1.2rem;
-  letter-spacing:0.08em;
-  opacity:0.9;
-}
-.hero-btn {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(255,255,255,0.2);
-  border:none;
-  color:#fff;
-  font-size:2rem;
-  padding:12px 20px;
-  cursor:pointer;
-  z-index:20;
-  transition:background 0.3s;
-}
-.hero-btn:hover {background:rgba(255,255,255,0.4);}
-.hero-btn.left {left:20px;}
-.hero-btn.right {right:20px;}
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-slide.active { opacity: 1; }
 
-.lang-switch {
-  position:fixed;
-  top:24px;
-  right:24px;
-  background:#fff;
-  border-radius:999px;
-  border:1px solid #000;
-  overflow:hidden;
-  z-index:1000;
-}
-.lang-btn {
-  padding:8px 16px;
-  cursor:pointer;
-  background:transparent;
-  border:none;
-  font-weight:700;
-  font-size:14px;
-}
-.lang-btn.active {background:#000; color:#fff;}
+    .hero-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+      animation: fadeIn 2s ease forwards;
+    }
 
-/* PANELS */
-.panel {
-  padding:120px 10%;
-  text-align:center;
-}
-.panel h2 {
-  font-size:2.2rem;
-  letter-spacing:0.05em;
-  margin-bottom:20px;
-  color:#f6d48a;
-}
-.panel p {
-  font-size:1.1rem;
-  line-height:1.8;
-  max-width:900px;
-  margin:0 auto;
-  color:#eee;
-}
-.panel-light {background:#fffaf4; color:#111;}
-.panel-light p {color:#333;}
+    .hero-text h1 {
+      font-size: 3rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
 
-/* CTA */
-.cta {text-align:center; padding:100px 0;}
-.cta a {
-  display:inline-block;
-  border:1px solid #f6d48a;
-  color:#f6d48a;
-  padding:12px 24px;
-  text-transform:uppercase;
-  margin:0 10px;
-  border-radius:4px;
-  transition:all 0.3s;
-}
-.cta a:hover {background:#f6d48a; color:#000;}
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #ddd;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-footer {text-align:center; padding:40px; font-size:0.9rem; color:#777;}
+    .nav-switch {
+      position: fixed;
+      top: 24px; right: 24px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      z-index: 1000;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #fff;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .lang-btn.active { background: #fff; color: #000; }
 
-@media(max-width:768px){
-  .hero-text h1{font-size:2rem;}
-  .hero-text p{font-size:1rem;}
-  .panel{padding:80px 5%;}
-}
-</style>
+    /* Section Layout */
+    section {
+      padding: 120px 20px;
+      text-align: center;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h2 { font-size: 2rem; margin-bottom: 16px; letter-spacing: 0.1em; }
+    p { font-size: 1.1rem; line-height: 1.9; color: #ccc; }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .project-card {
+      flex: 1 1 280px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover { transform: scale(1.05); }
+    .project-card img { width: 100%; height: 200px; object-fit: cover; }
+    .project-card h3 { margin: 16px 0 8px; font-size: 1.2rem; }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text p { font-size: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <div class="lang-switch">
+
+  <!-- Language Switch -->
+  <div class="nav-switch">
     <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
     <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
   </div>
 
-  <section class="hero">
-    <div class="hero-slide active" style="background-image:url('images/hero1.webp');"></div>
-    <div class="hero-slide" style="background-image:url('images/hero2.webp');"></div>
-    <div class="hero-slide" style="background-image:url('images/hero3.webp');"></div>
-    <div class="hero-slide" style="background-image:url('images/hero4.webp');"></div>
-    <div class="hero-slide" style="background-image:url('images/hero5.webp');"></div>
-    <div class="hero-slide" style="background-image:url('images/hero6.webp');"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-text">
-      <h1 class="hero-en">GENYEN MIDDLE TRAVERSE</h1>
-      <h1 class="hero-zh" style="display:none;">格聂中线穿越</h1>
-      <p class="hero-en">Where wilderness quietly rewrites your sense of distance, silence, and luxury.</p>
-      <p class="hero-zh" style="display:none;">在那里，荒野会悄然重塑你对距离、宁静与奢侈的理解。</p>
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-slide active" style="background-image:url('images/8DF048B8E59AB60EF5A560DB1E2187B0.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/6BBE6E68D1A10CCC9C08E5727651588D.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/B63329FB7FC05D3C322F6C8C068102C7.webp');"></div>
+
+    <div class="hero-text" id="hero-text-en">
+      <h1>Stories from the Edge</h1>
+      <p>I tell stories where wilderness and elegance coexist — where silence becomes the language of luxury.</p>
     </div>
-    <button class="hero-btn left" onclick="prevSlide()">&#10094;</button>
-    <button class="hero-btn right" onclick="nextSlide()">&#10095;</button>
+    <div class="hero-text" id="hero-text-zh" style="display:none">
+      <h1>边界之外的故事</h1>
+      <p>我讲述荒野与优雅并存的地方——在那儿，宁静成为奢侈的语言。</p>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <h2 id="about-en">About Carlos</h2>
+    <h2 id="about-zh" style="display:none">关于我</h2>
+
+    <p id="about-text-en">I am a travel storyteller who seeks the tension between nature and design. Each expedition is not only a journey across land but also through inner space. From Tibet to Africa, I explore how silence and form shape emotion.</p>
+    <p id="about-text-zh" style="display:none">我是一名旅行叙事者，寻找自然与设计之间的张力。每一次出发，不只是地理的移动，更是内心的行走。从西藏到非洲，我记录沉默与形态如何重塑情感。</p>
   </section>
 
-  <div id="body-en">
-    <section class="panel panel-light">
-      <h2>About Carlos Tan</h2>
-      <p>Carlos is a luxury travel storyteller focused on the intersection of wilderness and refinement. His work bridges Asian curiosity and global hospitality, transforming journeys into cinematic experiences.</p>
-    </section>
+  <!-- Projects -->
+  <section id="projects">
+    <h2 id="proj-title-en">Selected Works</h2>
+    <h2 id="proj-title-zh" style="display:none">精选作品</h2>
 
-    <section class="panel">
-      <h2>Philosophy</h2>
-      <p>Luxury, to Carlos, is not about having more — it's about feeling more. It’s the quiet between mountains, the pause before dawn, and the privilege of perspective found at the world’s edges.</p>
-    </section>
+    <div class="projects">
+      <div class="project-card">
+        <img src="images/everest-thumb.jpg" alt="Tibet Story" />
+        <h3>Tibet Expedition</h3>
+      </div>
+      <div class="project-card">
+        <img src="images/sichuan-thumbnail.jpg" alt="Kham Story" />
+        <h3>Kham Plateau</h3>
+      </div>
+    </div>
+  </section>
 
-    <section class="panel panel-light">
-      <h2>Experience</h2>
-      <p>From Tibet to the African savannas, Carlos documents the landscapes where silence speaks louder than cities. His narratives invite travelers to slow down and rediscover the meaning of presence.</p>
-    </section>
-  </div>
+  <!-- Philosophy -->
+  <section id="philosophy">
+    <h2 id="phil-en">Design Philosophy</h2>
+    <h2 id="phil-zh" style="display:none">设计理念</h2>
 
-  <div id="body-zh" style="display:none;">
-    <section class="panel panel-light">
-      <h2>关于 Carlos Tan</h2>
-      <p>Carlos 是一位专注于“荒野与精致之间”的奢旅叙事者。他以东方的细腻感受连接全球的待客哲学，让旅程成为一场具有电影感的心灵体验。</p>
-    </section>
-
-    <section class="panel">
-      <h2>理念</h2>
-      <p>对 Carlos 而言，奢侈并不是拥有更多，而是感受更多。是群山之间的宁静，是黎明前的停顿，是在世界边缘重获视角的片刻。</p>
-    </section>
-
-    <section class="panel panel-light">
-      <h2>旅程</h2>
-      <p>从西藏到非洲草原，Carlos 记录那些寂静比城市更有力量的地方。他的叙事邀请旅人放慢脚步，重新体会“存在”的意义。</p>
-    </section>
-  </div>
-
-  <section class="cta">
-    <a href="landing/tibet/index.html">Explore Tibet</a>
-    <a href="landing/kham/index.html">Explore Western Sichuan</a>
+    <p id="phil-text-en">I believe the finest travel stories are not about movement but transformation — when a place changes you quietly, without demanding attention.</p>
+    <p id="phil-text-zh" style="display:none">我相信，最好的旅行故事，不在于远行，而在于转变——当一个地方悄然改变你，而无需言语。</p>
   </section>
 
   <footer>
-    © 2025 Carlos Tan · Crafted for KumbuKumbu Luxury Tented Camp
+    <p>© 2025 Carlos Tan. All Rights Reserved.</p>
   </footer>
 
-<script>
-let currentSlide = 0;
-const slides = document.querySelectorAll('.hero-slide');
+  <script>
+    let slides = document.querySelectorAll('.hero-slide');
+    let index = 0;
+    setInterval(()=>{
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 4000);
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if (i === index) slide.classList.add('active');
-  });
-}
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-}
-setInterval(nextSlide, 3000);
+    function switchLang(lang){
+      const en = lang==='en';
+      document.getElementById('btn-en').classList.toggle('active', en);
+      document.getElementById('btn-zh').classList.toggle('active', !en);
 
-function switchLang(lang) {
-  const btnEn = document.getElementById('btn-en');
-  const btnZh = document.getElementById('btn-zh');
-  const bodyEn = document.getElementById('body-en');
-  const bodyZh = document.getElementById('body-zh');
-  const heroEn = document.querySelectorAll('.hero-en');
-  const heroZh = document.querySelectorAll('.hero-zh');
+      document.querySelectorAll('[id$="-en"]').forEach(el=> el.style.display = en ? 'block' : 'none');
+      document.querySelectorAll('[id$="-zh"]').forEach(el=> el.style.display = en ? 'none' : 'block');
+    }
+  </script>
 
-  if (lang === 'zh') {
-    btnZh.classList.add('active');
-    btnEn.classList.remove('active');
-    bodyZh.style.display = 'block';
-    bodyEn.style.display = 'none';
-    heroZh.forEach(el => el.style.display = 'block');
-    heroEn.forEach(el => el.style.display = 'none');
-  } else {
-    btnEn.classList.add('active');
-    btnZh.classList.remove('active');
-    bodyEn.style.display = 'block';
-    bodyZh.style.display = 'none';
-    heroEn.forEach(el => el.style.display = 'block');
-    heroZh.forEach(el => el.style.display = 'none');
-  }
-}
-</script>
 </body>
 </html>
