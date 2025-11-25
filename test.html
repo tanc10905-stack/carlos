@@ -11,8 +11,9 @@
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text", system-ui, sans-serif;
-      background: #0d0d12; 
-      color: #f0f0f0;
+      /* 风格重构：纯白色背景 */
+      background: #fff; 
+      color: #1a1a1a; /* 黑色主文字 */
       scroll-behavior: smooth;
     }
     a { color: inherit; text-decoration: none; }
@@ -24,7 +25,39 @@
       padding: 0 24px;
     }
 
-    /* -------------------- LANGUAGE SWITCH (V1.0 精致 UI) -------------------- */
+    /* -------------------- NEW: TOP BRANDING (居中显示海报上方文字) -------------------- */
+    #top-branding {
+      padding: 40px 0 0; /* 保持顶部间距 */
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .name {
+      font-size: 36px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #1a1a1a; /* 黑色主标题 */
+    }
+    .subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    .quote {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #444;
+      font-style: italic;
+      padding-bottom: 25px; /* 增加与海报的间距 */
+      border-bottom: 1px solid #eee; /* 浅色分隔线 */
+    }
+    .quote span {
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* -------------------- LANGUAGE SWITCH (白色背景下的精致 UI) -------------------- */
     .lang-switch {
       position: fixed;
       top: 20px;
@@ -35,33 +68,33 @@
       text-transform: uppercase;
       display: inline-flex;
       border-radius: 999px;
-      border: none; 
+      border: 1px solid #ddd; /* 浅色细边框 */
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.1); 
-      backdrop-filter: blur(8px); 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+      background: rgba(255, 255, 255, 0.7); /* 白色半透明背景 */
+      backdrop-filter: blur(10px); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
       transition: all 0.3s ease;
     }
     .lang-switch:hover {
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 16px rgba(255, 215, 160, 0.4); 
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transform: translateY(-1px);
     }
     .lang-btn {
       padding: 7px 16px;
       cursor: pointer;
       background: transparent;
       border: none;
-      color: #fff;
+      color: #333; /* 黑色文字 */
       font-size: 12px;
     }
     .lang-btn.active {
-      background: #d8c29b; 
-      color: #111218;
+      background: #1a1a1a; /* 激活时变为黑色 */
+      color: #f0d8a5; /* 金色文字 */
       font-weight: 700;
     }
 
-    /* -------------------- NEW: 左侧作品集悬浮导航栏 -------------------- */
+    /* -------------------- NEW: 左侧作品集悬浮导航栏 (白色背景下) -------------------- */
     #side-nav {
       position: fixed;
       top: 50%;
@@ -70,59 +103,58 @@
       z-index: 999;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      /* 沿用精致的悬浮 UI 风格 */
-      background: rgba(255, 255, 255, 0.05); 
+      gap: 8px; /* 缩小间距 */
+      background: rgba(255, 255, 255, 0.7); /* 白色磨砂 */
       backdrop-filter: blur(8px); 
       border-radius: 12px;
-      padding: 15px 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      padding: 10px 10px; /* 缩小 padding */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
     }
     .nav-link {
-        color: #f0f0f0;
+        color: #333; /* 黑色文字 */
         text-decoration: none;
-        padding: 10px 12px;
-        font-size: 13px;
+        padding: 8px 10px;
+        font-size: 12px;
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        border-radius: 8px;
+        border-radius: 6px;
         transition: all 0.3s ease;
         text-align: center;
         white-space: nowrap;
     }
     .nav-link:hover {
-        background: rgba(255, 215, 160, 0.2);
-        color: #f0d8a5;
+        background: #f0d8a5; /* 悬浮金色背景 */
+        color: #1a1a1a; /* 黑色文字 */
     }
     .nav-title {
         font-size: 11px;
-        color: #d8c29b;
+        color: #b18b46; /* 深金色文字 */
         letter-spacing: 0.15em;
         text-transform: uppercase;
         margin-bottom: 5px;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (全屏化 & 放大内容) -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK (全屏无遮挡) -------------------- */
     #main-hero {
-        height: 60vh; 
+        height: 55vh; /* 调整高度，保持内容可见性 */
         width: 100%; 
-        margin: 40px 0 0; 
+        margin: 0; /* 移除与顶部 Header 的间距，让 Hero 紧跟 Header 后的分隔线 */
         position: relative;
         overflow: hidden;
-        border-radius: 0; 
-        box-shadow: none;
     }
     #hero-slide-fixed {
         position: absolute;
         width: 100%;
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
-        background-size: 150%; /* 放大图片，确保关键元素显示 */
-        background-position: top center; /* 调整焦点位置，让雪山显示 */
+        background-size: cover; /* 修正：使用 cover，确保无遮挡地平铺 */
+        background-position: center top; /* 焦点位置，确保寺庙在底部可见 */
         background-repeat: no-repeat;
-        /* 移除 background-attachment: fixed，避免缩放问题 */
-        filter: brightness(0.7) grayscale(0.2); 
+        /* 移除 fixed 附件 */
+        /* 调整滤镜以在白底上柔和过渡 */
+        filter: brightness(0.9) contrast(1.1); 
     }
     #hero-content {
         position: absolute;
@@ -132,75 +164,166 @@
         justify-content: center;
         align-items: center;
         z-index: 10;
-        background: rgba(0,0,0,0.25); 
+        background: rgba(255,255,255,0.0); /* 移除遮罩，实现无遮挡 */
     }
     #hero-content h2 {
         font-size: 3rem;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: #fff;
-        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        color: #1a1a1a; /* 黑色标题 */
+        text-shadow: 0 2px 5px rgba(255,255,255,0.8); /* 浅色阴影 */
     }
     #hero-content p {
         font-size: 1.2rem;
-        color: #f0d8a5; 
+        color: #444; 
         letter-spacing: 0.1em;
         margin-top: 10px;
     }
 
 
-    /* -------------------- PANEL STYLES (内容面板) -------------------- */
+    /* -------------------- PANEL STYLES (白色背景下的卡片和文字) -------------------- */
     .panel-top {
       background: #fdfdfd; 
       color: #1a1a1a;
       border-radius: 12px;
       padding: 36px;
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 24px 50px rgba(0,0,0,0.3);
-      line-height: 1.6;
+      border: 1px solid #f0f0f0; /* 极浅边框 */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 柔和阴影 */
       margin-top: 40px; 
     }
     .section-title {
       font-size: 16px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: #b18b46;
+      color: #b18b46; /* 深金色 */
       margin-bottom: 12px;
       font-weight: 600;
     }
-    /* (其他面板和卡片样式保持不变) */
-    .about-body { font-size: 14px; line-height: 1.8; color: #383838; max-width: 800px; }
+    .about-body {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #383838;
+      max-width: 800px;
+    }
     .about-body b { color: #b18b46; font-weight: 700; } 
-    #core-focus-panel { margin-top: 40px; padding: 30px; background: #111218; border-radius: 12px; box-shadow: 0 10px 30px rgba(255,215,160,0.15); }
-    .card-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-    .card { border-radius: 10px; border: 1px solid rgba(255,215,160,0.3); background: rgba(255,255,255,0.03); padding: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s; }
+
+    #core-focus-panel {
+        margin-top: 40px; 
+        padding: 30px;
+        background: #1a1a1a; /* 反色区块：黑色背景 */
+        color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr; 
+      gap: 15px; 
+    }
+    .card {
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,160,0.3); 
+      background: rgba(255,255,255,0.05); /* 黑色背景下的透明卡片 */
+      padding: 18px; 
+      box-shadow: none;
+      transition: transform 0.2s;
+    }
     .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,215,160,0.1); }
-    .card-title { font-size: 14px; font-weight: 700; color: #f0d8a5; margin-bottom: 6px; }
-    .card-sub { font-size: 12px; color: #ccc; line-height: 1.6; }
-    .top-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 30px; }
-    .label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #9b8763; margin-bottom: 10px; font-weight: 600; }
-    .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
-    .exp-year { font-weight: 700; color: #7c5a22; }
-    .panel-bottom { margin-top: 40px; background: #15151f; border-radius: 12px; border: 1px solid rgba(255,215,160,0.5); padding: 32px; box-shadow: 0 24px 50px rgba(0,0,0,0.8); margin-bottom: 60px; }
-    .metric-line { font-size: 28px; font-weight: 800; letter-spacing: 0.1em; color: #f0d8a5; text-align: center; margin-bottom: 8px; }
-    .metric-sub { font-size: 14px; color: #d8c29b; text-align: center; margin-bottom: 30px; }
-    .bottom-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
-    .why-title { font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; color: #b18b46; margin-bottom: 15px; font-weight: 600; }
-    .why-list { list-style: none; padding: 0; margin: 0 0 30px 0; font-size: 13px; line-height: 1.8; color: #ccc; }
-    .why-list li::before { content: '—'; color: #f0d8a5; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
-    .sub-heading { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: #9b8763; margin-bottom: 15px; font-weight: 600; }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f0d8a5; /* 亮金色 */
+      margin-bottom: 6px;
+    }
+    .card-sub {
+      font-size: 12px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 40px; 
+      margin-top: 30px;
+    }
+    .label {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    /* (其他元素样式保持不变) */
+
+    .panel-bottom {
+      margin-top: 40px;
+      background: #fdfdfd; /* 浅色背景 */
+      color: #1a1a1a;
+      border-radius: 12px;
+      border: 1px solid #f0f0f0; 
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 60px;
+    }
+    .metric-line {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #b18b46; /* 深金色 */
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .metric-sub {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .why-title {
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b18b46;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px 0;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
+    }
+    .why-list li::before {
+      content: '—'; 
+      color: #b18b46; /* 深金色 */
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    .sub-heading {
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
 
     /* 移除旧的 project-navigation 样式 */
-    #project-navigation { display: none; }
-
+    #project-navigation { display: none; } 
 
     /* -------------------- FOOTER -------------------- */
     footer {
         padding: 30px 24px;
         text-align: center;
         font-size: 12px;
-        color: #888;
-        border-top: 1px solid rgba(255,215,160,0.1);
+        color: #777;
+        border-top: 1px solid #eee; /* 浅色分隔线 */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -208,42 +331,33 @@
         max-width: 1120px;
         margin: 60px auto 0; 
     }
-
-    /* -------------------- SCROLL ANIMATION & LANGUAGE CONTROL (保持不变) -------------------- */
-    .scroll-animate { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+    
+    /* -------------------- SCROLL ANIMATION & LANGUAGE CONTROL -------------------- */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .scroll-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .lang-section { display: none; }
     .lang-section.active { display: block; }
 
     /* -------------------- RESPONSIVE ADJUSTMENTS -------------------- */
     @media (max-width: 768px) {
       .page { padding: 0 16px; } 
-      header { padding: 12px 0 18px; }
-      .name { font-size: 28px; }
-      .subtitle, .quote { font-size: 12px; }
-      .lang-switch { top: 12px; right: 16px; }
-      #main-hero { height: 40vh; margin-top: 20px; }
-      #hero-content h2 { font-size: 2rem; letter-spacing: 0.15em; }
-      #hero-content p { font-size: 1rem; letter-spacing: 0.08em; }
-      #side-nav { left: 10px; padding: 10px 8px; } /* 移动端调整左侧导航位置 */
-      .nav-link { font-size: 11px; padding: 6px 8px; }
-
-      .panel-top, #core-focus-panel, .panel-bottom {
-        padding: 24px;
-        margin-top: 25px;
-      }
       .top-grid { grid-template-columns: 1fr; gap: 30px; } 
       .bottom-grid { grid-template-columns: 1fr; } 
-
-      footer { padding: 20px 16px; flex-direction: column; align-items: flex-start; margin-top: 40px; }
+      #main-hero { height: 40vh; margin-top: 20px; }
     }
   </style>
 </head>
 <body>
   
   <div class="page">
-    <header>
-      <div>
+    <div id="top-branding">
         <div class="name">Carlos Tan</div>
         <div class="subtitle" id="subtitle">
           Luxury Travel Content Storyteller & Brand Strategist · China Market
@@ -251,13 +365,13 @@
         <div class="quote">
           <span id="quote-text">“Lived experience is the most valuable asset in luxury travel storytelling.”</span>
         </div>
-      </div>
-      <div class="lang-switch">
-        <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
-        <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
-      </div>
-    </header>
+    </div>
   </div> 
+  
+  <div class="lang-switch">
+    <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+    <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
+  </div>
 
   <section id="main-hero" class="scroll-animate">
       <div id="hero-slide-fixed"></div>
