@@ -58,6 +58,43 @@
       display: inline-block;
     }
 
+    /* -------------------- LANGUAGE SWITCH (UI 精致化) -------------------- */
+    .lang-switch {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 1000;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      border-radius: 999px;
+      border: none; 
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1); /* 柔和的半透明背景 */
+      backdrop-filter: blur(8px); /* 略微增强毛玻璃效果 */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* 增加微妙的阴影 */
+      transition: all 0.3s ease;
+    }
+    .lang-switch:hover {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 16px rgba(255, 215, 160, 0.4); /* 悬浮时金色微光 */
+      transform: translateY(-2px);
+    }
+    .lang-btn {
+      padding: 7px 16px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 12px;
+    }
+    .lang-btn.active {
+      background: #d8c29b; /* 使用背景色作为金色 */
+      color: #111218;
+      font-weight: 700;
+    }
+
     /* -------------------- MAIN HERO VISUAL BLOCK (空间感/视差) -------------------- */
     #main-hero {
         height: 60vh; 
@@ -71,12 +108,11 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        /* 使用您已准备好的 Hero 2 图片 */
-        background-image: url('images/main_hero_bg.jpg'); 
+        background-image: url('images/main_hero_bg.jpg'); /* Hero 2 宏大封面图 */
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; /* 创造视差滚动效果：空间感的关键 */
-        filter: brightness(0.7) grayscale(0.2); /* 增加深度和氛围 */
+        background-attachment: fixed; /* 视差滚动效果 */
+        filter: brightness(0.7) grayscale(0.2); 
     }
     #hero-content {
         position: absolute;
@@ -86,7 +122,7 @@
         justify-content: center;
         align-items: center;
         z-index: 10;
-        background: rgba(0,0,0,0.25); /* 柔和的叠加层 */
+        background: rgba(0,0,0,0.25);
     }
     #hero-content h2 {
         font-size: 3rem;
@@ -97,13 +133,13 @@
     }
     #hero-content p {
         font-size: 1.2rem;
-        color: #f0d8a5; /* 亮金色 */
+        color: #f0d8a5; 
         letter-spacing: 0.1em;
         margin-top: 10px;
     }
 
 
-    /* -------------------- PANELS AND CARDS (优化留白和精致度) -------------------- */
+    /* -------------------- PANEL STYLES -------------------- */
     .panel-top {
       background: #fdfdfd; 
       color: #1a1a1a;
@@ -117,7 +153,7 @@
       font-size: 16px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: #b18b46; /* 深金色/棕色 */
+      color: #b18b46;
       margin-bottom: 12px;
       font-weight: 600;
     }
@@ -129,15 +165,14 @@
     }
     .about-body b { color: #b18b46; font-weight: 700; } 
 
-    /* 分解后的核心方向面板 (使用更多留白将其独立出来) */
+    /* 核心方向面板 (暗色独立区块，增加视觉留白和节奏感) */
     #core-focus-panel {
-        margin-top: 40px; /* 增加与上方区块的距离 */
+        margin-top: 40px; 
         padding: 30px;
-        background: #111218; /* 深色卡片背景 */
+        background: #111218; 
         border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(255,215,160,0.15); /* 金色微光阴影 */
+        box-shadow: 0 10px 30px rgba(255,215,160,0.15);
     }
-
     .card-grid {
       display: grid;
       grid-template-columns: 1fr; /* 每行一个，增加垂直空间感 */
@@ -145,9 +180,9 @@
     }
     .card {
       border-radius: 10px;
-      border: 1px solid rgba(255,215,160,0.3); /* 边框改为金色 */
-      background: rgba(255,255,255,0.03); /* 暗色卡片微透明 */
-      padding: 18px; /* 增加内边距 */
+      border: 1px solid rgba(255,215,160,0.3); 
+      background: rgba(255,255,255,0.03); 
+      padding: 18px; 
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       transition: transform 0.2s;
     }
@@ -155,7 +190,7 @@
     .card-title {
       font-size: 14px;
       font-weight: 700;
-      color: #f0d8a5; /* 标题采用亮金色 */
+      color: #f0d8a5; 
       margin-bottom: 6px;
     }
     .card-sub {
@@ -163,14 +198,88 @@
       color: #ccc;
       line-height: 1.6;
     }
+
     .top-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr)); 
       gap: 40px; 
       margin-top: 30px;
     }
-    /* ... (其他样式保持简约黑金基调，未在原代码中变动的部分略) ... */
+    .label {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .exp-year { font-weight: 700; color: #7c5a22; }
 
+    /* 暗色底部卡片 WHY I FIT */
+    .panel-bottom {
+      margin-top: 40px;
+      background: #15151f;
+      border-radius: 12px;
+      border: 1px solid rgba(255,215,160,0.5); 
+      padding: 32px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.8);
+    }
+    /* ... (Metric Line 和 Why I Fit 样式保持不变) ... */
+
+    /* -------------------- 作品集重构 (Focus Photo Grid) -------------------- */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2x2 基础网格 */
+      gap: 12px; 
+    }
+    /* 焦点大卡片：占据整个宽度，突出重点 */
+    .photo-cell.focus-card {
+        grid-column: span 2; 
+        padding-top: 45%; /* 横向大图比例 */
+        border-radius: 12px;
+    }
+
+    .photo-cell {
+      position: relative;
+      padding-top: 100%; /* 默认正方形 */
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,215,160,0.15); 
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .photo-cell:hover {
+      transform: scale(1.02); 
+      box-shadow: 0 16px 36px rgba(255,215,160,0.15);
+      border-color: #f6d48a;
+    }
+    /* 移除 photo-overlay，让图片更清晰 */
+    .photo-overlay { display: none; } 
+
+    /* 悬浮标签 (代替覆盖层) */
+    .photo-label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 13px;
+      color: #fff; 
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: all 0.4s ease;
+      background: rgba(0,0,0,0.6);
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .photo-cell:hover .photo-label {
+        opacity: 1; /* 悬浮时显示标签 */
+    }
+    
     /* -------------------- 滚动动画 (Scroll Animation) -------------------- */
     .scroll-animate {
       opacity: 0;
@@ -181,10 +290,12 @@
       opacity: 1;
       transform: translateY(0);
     }
-
+    
     /* -------------------- 响应式调整 -------------------- */
     @media (max-width: 768px) {
-      .top-grid { grid-template-columns: 1fr; gap: 30px; }
+      .top-grid, .bottom-grid { grid-template-columns: 1fr; gap: 30px; }
+      .photo-grid { grid-template-columns: 1fr; gap: 10px; } /* 移动端改为单列 */
+      .photo-cell.focus-card { grid-column: span 1; padding-top: 60%; } /* 焦点大图在移动端也只占一列 */
       #main-hero { height: 40vh; margin: 30px 0; }
       #hero-content h2 { font-size: 2rem; letter-spacing: 0.2em; }
     }
@@ -320,29 +431,24 @@
             <div>
               <div class="sub-heading">TRAVEL & SCENES I DRAW FROM</div>
               <div class="photo-grid">
-                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="goTibetStory()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">TIBET</div>
+                <div class="photo-cell focus-card" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="goTibetStory()">
+                  <div class="photo-label" id="label-tibet-en">TIBET & KHAM</div>
                 </div>
-                <div class="photo-cell" style="background-image:url('images/sichuan_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">W. SICHUAN</div>
-                </div>
+
                 <div class="photo-cell" style="background-image:url('images/chongqing_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">CHONGQING MOUNTAINS</div>
+                  <div class="photo-label" id="label-chongqing-en">CHONGQING MOUNTAINS</div>
                 </div>
+
                 <div class="photo-cell" style="background-image:url('images/mulu_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">MULU NATIONAL PARK</div>
+                  <div class="photo-label" id="label-mulu-en">MULU RAINFOREST</div>
                 </div>
+
                 <div class="photo-cell" style="background-image:url('images/city_vacation_thumbnail.jpg');" onclick="goCityStory()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">URBAN RETREATS</div>
+                  <div class="photo-label" id="label-city-en">URBAN RETREATS</div>
                 </div>
+
                 <div class="photo-cell" style="background-image:url('images/camping_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">CAMP NIGHTS</div>
+                  <div class="photo-label" id="label-camp-en">CAMP NIGHTS</div>
                 </div>
               </div>
             </div>
@@ -452,29 +558,24 @@
             <div>
               <div class="sub-heading">这些场景，是我创作的灵感来源</div>
               <div class="photo-grid">
-                <div class="photo-cell" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="goTibetStory()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">西藏</div>
+                <div class="photo-cell focus-card" style="background-image:url('images/tibet_thumbnail.jpg');" onclick="goTibetStory()">
+                  <div class="photo-label" id="label-tibet-zh">西藏与川西</div>
                 </div>
-                <div class="photo-cell" style="background-image:url('images/sichuan_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">川西</div>
-                </div>
+
                 <div class="photo-cell" style="background-image:url('images/chongqing_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">重庆山地</div>
+                  <div class="photo-label" id="label-chongqing-zh">重庆山地</div>
                 </div>
+
                 <div class="photo-cell" style="background-image:url('images/mulu_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">Mulu 雨林</div>
+                  <div class="photo-label" id="label-mulu-zh">Mulu 雨林</div>
                 </div>
+
                 <div class="photo-cell" style="background-image:url('images/city_vacation_thumbnail.jpg');" onclick="goCityStory()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">城市度假</div>
+                  <div class="photo-label" id="label-city-zh">城市度假</div>
                 </div>
+
                 <div class="photo-cell" style="background-image:url('images/camping_thumbnail.jpg');" onclick="openWip()">
-                  <div class="photo-overlay"></div>
-                  <div class="photo-label">露营夜晚</div>
+                  <div class="photo-label" id="label-camp-zh">露营夜晚</div>
                 </div>
               </div>
             </div>
@@ -529,7 +630,6 @@
       const wipTitle = document.getElementById('wip-title');
       const wipText = document.getElementById('wip-text');
       const wipHint = document.getElementById('wip-hint');
-      // 新增 Hero 元素的引用
       const heroTitleEn = document.getElementById('hero-title-en');
       const heroTitleZh = document.getElementById('hero-title-zh');
       const heroSubEn = document.getElementById('hero-sub-en');
@@ -574,6 +674,17 @@
         wipText.textContent = "More journey stories are being crafted.";
         wipHint.textContent = "Tap anywhere to close / 点击任意空白处关闭";
       }
+      
+      // 切换作品集标签（解决中英文夹杂）
+      const enMode = lang === 'en';
+      const selectors = ['#label-tibet', '#label-chongqing', '#label-mulu', '#label-city', '#label-camp'];
+
+      selectors.forEach(baseId => {
+          const enEl = document.getElementById(baseId + '-en');
+          const zhEl = document.getElementById(baseId + '-zh');
+          if (enEl) enEl.style.display = enMode ? 'block' : 'none';
+          if (zhEl) zhEl.style.display = enMode ? 'none' : 'block';
+      });
 
       currentLang = lang;
       window.scrollTo({ top: y });
