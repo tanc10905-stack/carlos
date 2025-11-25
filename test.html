@@ -60,7 +60,7 @@
       margin-top: 5px; 
       font-size: 13px; 
       color: #666;
-      font-weight: 300; 
+      font-weight: 300;
     }
     .quote {
       margin-top: 10px; 
@@ -167,8 +167,7 @@
         margin: 0; 
         position: relative;
         overflow: hidden;
-        /* 确保背景为白色，以承载 contain 模式下的留白 */
-        background-color: #fff; 
+        background-color: #fff; /* 确保背景为白色 */
     }
     #hero-slide-fixed {
         position: absolute;
@@ -178,7 +177,7 @@
         
         /* 核心修正：使用 contain 显示完整图片，无裁切 */
         background-size: contain; 
-        background-position: center; /* 居中显示 */
+        background-position: center; /* 图片居中显示 */
         background-repeat: no-repeat;
         
         filter: brightness(0.9) contrast(1.1); 
