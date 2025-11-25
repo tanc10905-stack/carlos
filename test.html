@@ -43,9 +43,10 @@
         margin: 0 auto;
         padding: 0 24px;
         text-align: center;
+        /* 减少顶部留白 */
         padding-top: 18px; 
         padding-bottom: 18px; 
-        position: relative; 
+        position: relative; /* 关键：确保相对定位，让内部的 lang-switch 绝对定位生效 */
     }
 
     .name {
@@ -54,7 +55,7 @@
       text-transform: uppercase;
       font-weight: 700;
       color: #1a1a1a;
-      /* NEW: Banner 主标题使用 Cinzel 字体 */
+      /* Cinzel 字体 */
       font-family: 'Cinzel', serif; 
     }
     .subtitle {
@@ -79,6 +80,7 @@
 
     /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：fixed 垂直居中) -------------------- */
     .lang-switch {
+      /* 关键：使用 fixed 定位，使其独立于滚动和 Header */
       position: fixed; 
       top: 50px; /* 临时 top 值，实际由 JS 计算 */
       right: 24px;
@@ -195,7 +197,6 @@
         text-transform: uppercase;
         color: #1a1a1a; 
         text-shadow: 0 2px 5px rgba(255,255,255,0.8);
-        /* Hero 主标题使用 Cinzel 字体 */
         font-family: 'Cinzel', serif;
     }
     #hero-content p {
@@ -421,13 +422,13 @@
           <div class="quote">
             <span id="quote-text">“Lived experience is the most valuable asset in luxury travel storytelling.”</span>
           </div>
-          
-          <div class="lang-switch">
-            <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
-            <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
-          </div>
       </div>
   </div> 
+  
+  <div class="lang-switch">
+    <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+    <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
+  </div>
 
   <section id="main-hero" class="scroll-animate">
       <div id="hero-slide-fixed"></div>
