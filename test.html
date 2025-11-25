@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Carlos Tan – Luxury Travel Content & Brand</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> 
   
   <style>
     /* -------------------- GENERAL & RESET -------------------- */
@@ -12,14 +12,11 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Cinzel', serif, -apple-system, BlinkMacSystemFont, "SF Pro Display";
+      /* 字体优化：全局使用 Poppins (纤细、简约、大气) */
+      font-family: 'Poppins', sans-serif; 
       background: #fff; 
       color: #1a1a1a; 
       scroll-behavior: smooth;
-    }
-    /* 字体优化：应用 Cinzel 衬线字体 */
-    body, .nav-title, .nav-link {
-        font-family: 'Cinzel', serif, -apple-system, BlinkMacSystemFont, "SF Pro Display";
     }
     a { color: inherit; text-decoration: none; }
     
@@ -37,6 +34,7 @@
         z-index: 100;
         background: #fff;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        padding: 0 24px;
     }
     
     /* Header 留白优化：内容居中容器 */
@@ -45,10 +43,9 @@
         margin: 0 auto;
         padding: 0 24px;
         text-align: center;
-        /* 减少顶部留白 */
         padding-top: 18px; 
         padding-bottom: 18px; 
-        position: relative; /* NEW: 必须确保相对定位，让内部的 lang-switch 绝对定位生效 */
+        position: relative; 
     }
 
     .name {
@@ -57,18 +54,21 @@
       text-transform: uppercase;
       font-weight: 700;
       color: #1a1a1a;
-      font-family: 'Cinzel', serif;
+      /* NEW: Banner 主标题使用 Cinzel 字体 */
+      font-family: 'Cinzel', serif; 
     }
     .subtitle {
       margin-top: 5px; 
       font-size: 13px; 
       color: #666;
+      font-weight: 300; /* Poppins 细体 */
     }
     .quote {
       margin-top: 10px; 
       font-size: 13px;
       color: #444;
       font-style: italic;
+      font-weight: 300;
     }
     .quote span {
       display: block;
@@ -77,11 +77,10 @@
       padding-bottom: 15px; 
     }
 
-    /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：居中定位) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：fixed 垂直居中) -------------------- */
     .lang-switch {
-      /* 关键：绝对定位，相对于父级 .header-content */
-      position: absolute; 
-      top: 50%;
+      position: fixed; 
+      top: 50px; /* 临时 top 值，实际由 JS 计算 */
       right: 24px;
       transform: translateY(-50%); /* 垂直居中 */
       z-index: 1001; 
@@ -139,14 +138,14 @@
         text-decoration: none;
         padding: 8px 10px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 400;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         border-radius: 6px;
         transition: all 0.3s ease;
         text-align: center;
         white-space: nowrap;
-        font-family: -apple-system, sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
     .nav-link:hover {
         background: #f0d8a5; 
@@ -158,10 +157,11 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         margin-bottom: 5px;
-        font-family: -apple-system, sans-serif;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (全屏无遮挡) -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK -------------------- */
     #main-hero {
         height: 55vh; 
         width: 100%; 
@@ -175,7 +175,7 @@
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
         background-size: cover; 
-        background-position: center top; /* 焦点位置，确保寺庙在底部可见 */
+        background-position: center top; 
         background-repeat: no-repeat;
         filter: brightness(0.9) contrast(1.1); 
     }
@@ -195,6 +195,7 @@
         text-transform: uppercase;
         color: #1a1a1a; 
         text-shadow: 0 2px 5px rgba(255,255,255,0.8);
+        /* Hero 主标题使用 Cinzel 字体 */
         font-family: 'Cinzel', serif;
     }
     #hero-content p {
@@ -202,6 +203,7 @@
         color: #444; 
         letter-spacing: 0.1em;
         margin-top: 10px;
+        font-weight: 300;
     }
 
 
@@ -228,6 +230,7 @@
       line-height: 1.8;
       color: #383838;
       max-width: 800px;
+      font-weight: 300;
     }
     .about-body b { color: #b18b46; font-weight: 700; } 
 
@@ -263,6 +266,7 @@
       font-size: 12px;
       color: #ccc;
       line-height: 1.6;
+      font-weight: 300;
     }
 
     .top-grid {
@@ -281,6 +285,7 @@
     }
     .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
     .exp-year { font-weight: 700; color: #7c5a22; }
+    .exp-desc { font-weight: 300; }
 
     .panel-bottom {
       margin-top: 40px;
@@ -305,6 +310,7 @@
       color: #666;
       text-align: center;
       margin-bottom: 30px;
+      font-weight: 300;
     }
     .bottom-grid {
       display: grid;
@@ -326,6 +332,7 @@
       font-size: 13px;
       line-height: 1.8;
       color: #444;
+      font-weight: 300;
     }
     .why-list li::before {
       content: '—'; 
@@ -360,6 +367,7 @@
         flex-wrap: wrap;
         max-width: 1120px;
         margin: 60px auto 0; 
+        font-weight: 300;
     }
 
 
@@ -413,13 +421,13 @@
           <div class="quote">
             <span id="quote-text">“Lived experience is the most valuable asset in luxury travel storytelling.”</span>
           </div>
+          
+          <div class="lang-switch">
+            <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+            <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
+          </div>
       </div>
   </div> 
-  
-  <div class="lang-switch">
-    <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
-    <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
-  </div>
 
   <section id="main-hero" class="scroll-animate">
       <div id="hero-slide-fixed"></div>
@@ -799,11 +807,37 @@
       window.location.href = 'landing/tibet/landing-page.html';
     }
 
-    // 确保页面加载时立刻检查一次
-    window.addEventListener('DOMContentLoaded', animateScroll);
+    // NEW: JS 函数用于计算并设置 lang-switch 的垂直位置
+    function positionLangSwitch() {
+        const headerContent = document.querySelector('.header-content');
+        const langSwitch = document.querySelector('.lang-switch');
+        
+        if (headerContent && langSwitch) {
+            const headerRect = headerContent.getBoundingClientRect();
+            
+            // 计算 Header 的垂直中心点 (Header 顶部 + Header 高度的一半)
+            const headerCenterY = headerRect.top + headerRect.height / 2;
+            
+            // 将 switch 的 top 值设置为 Header 的垂直中心点
+            langSwitch.style.top = `${headerCenterY}px`;
+        }
+    }
+
+
+    // 确保页面加载时立刻检查一次并定位按钮
+    window.addEventListener('DOMContentLoaded', () => {
+        // 初始定位按钮
+        positionLangSwitch();
+        // 确保页面加载时立刻检查一次
+        animateScroll();
+    });
     
     // 使用节流辅助函数优化滚动监听 (每 100ms 触发一次)
-    window.addEventListener('scroll', throttle(animateScroll, 100));
+    window.addEventListener('scroll', throttle(() => {
+        animateScroll();
+        // 滚动时也重新定位按钮，以防 Header 粘性定位后位置漂移
+        positionLangSwitch();
+    }, 100));
   </script>
 </body>
 </html>
