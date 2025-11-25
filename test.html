@@ -43,10 +43,9 @@
         margin: 0 auto;
         padding: 0 24px;
         text-align: center;
-        /* 减少顶部留白 */
         padding-top: 18px; 
         padding-bottom: 18px; 
-        position: relative; /* 关键：确保相对定位，让内部的 lang-switch 绝对定位生效 */
+        position: relative; 
     }
 
     .name {
@@ -55,14 +54,13 @@
       text-transform: uppercase;
       font-weight: 700;
       color: #1a1a1a;
-      /* Cinzel 字体 */
       font-family: 'Cinzel', serif; 
     }
     .subtitle {
       margin-top: 5px; 
       font-size: 13px; 
       color: #666;
-      font-weight: 300; /* Poppins 细体 */
+      font-weight: 300; 
     }
     .quote {
       margin-top: 10px; 
@@ -78,13 +76,12 @@
       padding-bottom: 15px; 
     }
 
-    /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：fixed 垂直居中) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (居中定位) -------------------- */
     .lang-switch {
-      /* 关键：使用 fixed 定位，使其独立于滚动和 Header */
       position: fixed; 
       top: 50px; /* 临时 top 值，实际由 JS 计算 */
       right: 24px;
-      transform: translateY(-50%); /* 垂直居中 */
+      transform: translateY(-50%); 
       z-index: 1001; 
       
       font-size: 12px;
@@ -102,7 +99,7 @@
     .lang-switch:hover {
       background: rgba(255, 255, 255, 0.9);
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      transform: translateY(-50%) scale(1.05); /* 悬浮效果和居中同时生效 */
+      transform: translateY(-50%) scale(1.05); 
     }
     .lang-btn {
       padding: 7px 16px;
@@ -163,22 +160,27 @@
         font-weight: 600;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK (无裁切显示全部尺寸) -------------------- */
     #main-hero {
         height: 55vh; 
         width: 100%; 
-        margin: 0; /* 紧贴 Header */
+        margin: 0; 
         position: relative;
         overflow: hidden;
+        /* 确保背景为白色，以承载 contain 模式下的留白 */
+        background-color: #fff; 
     }
     #hero-slide-fixed {
         position: absolute;
         width: 100%;
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
-        background-size: cover; 
-        background-position: center top; 
+        
+        /* 核心修正：使用 contain 显示完整图片，无裁切 */
+        background-size: contain; 
+        background-position: center; /* 居中显示 */
         background-repeat: no-repeat;
+        
         filter: brightness(0.9) contrast(1.1); 
     }
     #hero-content {
