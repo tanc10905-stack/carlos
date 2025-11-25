@@ -55,16 +55,9 @@
 
         /* 遮光罩 */
         .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center,
-                        rgba(0,0,0,0.08) 0,
-                        rgba(0,0,0,0.45) 60%,
-                        rgba(0,0,0,0.75) 100%);
-            pointer-events: none;
-            z-index: 0;
-        }
+    /* 临时修改：将背景色设为完全透明 */
+    background: rgba(0,0,0,0); 
+}
 
         .hero-text-box {
             position: relative;
