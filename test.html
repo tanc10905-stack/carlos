@@ -18,45 +18,10 @@
     a { color: inherit; text-decoration: none; }
     
     /* -------------------- MAIN PAGE CONTAINER -------------------- */
-    /* .page 容器现在包裹 header 和 main，用于限制内容宽度和居中 */
     .page {
       max-width: 1120px;
       margin: 0 auto;
       padding: 0 24px;
-    }
-
-    /* -------------------- HEADER (保持 V1.0 精致化样式) -------------------- */
-    header {
-      padding: 16px 0 24px;
-      border-bottom: 1px solid rgba(255,215,160,0.2); 
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .name {
-      font-size: 36px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #f0d8a5;
-    }
-    .subtitle {
-      margin-top: 6px;
-      font-size: 14px;
-      color: #d8c29b;
-    }
-    .quote {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #e5e0cf;
-      font-style: italic;
-    }
-    .quote span {
-      border-top: 1px solid rgba(255,215,160,0.5); 
-      padding-top: 8px;
-      display: inline-block;
     }
 
     /* -------------------- LANGUAGE SWITCH (V1.0 精致 UI) -------------------- */
@@ -96,7 +61,49 @@
       font-weight: 700;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (全屏化，独立于 .page) -------------------- */
+    /* -------------------- NEW: 左侧作品集悬浮导航栏 -------------------- */
+    #side-nav {
+      position: fixed;
+      top: 50%;
+      left: 24px;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      /* 沿用精致的悬浮 UI 风格 */
+      background: rgba(255, 255, 255, 0.05); 
+      backdrop-filter: blur(8px); 
+      border-radius: 12px;
+      padding: 15px 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .nav-link {
+        color: #f0f0f0;
+        text-decoration: none;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .nav-link:hover {
+        background: rgba(255, 215, 160, 0.2);
+        color: #f0d8a5;
+    }
+    .nav-title {
+        font-size: 11px;
+        color: #d8c29b;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+
+    /* -------------------- MAIN HERO VISUAL BLOCK (全屏化 & 放大内容) -------------------- */
     #main-hero {
         height: 60vh; 
         width: 100%; 
@@ -111,9 +118,10 @@
         width: 100%;
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed; 
+        background-size: 150%; /* 放大图片，确保关键元素显示 */
+        background-position: top center; /* 调整焦点位置，让雪山显示 */
+        background-repeat: no-repeat;
+        /* 移除 background-attachment: fixed，避免缩放问题 */
         filter: brightness(0.7) grayscale(0.2); 
     }
     #hero-content {
@@ -160,187 +168,32 @@
       margin-bottom: 12px;
       font-weight: 600;
     }
-    .about-body {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #383838;
-      max-width: 800px;
-    }
+    /* (其他面板和卡片样式保持不变) */
+    .about-body { font-size: 14px; line-height: 1.8; color: #383838; max-width: 800px; }
     .about-body b { color: #b18b46; font-weight: 700; } 
-
-    #core-focus-panel {
-        margin-top: 40px; 
-        padding: 30px;
-        background: #111218; 
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(255,215,160,0.15);
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: 1fr; 
-      gap: 15px; 
-    }
-    .card {
-      border-radius: 10px;
-      border: 1px solid rgba(255,215,160,0.3); 
-      background: rgba(255,255,255,0.03); 
-      padding: 18px; 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
+    #core-focus-panel { margin-top: 40px; padding: 30px; background: #111218; border-radius: 12px; box-shadow: 0 10px 30px rgba(255,215,160,0.15); }
+    .card-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+    .card { border-radius: 10px; border: 1px solid rgba(255,215,160,0.3); background: rgba(255,255,255,0.03); padding: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s; }
     .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,215,160,0.1); }
-    .card-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #f0d8a5; 
-      margin-bottom: 6px;
-    }
-    .card-sub {
-      font-size: 12px;
-      color: #ccc;
-      line-height: 1.6;
-    }
-
-    .top-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr)); 
-      gap: 40px; 
-      margin-top: 30px;
-    }
-    .label {
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #9b8763;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+    .card-title { font-size: 14px; font-weight: 700; color: #f0d8a5; margin-bottom: 6px; }
+    .card-sub { font-size: 12px; color: #ccc; line-height: 1.6; }
+    .top-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 30px; }
+    .label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #9b8763; margin-bottom: 10px; font-weight: 600; }
     .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
     .exp-year { font-weight: 700; color: #7c5a22; }
+    .panel-bottom { margin-top: 40px; background: #15151f; border-radius: 12px; border: 1px solid rgba(255,215,160,0.5); padding: 32px; box-shadow: 0 24px 50px rgba(0,0,0,0.8); margin-bottom: 60px; }
+    .metric-line { font-size: 28px; font-weight: 800; letter-spacing: 0.1em; color: #f0d8a5; text-align: center; margin-bottom: 8px; }
+    .metric-sub { font-size: 14px; color: #d8c29b; text-align: center; margin-bottom: 30px; }
+    .bottom-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
+    .why-title { font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; color: #b18b46; margin-bottom: 15px; font-weight: 600; }
+    .why-list { list-style: none; padding: 0; margin: 0 0 30px 0; font-size: 13px; line-height: 1.8; color: #ccc; }
+    .why-list li::before { content: '—'; color: #f0d8a5; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
+    .sub-heading { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: #9b8763; margin-bottom: 15px; font-weight: 600; }
 
-    .panel-bottom {
-      margin-top: 40px;
-      background: #15151f;
-      border-radius: 12px;
-      border: 1px solid rgba(255,215,160,0.5); 
-      padding: 32px;
-      box-shadow: 0 24px 50px rgba(0,0,0,0.8);
-      margin-bottom: 60px;
-    }
-    .metric-line {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: #f0d8a5;
-      text-align: center;
-      margin-bottom: 8px;
-    }
-    .metric-sub {
-      font-size: 14px;
-      color: #d8c29b;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
-    .why-title {
-      font-size: 16px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #b18b46;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-    .why-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 30px 0;
-      font-size: 13px;
-      line-height: 1.8;
-      color: #ccc;
-    }
-    .why-list li::before {
-      content: '—'; 
-      color: #f0d8a5;
-      font-weight: bold;
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
-    }
-    .sub-heading {
-      font-size: 14px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #9b8763;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
+    /* 移除旧的 project-navigation 样式 */
+    #project-navigation { display: none; }
 
-    /* -------------------- NEW: 作品集导航 (悬浮磨砂效果) -------------------- */
-    #project-navigation {
-        position: sticky; 
-        top: 20px; 
-        z-index: 990; 
-        max-width: 1120px;
-        margin: 40px auto 0; 
-        padding: 20px 24px; 
-        background: rgba(18, 18, 25, 0.4); 
-        backdrop-filter: blur(10px); 
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.5); 
-        border: 1px solid rgba(255,215,160,0.1); 
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-    .project-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px; 
-        margin-top: 20px;
-    }
-    .project-card-nav {
-        position: relative;
-        padding-top: 60%; 
-        border-radius: 8px; 
-        overflow: hidden;
-        background-size: cover;
-        background-position: center;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255,215,160,0.15);
-    }
-    .project-card-nav:hover {
-        transform: translateY(-3px); 
-        box-shadow: 0 10px 25px rgba(255,215,160,0.3); 
-    }
-    .card-nav-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
-    }
-    .card-nav-text {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        z-index: 5;
-        text-align: left;
-    }
-    .card-nav-text h3 {
-        font-size: 1.4rem; 
-        letter-spacing: 0.1em; 
-        text-transform: uppercase;
-        margin-bottom: 4px;
-        color: #f0d8a5;
-    }
-    .card-nav-text p {
-        font-size: 13px; 
-        color: #e0e0e0;
-        opacity: 0.9;
-    }
-    
+
     /* -------------------- FOOTER -------------------- */
     footer {
         padding: 30px 24px;
@@ -355,24 +208,13 @@
         max-width: 1120px;
         margin: 60px auto 0; 
     }
-    footer div:first-child { margin-right: 20px; }
 
-
-    /* -------------------- SCROLL ANIMATION -------------------- */
-    .scroll-animate {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .scroll-animate.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* -------------------- LANGUAGE SECTION CONTROL -------------------- */
+    /* -------------------- SCROLL ANIMATION & LANGUAGE CONTROL (保持不变) -------------------- */
+    .scroll-animate { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .scroll-animate.visible { opacity: 1; transform: translateY(0); }
     .lang-section { display: none; }
     .lang-section.active { display: block; }
-    
+
     /* -------------------- RESPONSIVE ADJUSTMENTS -------------------- */
     @media (max-width: 768px) {
       .page { padding: 0 16px; } 
@@ -383,7 +225,9 @@
       #main-hero { height: 40vh; margin-top: 20px; }
       #hero-content h2 { font-size: 2rem; letter-spacing: 0.15em; }
       #hero-content p { font-size: 1rem; letter-spacing: 0.08em; }
-      
+      #side-nav { left: 10px; padding: 10px 8px; } /* 移动端调整左侧导航位置 */
+      .nav-link { font-size: 11px; padding: 6px 8px; }
+
       .panel-top, #core-focus-panel, .panel-bottom {
         padding: 24px;
         margin-top: 25px;
@@ -391,19 +235,7 @@
       .top-grid { grid-template-columns: 1fr; gap: 30px; } 
       .bottom-grid { grid-template-columns: 1fr; } 
 
-      #project-navigation { 
-          padding: 15px 16px; 
-          margin-top: 30px;
-          top: 15px; 
-      }
-      .project-grid { grid-template-columns: 1fr; gap: 15px; } 
-      .project-card-nav { padding-top: 65%; border-radius: 6px; }
-      .card-nav-text { left: 15px; bottom: 15px; }
-      .card-nav-text h3 { font-size: 1.2rem; }
-      .card-nav-text p { font-size: 11px; }
-
       footer { padding: 20px 16px; flex-direction: column; align-items: flex-start; margin-top: 40px; }
-      footer div:first-child { margin-bottom: 10px; margin-right: 0; }
     }
   </style>
 </head>
@@ -436,33 +268,16 @@
           <p id="hero-sub-zh" style="display:none;">世界是我的工作室，宁静是叙事语言。</p>
       </div>
   </section>
-
-  <div id="project-navigation" class="scroll-animate">
-    <div class="sub-heading" id="project-nav-title-en">PROJECTS</div>
-    <div class="sub-heading" id="project-nav-title-zh" style="display:none;">作品集</div>
-    <div class="project-grid">
+  
+  <div id="side-nav">
+      <div class="nav-title" id="side-nav-title-en">Projects</div>
+      <div class="nav-title" id="side-nav-title-zh" style="display:none;">作品</div>
       
-      <a class="project-card-nav" style="background-image:url('images/tibet_nav.jpg');" href="landing/tibet/landing-page.html">
-        <div class="card-nav-overlay"></div>
-        <div class="card-nav-text">
-          <h3 id="nav-title-tibet-en">TIBET TRILOGY</h3>
-          <h3 id="nav-title-tibet-zh" style="display:none;">西藏三部曲</h3>
-          <p id="nav-sub-tibet-en">Altitude, Empire, and the Dark Sky Park.</p>
-          <p id="nav-sub-tibet-zh" style="display:none;">海拔、古格王朝与暗夜星空。</p>
-        </div>
-      </a>
+      <a class="nav-link" id="nav-link-tibet-en" href="landing/tibet/landing-page.html">Tibet Trilogy</a>
+      <a class="nav-link" id="nav-link-tibet-zh" href="landing/tibet/landing-page.html" style="display:none;">西藏三部曲</a>
       
-      <a class="project-card-nav" style="background-image:url('images/kham_nav.jpg');" href="landing/gesar/index.html">
-        <div class="card-nav-overlay"></div>
-        <div class="card-nav-text">
-          <h3 id="nav-title-kham-en">KHAN PLATEAU TRAVERSE</h3>
-          <h3 id="nav-title-kham-zh" style="display:none;">川西穿越中线</h3>
-          <p id="nav-sub-kham-en">Gongga Mountain's remote hiking route.</p>
-          <p id="nav-sub-kham-zh" style="display:none;">贡嘎山脉的深度徒步路线。</p>
-        </div>
-      </a>
-      
-    </div>
+      <a class="nav-link" id="nav-link-kham-en" href="landing/gesar/index.html">Kham Plateau</a>
+      <a class="nav-link" id="nav-link-kham-zh" href="landing/gesar/index.html" style="display:none;">川西高原秘境</a>
   </div>
 
 
@@ -733,6 +548,15 @@
       const navTitleKhamZh = document.getElementById('nav-title-kham-zh');
       const navSubKhamEn = document.getElementById('nav-sub-kham-en');
       const navSubKhamZh = document.getElementById('nav-sub-kham-zh');
+      
+      // 获取左侧悬浮导航栏的链接元素
+      const navLinkTibetEn = document.getElementById('nav-link-tibet-en');
+      const navLinkTibetZh = document.getElementById('nav-link-tibet-zh');
+      const navLinkKhamEn = document.getElementById('nav-link-kham-en');
+      const navLinkKhamZh = document.getElementById('nav-link-kham-zh');
+      const sideNavTitleEn = document.getElementById('side-nav-title-en');
+      const sideNavTitleZh = document.getElementById('side-nav-title-zh');
+
 
       if (lang === 'zh') {
         zhSec.classList.add('active');
@@ -748,6 +572,14 @@
         heroTitleZh.style.display = 'block';
         heroSubEn.style.display = 'none';
         heroSubZh.style.display = 'block';
+
+        // 切换左侧悬浮导航栏文字 (解决中英文切换问题)
+        if (navLinkTibetEn) navLinkTibetEn.style.display = 'none';
+        if (navLinkTibetZh) navLinkTibetZh.style.display = 'block';
+        if (navLinkKhamEn) navLinkKhamEn.style.display = 'none';
+        if (navLinkKhamZh) navLinkKhamZh.style.display = 'block';
+        if (sideNavTitleEn) sideNavTitleEn.style.display = 'none';
+        if (sideNavTitleZh) sideNavTitleZh.style.display = 'block';
 
         wipTitle.textContent = "正在加班制作中";
         wipText.textContent = "其他旅程故事正在整理中。";
@@ -777,6 +609,14 @@
         heroTitleZh.style.display = 'none';
         heroSubEn.style.display = 'block';
         heroSubZh.style.display = 'none';
+
+        // 切换左侧悬浮导航栏文字
+        if (navLinkTibetEn) navLinkTibetEn.style.display = 'block';
+        if (navLinkTibetZh) navLinkTibetZh.style.display = 'none';
+        if (navLinkKhamEn) navLinkKhamEn.style.display = 'block';
+        if (navLinkKhamZh) navLinkKhamZh.style.display = 'none';
+        if (sideNavTitleEn) sideNavTitleEn.style.display = 'block';
+        if (sideNavTitleZh) sideNavTitleZh.style.display = 'none';
 
         wipTitle.textContent = "Work in progress";
         wipText.textContent = "More journey stories are being crafted.";
