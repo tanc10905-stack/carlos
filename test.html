@@ -17,12 +17,15 @@
     }
     a { color: inherit; text-decoration: none; }
     
-    /* -------------------- LAYOUT & HEADER (保持不变) -------------------- */
+    /* -------------------- MAIN PAGE CONTAINER -------------------- */
+    /* .page 容器现在包裹 header 和 main，用于限制内容宽度和居中 */
     .page {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 0 24px; 
+      padding: 0 24px; /* 左右内边距，顶部由 header 自己控制 */
     }
+
+    /* -------------------- HEADER (回归 V1.0 样式) -------------------- */
     header {
       padding: 16px 0 24px;
       border-bottom: 1px solid rgba(255,215,160,0.2); 
@@ -39,17 +42,69 @@
       font-weight: 700;
       color: #f0d8a5;
     }
-    /* (Header, Quote, Lang-Switch 样式保持不变) */
+    .subtitle {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #d8c29b;
+    }
+    .quote {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #e5e0cf;
+      font-style: italic;
+    }
+    .quote span {
+      border-top: 1px solid rgba(255,215,160,0.5); 
+      padding-top: 8px;
+      display: inline-block;
+    }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (全屏化，保持不变) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (回归 V1.0 精致 UI) -------------------- */
+    .lang-switch {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 1000;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      border-radius: 999px;
+      border: none; 
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1); 
+      backdrop-filter: blur(8px); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+      transition: all 0.3s ease;
+    }
+    .lang-switch:hover {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 16px rgba(255, 215, 160, 0.4); 
+      transform: translateY(-2px);
+    }
+    .lang-btn {
+      padding: 7px 16px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 12px;
+    }
+    .lang-btn.active {
+      background: #d8c29b; 
+      color: #111218;
+      font-weight: 700;
+    }
+
+    /* -------------------- MAIN HERO VISUAL BLOCK (全屏化，独立于 .page) -------------------- */
     #main-hero {
         height: 60vh; 
-        margin: 0; 
+        width: 100%; /* 确保全屏宽度 */
+        margin: 40px 0 0; /* 距离 header 的距离 */
         position: relative;
         overflow: hidden;
         border-radius: 0; 
         box-shadow: none;
-        margin-top: 40px; 
     }
     #hero-slide-fixed {
         position: absolute;
@@ -85,7 +140,8 @@
         margin-top: 10px;
     }
 
-    /* -------------------- PANEL STYLES (内容面板) -------------------- */
+
+    /* -------------------- PANEL STYLES (内容面板，现在都包裹在 lang-section 内部) -------------------- */
     .panel-top {
       background: #fdfdfd; 
       color: #1a1a1a;
@@ -94,7 +150,7 @@
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 24px 50px rgba(0,0,0,0.3);
       line-height: 1.6;
-      margin-top: 40px; 
+      margin-top: 40px; /* 确保内容区与 Hero 有间隔 */
     }
     .section-title {
       font-size: 16px;
@@ -104,70 +160,253 @@
       margin-bottom: 12px;
       font-weight: 600;
     }
-    /* (其他面板和卡片样式保持不变) */
-    
-    /* -------------------- NEW: 作品集导航样式 -------------------- */
+    .about-body {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #383838;
+      max-width: 800px;
+    }
+    .about-body b { color: #b18b46; font-weight: 700; } 
+
+    #core-focus-panel {
+        margin-top: 40px; 
+        padding: 30px;
+        background: #111218; 
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(255,215,160,0.15);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr; 
+      gap: 15px; 
+    }
+    .card {
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,160,0.3); 
+      background: rgba(255,255,255,0.03); 
+      padding: 18px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,215,160,0.1); }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f0d8a5; 
+      margin-bottom: 6px;
+    }
+    .card-sub {
+      font-size: 12px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 40px; 
+      margin-top: 30px;
+    }
+    .label {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .exp-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .exp-year { font-weight: 700; color: #7c5a22; }
+
+    .panel-bottom { /* 调整这个区域以包含 Why I Fit 内容 */
+      margin-top: 40px;
+      background: #15151f;
+      border-radius: 12px;
+      border: 1px solid rgba(255,215,160,0.5); 
+      padding: 32px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.8);
+    }
+    .metric-line {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #f0d8a5;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .metric-sub {
+      font-size: 14px;
+      color: #d8c29b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* 底部内容现在是单列 */
+      gap: 50px;
+    }
+    .why-title {
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b18b46;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px 0;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #ccc;
+    }
+    .why-list li::before {
+      content: '—'; 
+      color: #f0d8a5;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    .sub-heading {
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8763;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    /* -------------------- NEW: 作品集导航 (悬浮磨砂效果) -------------------- */
     #project-navigation {
-        padding: 40px 0 20px;
-        margin-top: 50px;
+        position: sticky; /* 粘性定位 */
+        top: 20px; /* 距离顶部 20px 处开始粘性 */
+        z-index: 990; /* 确保在内容之上，但在语言切换按钮之下 */
+        margin-top: 40px; /* 与上一个内容区块的距离 */
+        max-width: 1120px; /* 与 .page 宽度一致 */
+        margin-left: auto; /* 居中 */
+        margin-right: auto;
+        padding: 20px 24px; /* 内部 padding */
+        background: rgba(18, 18, 25, 0.4); /* 暗色半透明背景 */
+        backdrop-filter: blur(10px); /* 磨砂效果 */
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5); /* 阴影增强浮动感 */
+        border: 1px solid rgba(255,215,160,0.1); /* 细致的边框 */
         text-align: center;
+        transition: all 0.3s ease;
     }
     .project-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-        margin-top: 30px;
+        gap: 20px; /* 减小间距 */
+        margin-top: 20px;
     }
     .project-card-nav {
         position: relative;
-        padding-top: 60%; /* 宽高比 5:3 左右 */
-        border-radius: 10px;
+        padding-top: 60%; 
+        border-radius: 8px; /* 略微减小圆角 */
         overflow: hidden;
         background-size: cover;
         background-position: center;
         cursor: pointer;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255,215,160,0.2);
+        border: 1px solid rgba(255,215,160,0.15);
     }
     .project-card-nav:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(255,215,160,0.35); /* 悬浮时的金色阴影 */
+        transform: translateY(-3px); /* 轻微上浮 */
+        box-shadow: 0 10px 25px rgba(255,215,160,0.3); 
     }
     .card-nav-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+        background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
     }
     .card-nav-text {
         position: absolute;
-        left: 30px;
-        bottom: 30px;
+        left: 20px;
+        bottom: 20px;
         z-index: 5;
         text-align: left;
     }
     .card-nav-text h3 {
-        font-size: 1.8rem;
-        letter-spacing: 0.15em;
+        font-size: 1.4rem; /* 调整字体大小 */
+        letter-spacing: 0.1em; /* 调整字间距 */
         text-transform: uppercase;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         color: #f0d8a5;
     }
     .card-nav-text p {
-        font-size: 14px;
+        font-size: 13px; /* 调整字体大小 */
         color: #e0e0e0;
-        opacity: 0.8;
+        opacity: 0.9;
     }
     
-    /* -------------------- SCROLL & FOOTER (保持不变) -------------------- */
-    /* (滚动动画样式和 Footer 样式保持不变) */
-    /* ... */
+    /* -------------------- FOOTER -------------------- */
+    footer {
+        padding: 30px 24px;
+        text-align: center;
+        font-size: 12px;
+        color: #888;
+        border-top: 1px solid rgba(255,215,160,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1120px;
+        margin: 60px auto 0; /* 调整 footer 顶部边距 */
+    }
+    footer div:first-child { margin-right: 20px; }
+
+
+    /* -------------------- SCROLL ANIMATION -------------------- */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .scroll-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     
+    /* -------------------- RESPONSIVE ADJUSTMENTS -------------------- */
     @media (max-width: 768px) {
-        /* ... (响应式样式保持不变) ... */
-        .project-grid { grid-template-columns: 1fr; gap: 20px; }
-        .project-card-nav { padding-top: 65%; }
-        .card-nav-text { left: 20px; bottom: 20px; }
-        .card-nav-text h3 { font-size: 1.4rem; }
+      .page { padding: 0 16px; } 
+      header { padding: 12px 0 18px; }
+      .name { font-size: 28px; }
+      .subtitle, .quote { font-size: 12px; }
+      .lang-switch { top: 12px; right: 16px; }
+      #main-hero { height: 40vh; margin-top: 20px; }
+      #hero-content h2 { font-size: 2rem; letter-spacing: 0.15em; }
+      #hero-content p { font-size: 1rem; letter-spacing: 0.08em; }
+      
+      .panel-top, #core-focus-panel, .panel-bottom {
+        padding: 24px;
+        margin-top: 25px;
+      }
+      .section-title { font-size: 14px; margin-bottom: 10px; }
+      .about-body { font-size: 13px; }
+      .top-grid { grid-template-columns: 1fr; gap: 30px; } /* 改回单列 */
+      .bottom-grid { grid-template-columns: 1fr; } /* 确保单列 */
+
+      #project-navigation { 
+          padding: 15px 16px; /* 移动端调整 padding */
+          margin-top: 30px;
+          top: 15px; /* 移动端顶部定位 */
+      }
+      .project-grid { grid-template-columns: 1fr; gap: 15px; } /* 移动端单列 */
+      .project-card-nav { padding-top: 65%; border-radius: 6px; }
+      .card-nav-text { left: 15px; bottom: 15px; }
+      .card-nav-text h3 { font-size: 1.2rem; }
+      .card-nav-text p { font-size: 11px; }
+
+      .metric-line { font-size: 22px; }
+      .metric-sub { font-size: 12px; }
+      .why-title, .sub-heading { font-size: 14px; }
+      .why-list li { font-size: 12px; }
+      footer { padding: 20px 16px; flex-direction: column; align-items: flex-start; margin-top: 40px; }
+      footer div:first-child { margin-bottom: 10px; margin-right: 0; }
     }
   </style>
 </head>
@@ -177,15 +416,19 @@
     <header>
       <div>
         <div class="name">Carlos Tan</div>
+        <div class="subtitle" id="subtitle">
+          Luxury Travel Content Storyteller & Brand Strategist · China Market
         </div>
+        <div class="quote">
+          <span id="quote-text">“Lived experience is the most valuable asset in luxury travel storytelling.”</span>
+        </div>
+      </div>
       <div class="lang-switch">
         <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
         <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中文</button>
       </div>
     </header>
-  </div>
-
-  <section id="main-hero" class="scroll-animate">
+  </div> <section id="main-hero" class="scroll-animate">
       <div id="hero-slide-fixed"></div>
       <div id="hero-content">
           <h2 id="hero-title-en">WILDERNESS & ELEGANCE</h2>
@@ -195,173 +438,124 @@
       </div>
   </section>
 
-  <div class="page">
-    <main>
+  <div id="project-navigation" class="scroll-animate">
+    <div class="sub-heading" id="project-nav-title-en">PROJECTS</div>
+    <div class="sub-heading" id="project-nav-title-zh" style="display:none;">作品集</div>
+    <div class="project-grid">
       
+      <a class="project-card-nav" style="background-image:url('images/tibet_nav.jpg');" href="landing/tibet/landing-page.html">
+        <div class="card-nav-overlay"></div>
+        <div class="card-nav-text">
+          <h3 id="nav-title-tibet-en">TIBET TRILOGY</h3>
+          <h3 id="nav-title-tibet-zh" style="display:none;">西藏三部曲</h3>
+          <p id="nav-sub-tibet-en">Altitude, Empire, and the Dark Sky Park.</p>
+          <p id="nav-sub-tibet-zh" style="display:none;">海拔、古格王朝与暗夜星空。</p>
+        </div>
+      </a>
+      
+      <a class="project-card-nav" style="background-image:url('images/kham_nav.jpg');" href="landing/gesar/index.html">
+        <div class="card-nav-overlay"></div>
+        <div class="card-nav-text">
+          <h3 id="nav-title-kham-en">KHAN PLATEAU TRAVERSE</h3>
+          <h3 id="nav-title-kham-zh" style="display:none;">川西穿越中线</h3>
+          <p id="nav-sub-kham-en">Gongga Mountain's remote hiking route.</p>
+          <p id="nav-sub-kham-zh" style="display:none;">贡嘎山脉的深度徒步路线。</p>
+        </div>
+      </a>
+      
+    </div>
+  </div>
+
+  <div class="page"> <main>
       <div class="lang-section active" id="lang-en">
         <div class="panel-top scroll-animate">
-          </div>
-        
-        <div id="core-focus-panel" class="scroll-animate">
+          <div class="section-title">ABOUT ME</div>
+          <div class="about-body">
+            I am a luxury travel content storyteller and brand strategist focused on the China market – and also a genuine high-frequency luxury hotel guest and outdoor traveler.
+            I have experienced high-altitude roads in Tibet and Western Sichuan, mountain regions around Chongqing, and fully offline days in the Mulu National Park rainforest in Sarawak, Malaysia.
+            These journeys give me an intuitive understanding of how Chinese travelers balance <b>nature, safety, comfort, and a sense of freedom</b>.
+            <br><br>
+            Since 2019, my work in e-commerce and content has centered on
+            <b>brand narrative, user insight, and conversion paths</b>, rather than chasing vanity metrics.
+            This allows me to design content systems for camps and hotels that connect brand story, user emotion, and measurable results – especially on Chinese social platforms such as Xiaohongshu.
           </div>
 
-        <div class="panel-bottom scroll-animate">
-          <div id="project-navigation">
-            <div class="sub-heading">PROJECTS</div>
-            <div class="project-grid">
-              
-              <a class="project-card-nav" style="background-image:url('images/tibet_nav.jpg');" href="landing/tibet/landing-page.html">
-                <div class="card-nav-overlay"></div>
-                <div class="card-nav-text">
-                  <h3 id="nav-title-tibet-en">TIBET TRILOGY</h3>
-                  <p id="nav-sub-tibet-en">Altitude, Empire, and the Dark Sky Park.</p>
+          <div class="top-grid">
+            <div>
+              <div class="label" style="margin-top:20px;">SNAPSHOT EXPERIENCE</div>
+              <div class="exp-block">
+                <div class="exp-row">
+                  <div class="exp-year">2019 – Now</div>
+                  <div class="exp-desc">E-commerce & content operations, responsible for brand tone, storytelling and conversion.</div>
                 </div>
-              </a>
-              
-              <a class="project-card-nav" style="background-image:url('images/kham_nav.jpg');" href="landing/gesar/index.html">
-                <div class="card-nav-overlay"></div>
-                <div class="card-nav-text">
-                  <h3 id="nav-title-kham-en">KHAN PLATEAU TRAVERSE</h3>
-                  <p id="nav-sub-kham-en">Gongga Mountain's remote hiking route.</p>
+                <div class="exp-row">
+                  <div class="exp-year">Travel</div>
+                  <div class="exp-desc">Tibet, Western Sichuan, Chongqing mountain regions, Mulu National Park rainforest, plus multiple camping trips.</div>
                 </div>
-              </a>
-              
+                <div class="exp-row">
+                  <div class="exp-year">Long-Term Practice</div>
+                  <div class="exp-desc">Observing how luxury travelers actually make decisions and remember experiences.</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="label" style="margin-top:20px;">CORE FOCUS TAGS</div>
+              <div class="tag-row">
+                <div class="tag">Story-driven content</div>
+                <div class="tag">Xiaohongshu mindset</div>
+                <div class="tag">KOL / creator collaboration</div>
+                <div class="tag">Travel visual sense</div>
+                <div class="tag">Chinese + English communication</div>
+              </div>
             </div>
           </div>
-          
         </div>
-      </div>
-
-      <div class="lang-section" id="lang-zh" style="display:none;">
-        <div class="panel-top scroll-animate">
-          </div>
         
         <div id="core-focus-panel" class="scroll-animate">
-          </div>
+            <div class="section-title">CORE FOCUS</div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">Luxury Travel Storytelling</div>
+                    <div class="card-sub">
+                        Through photo essays, travel diaries and long-form stories, I break a single journey into
+                        <b> “pre-trip imagination – feelings on arrival – cared-for details – the longing after departure” </b>,
+                        so guests can “experience the stay once in content” before they truly book it.
+                    </div>
+                    <a href="landing/story.html" style="font-size:12px;color:#f0d8a5;text-decoration:underline;display:block;margin-top:6px;">
+                        View Details
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-title">Brand & Channel Operations</div>
+                    <div class="card-sub">From topics and monthly calendars to funnel design and content iteration.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">High-End Guest Perspective</div>
+                    <div class="card-sub">150+ hotel nights per year; fluent in the expectations of premium guests.</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Outdoor & Wilderness Insight</div>
+                    <div class="card-sub">Real exposure to highlands, rainforests and camping – not just imagined experiences.</div>
+                </div>
+            </div>
+        </div>
 
         <div class="panel-bottom scroll-animate">
-          <div id="project-navigation">
-            <div class="sub-heading">作品集</div>
-            <div class="project-grid">
-              
-              <a class="project-card-nav" style="background-image:url('images/tibet_nav.jpg');" href="landing/tibet/landing-page.html">
-                <div class="card-nav-overlay"></div>
-                <div class="card-nav-text">
-                  <h3 id="nav-title-tibet-zh">西藏三部曲</h3>
-                  <p id="nav-sub-tibet-zh">海拔、古格王朝与暗夜星空。</p>
-                </div>
-              </a>
-              
-              <a class="project-card-nav" style="background-image:url('images/kham_nav.jpg');" href="landing/gesar/index.html">
-                <div class="card-nav-overlay"></div>
-                <div class="card-nav-text">
-                  <h3 id="nav-title-kham-zh">川西穿越中线</h3>
-                  <p id="nav-sub-kham-zh">贡嘎山脉的深度徒步路线。</p>
-                </div>
-              </a>
-              
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </main>
+          <div class="metric-line">150+ NIGHTS / YEAR</div>
+          <div class="metric-sub">Marriott Titanium · Hyatt Globalist · Hilton Diamond</div>
 
-    </div>
-  
-  <script>
-    // (JS 辅助函数和动画逻辑保持不变)
-    // ... (Throttle function) ...
-    // ... (Animate Scroll function) ...
+          <div class="bottom-grid">
+            <div>
+              <div class="why-title">WHY I FIT LUXURY TRAVEL BRANDS</div>
+              <ul class="why-list">
+                <li>I am both a content creator and a frequent luxury guest, so I can speak from the traveler’s perspective.</li>
+                <li>I have truly experienced “edges of comfort” – highlands, rainforests, offline nights – and understand the role of safety in wilderness luxury.</li>
+                <li>I know how high-end hotel service and membership ecosystems feel from the inside, beyond brochures.</li>
+                <li>I can translate a camp’s USP – location, wildlife, atmosphere, service – into storylines that resonate with Chinese travelers.</li>
+                <li>I work comfortably with KOLs, media and partners, turning one stay into long-term reusable content assets.</li>
+              </ul>
 
-    let currentLang = 'en';
-
-    function switchLang(lang) {
-      if (lang === currentLang) return;
-
-      const y = window.scrollY || window.pageYOffset;
-
-      const enSec = document.getElementById('lang-en');
-      const zhSec = document.getElementById('lang-zh');
-      const btnEn = document.getElementById('btn-en');
-      const btnZh = document.getElementById('btn-zh');
-      const quote = document.getElementById('quote-text');
-      const subtitle = document.getElementById('subtitle');
-      const footerLeft = document.getElementById('footer-left');
-      const heroTitleEn = document.getElementById('hero-title-en');
-      const heroTitleZh = document.getElementById('hero-title-zh');
-      const heroSubEn = document.getElementById('hero-sub-en');
-      const heroSubZh = document.getElementById('hero-sub-zh');
-
-      // 新增导航标题和子标题的引用
-      const navTitleTibetEn = document.getElementById('nav-title-tibet-en');
-      const navSubTibetEn = document.getElementById('nav-sub-tibet-en');
-      const navTitleTibetZh = document.getElementById('nav-title-tibet-zh');
-      const navSubTibetZh = document.getElementById('nav-sub-tibet-zh');
-      const navTitleKhamEn = document.getElementById('nav-title-kham-en');
-      const navSubKhamEn = document.getElementById('nav-sub-kham-en');
-      const navTitleKhamZh = document.getElementById('nav-title-kham-zh');
-      const navSubKhamZh = document.getElementById('nav-sub-kham-zh');
-
-      // 保持 WIP 遮罩文案切换，以满足中英文纯净显示
-      const wipTitle = document.getElementById('wip-title');
-      const wipText = document.getElementById('wip-text');
-      const wipHint = document.getElementById('wip-hint');
-      
-      if (lang === 'zh') {
-        zhSec.classList.add('active');
-        enSec.classList.remove('active');
-        btnZh.classList.add('active');
-        btnEn.classList.remove('active');
-
-        quote.textContent = "“真实体验，是奢旅内容里最贵的资产。”";
-        subtitle.textContent = "奢旅内容叙事者 & 品牌策略人 · 面向中国市场";
-        footerLeft.textContent = "联系 · tanc10905@gmail.com";
-        
-        // 切换 Hero 标题
-        heroTitleEn.style.display = 'none';
-        heroTitleZh.style.display = 'block';
-        heroSubEn.style.display = 'none';
-        heroSubZh.style.display = 'block';
-        
-        // 切换导航卡片标题 (方法二：直接修改可见卡片内容)
-        // NOTE: 因为导航卡片现在是写在各自的 lang-section 内部，
-        // 这种直接修改的方式已经过时，但保留用于其他 Header/Footer 元素
-        
-        wipTitle.textContent = "正在加班制作中";
-        wipText.textContent = "其他旅程故事正在整理中。";
-        wipHint.textContent = "点击任意空白处关闭 / Tap anywhere to close";
-      } else {
-        enSec.classList.add('active');
-        zhSec.classList.remove('active');
-        btnEn.classList.add('active');
-        btnZh.classList.remove('active');
-
-        quote.textContent = "“Lived experience is the most valuable asset in luxury travel storytelling.”";
-        subtitle.textContent = "Luxury Travel Content Storyteller & Brand Strategist · China Market";
-        footerLeft.textContent = "CONTACT · tanc10905@gmail.com";
-
-        // 切换 Hero 标题
-        heroTitleEn.style.display = 'block';
-        heroTitleZh.style.display = 'none';
-        heroSubEn.style.display = 'block';
-        heroSubZh.style.display = 'none';
-
-        wipTitle.textContent = "Work in progress";
-        wipText.textContent = "More journey stories are being crafted.";
-        wipHint.textContent = "Tap anywhere to close / 点击任意空白处关闭";
-      }
-
-      currentLang = lang;
-      window.scrollTo({ top: y });
-    }
-    
-    // (其余 JS 函数 goTibetStory, openWip, animateScroll, throttle 保持不变)
-    // ...
-    
-    // 确保页面加载时立刻检查一次
-    window.addEventListener('DOMContentLoaded', animateScroll);
-    window.addEventListener('scroll', throttle(animateScroll, 100));
-  </script>
-</body>
-</html>
+              <div class="sub-heading">WHAT I CAN CONTRIBUTE</div>
+              <ul class="why-list">
+                <li>Designing a Xiaohongshu content framework: travel diaries, emotional stories, FAQs, and trust-building posts.</li>
