@@ -38,12 +38,12 @@
            HERO
         -------------------- */
 
-        .hero {
+      .hero {
             width: 100vw;
             height: 100vh;
-            /* ********** 路径修正：使用绝对路径 /images/ 和新文件名 ********** */
-            background: url("/images/genyen_banner.jpg") center center / cover no-repeat;
-            /* *************************************************************** */
+            /* ********** 路径最终修正：使用相对路径 (../../) 适应 GitHub Pages 结构 ********** */
+            background: url("../../images/genyen_banner.jpg") center center / cover no-repeat;
+            /* ******************************************************************************** */
             position: relative;
             display: flex;
             justify-content: center;
@@ -53,19 +53,18 @@
             color: #fff;
         }
 
-        /* 遮光罩 */
+        /* 遮光罩：已恢复到原始的深色渐变样式 */
         .hero::after {
-    /* 临时修改：将背景色设为完全透明 */
-    background: rgba(0,0,0,0); 
-}
-
-        .hero-text-box {
-            position: relative;
-            z-index: 1;
-            max-width: 80rem;
-            padding: 1.5rem 1.75rem;
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center,
+                        rgba(0,0,0,0.08) 0,
+                        rgba(0,0,0,0.45) 60%,
+                        rgba(0,0,0,0.75) 100%);
+            pointer-events: none;
+            z-index: 0;
         }
-
         /* -------------------- 动画 CSS (已修复动画冲突 Bug) -------------------- */
         /* 基础状态：稍微缩小 + 下移 + 透明 */
         .hero-line {
