@@ -6,7 +6,7 @@
   <title>Carlos Tan | Wilderness & Luxury Stories</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #000; color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
 
     /* Hero Section */
     .hero {
@@ -24,8 +24,16 @@
       transition: opacity 1.5s ease-in-out;
       background-size: cover;
       background-position: center;
+      filter: brightness(0.88);
     }
     .hero-slide.active { opacity: 1; }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%);
+      z-index: 1;
+    }
 
     .hero-text {
       position: absolute;
@@ -34,21 +42,43 @@
       text-align: center;
       z-index: 2;
       animation: fadeIn 2s ease forwards;
+      padding: 0 10px;
     }
 
     .hero-text h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       letter-spacing: 0.15em;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
     .hero-text p {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: #ddd;
-      max-width: 600px;
+      max-width: 680px;
       margin: 0 auto;
+      line-height: 1.8;
     }
 
+    /* Hero Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.3rem;
+      z-index: 3;
+      transition: 0.3s;
+    }
+    .arrow:hover { background: rgba(255,255,255,0.3); }
+    .arrow.left { left: 24px; }
+    .arrow.right { right: 24px; }
+
+    /* Language Switch */
     .nav-switch {
       position: fixed;
       top: 24px; right: 24px;
@@ -57,6 +87,7 @@
       overflow: hidden;
       display: flex;
       z-index: 1000;
+      backdrop-filter: blur(6px);
     }
     .lang-btn {
       border: none;
@@ -66,19 +97,24 @@
       cursor: pointer;
       font-weight: 600;
       font-size: 14px;
+      transition: background 0.3s;
     }
     .lang-btn.active { background: #fff; color: #000; }
 
     /* Section Layout */
     section {
-      padding: 120px 20px;
+      padding: 140px 20px;
       text-align: center;
       max-width: 960px;
       margin: auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.2s ease;
     }
+    section.visible { opacity: 1; transform: translateY(0); }
 
-    h2 { font-size: 2rem; margin-bottom: 16px; letter-spacing: 0.1em; }
-    p { font-size: 1.1rem; line-height: 1.9; color: #ccc; }
+    h2 { font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 0.1em; }
+    p { font-size: 1.15rem; line-height: 1.9; color: #ccc; }
 
     .projects {
       display: flex;
@@ -93,10 +129,10 @@
       background: rgba(255,255,255,0.05);
       border-radius: 14px;
       overflow: hidden;
-      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, background 0.4s ease;
     }
-    .project-card:hover { transform: scale(1.05); }
-    .project-card img { width: 100%; height: 200px; object-fit: cover; }
+    .project-card:hover { transform: scale(1.05); background: rgba(255,255,255,0.08); }
+    .project-card img { width: 100%; height: 220px; object-fit: cover; }
     .project-card h3 { margin: 16px 0 8px; font-size: 1.2rem; }
 
     footer {
@@ -109,24 +145,23 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .hero-text h1 { font-size: 2rem; }
+      .hero-text h1 { font-size: 2.1rem; }
       .hero-text p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Language Switch -->
   <div class="nav-switch">
     <button id="btn-en" class="lang-btn active" onclick="switchLang('en')">EN</button>
     <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中文</button>
   </div>
 
-  <!-- Hero Section -->
   <div class="hero">
     <div class="hero-slide active" style="background-image:url('images/8DF048B8E59AB60EF5A560DB1E2187B0.webp');"></div>
-    <div class="hero-slide" style="background-image:url('images/6BBE6E68D1A10CCC9C08E5727651588D.webp');"></div>
     <div class="hero-slide" style="background-image:url('images/B63329FB7FC05D3C322F6C8C068102C7.webp');"></div>
+    <div class="hero-slide" style="background-image:url('images/6BBE6E68D1A10CCC9C08E5727651588D.webp');"></div>
+    <div class="hero-overlay"></div>
 
     <div class="hero-text" id="hero-text-en">
       <h1>Stories from the Edge</h1>
@@ -134,11 +169,13 @@
     </div>
     <div class="hero-text" id="hero-text-zh" style="display:none">
       <h1>边界之外的故事</h1>
-      <p>我讲述荒野与优雅并存的地方——在那儿，宁静成为奢侈的语言。</p>
+      <p>我讲述荒野与优雅并存的地方——在那里，宁静成为奢侈的语言。</p>
     </div>
+
+    <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+    <button class="arrow right" onclick="nextSlide()">&#10095;</button>
   </div>
 
-  <!-- About -->
   <section id="about">
     <h2 id="about-en">About Carlos</h2>
     <h2 id="about-zh" style="display:none">关于我</h2>
@@ -147,7 +184,6 @@
     <p id="about-text-zh" style="display:none">我是一名旅行叙事者，寻找自然与设计之间的张力。每一次出发，不只是地理的移动，更是内心的行走。从西藏到非洲，我记录沉默与形态如何重塑情感。</p>
   </section>
 
-  <!-- Projects -->
   <section id="projects">
     <h2 id="proj-title-en">Selected Works</h2>
     <h2 id="proj-title-zh" style="display:none">精选作品</h2>
@@ -164,7 +200,6 @@
     </div>
   </section>
 
-  <!-- Philosophy -->
   <section id="philosophy">
     <h2 id="phil-en">Design Philosophy</h2>
     <h2 id="phil-zh" style="display:none">设计理念</h2>
@@ -180,11 +215,18 @@
   <script>
     let slides = document.querySelectorAll('.hero-slide');
     let index = 0;
-    setInterval(()=>{
+    let autoSlide = setInterval(nextSlide, 5000);
+
+    function nextSlide() {
       slides[index].classList.remove('active');
       index = (index + 1) % slides.length;
       slides[index].classList.add('active');
-    }, 4000);
+    }
+    function prevSlide() {
+      slides[index].classList.remove('active');
+      index = (index - 1 + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
 
     function switchLang(lang){
       const en = lang==='en';
@@ -194,7 +236,14 @@
       document.querySelectorAll('[id$="-en"]').forEach(el=> el.style.display = en ? 'block' : 'none');
       document.querySelectorAll('[id$="-zh"]').forEach(el=> el.style.display = en ? 'none' : 'block');
     }
-  </script>
 
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.8){ sec.classList.add('visible'); }
+      });
+    });
+  </script>
 </body>
 </html>
