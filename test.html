@@ -12,14 +12,10 @@
     body {
       margin: 0;
       padding: 0;
-      /* 风格重构：纯白色背景 */
+      font-family: 'Cinzel', serif, -apple-system, BlinkMacSystemFont, "SF Pro Display";
       background: #fff; 
-      color: #1a1a1a; /* 黑色主文字 */
+      color: #1a1a1a; 
       scroll-behavior: smooth;
-    }
-    /* 字体优化：应用 Cinzel 衬线字体 */
-    body, .nav-title, .nav-link, .header-content {
-        font-family: 'Cinzel', serif, -apple-system, BlinkMacSystemFont, "SF Pro Display";
     }
     a { color: inherit; text-decoration: none; }
     
@@ -30,13 +26,16 @@
       padding: 0 24px;
     }
 
-    /* -------------------- NEW: TOP STICKY HEADER WRAPPER (V2.1.3 核心) -------------------- */
+    /* -------------------- TOP STICKY HEADER WRAPPER (粘性定位) -------------------- */
     #top-branding-wrapper {
         position: sticky; /* 粘性定位 */
         top: 0; /* 粘在顶部 */
         z-index: 100;
         background: #fff;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* 增加轻微阴影，体现粘性 */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        /* 关键：设置相对定位，但 lang-switch 不再依赖它，而是使用 fixed */
+        /* 仅保留 padding 和居中需要的属性 */
+        padding: 0 24px;
     }
     
     /* Header 留白优化：内容居中容器 */
@@ -48,24 +47,24 @@
         /* 减少顶部留白 */
         padding-top: 18px; 
         padding-bottom: 18px; 
-        position: relative; 
+        /* 移除 position: relative，因为 lang-switch 是 fixed */
     }
 
     .name {
       font-size: 36px;
-      letter-spacing: 0.25em; /* 略微增加间距 */
+      letter-spacing: 0.25em; 
       text-transform: uppercase;
       font-weight: 700;
       color: #1a1a1a;
-      font-family: 'Cinzel', serif; /* 确保主标题使用 Cinzel */
+      font-family: 'Cinzel', serif;
     }
     .subtitle {
-      margin-top: 5px; /* 减少间距 */
+      margin-top: 5px; 
       font-size: 13px; 
       color: #666;
     }
     .quote {
-      margin-top: 10px; /* 减少间距 */
+      margin-top: 10px; 
       font-size: 13px;
       color: #444;
       font-style: italic;
@@ -74,13 +73,14 @@
       display: block;
       margin: 0 auto;
       border-bottom: 1px solid #eee; 
-      padding-bottom: 15px; /* 减少分隔线内边距 */
+      padding-bottom: 15px; 
     }
 
-    /* -------------------- LANGUAGE SWITCH (V2.1.3 核心修复：居中定位) -------------------- */
+    /* -------------------- LANGUAGE SWITCH (V2.1.4 核心修复：fixed 垂直居中) -------------------- */
     .lang-switch {
-      position: absolute; /* 绝对定位，相对于 .header-content */
-      top: 50%;
+      /* 关键：使用 fixed 定位，使其独立于滚动和 Header */
+      position: fixed; 
+      top: 50px; /* 临时 top 值，实际由 JS 计算 */
       right: 24px;
       transform: translateY(-50%); /* 垂直居中 */
       z-index: 1001; 
@@ -116,7 +116,7 @@
       font-weight: 700;
     }
 
-    /* -------------------- NEW: 左侧作品集悬浮导航栏 (V2.1 精致 UI) -------------------- */
+    /* -------------------- NEW: 左侧作品集悬浮导航栏 -------------------- */
     #side-nav {
       position: fixed;
       top: 50%;
@@ -145,7 +145,7 @@
         transition: all 0.3s ease;
         text-align: center;
         white-space: nowrap;
-        font-family: -apple-system, sans-serif; /* 导航链接使用普通字体 */
+        font-family: -apple-system, sans-serif;
     }
     .nav-link:hover {
         background: #f0d8a5; 
@@ -160,7 +160,7 @@
         font-family: -apple-system, sans-serif;
     }
 
-    /* -------------------- MAIN HERO VISUAL BLOCK (全屏无遮挡) -------------------- */
+    /* -------------------- MAIN HERO VISUAL BLOCK (紧贴 Header) -------------------- */
     #main-hero {
         height: 55vh; 
         width: 100%; 
@@ -174,7 +174,7 @@
         height: 100%;
         background-image: url('images/main_hero_bg.jpg'); 
         background-size: cover; 
-        background-position: center top; /* 焦点位置，确保寺庙在底部可见 */
+        background-position: center top; 
         background-repeat: no-repeat;
         filter: brightness(0.9) contrast(1.1); 
     }
@@ -189,7 +189,7 @@
         background: rgba(255,255,255,0.0);
     }
     #hero-content h2 {
-        font-size: 3.5rem; /* 放大 Hero 标题 */
+        font-size: 3.5rem; 
         letter-spacing: 0.25em;
         text-transform: uppercase;
         color: #1a1a1a; 
